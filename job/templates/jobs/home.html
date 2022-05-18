@@ -1,6 +1,8 @@
 
 <!doctype html>
 <html lang="en">
+  {% load static %}
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +97,7 @@
             <div class="navbar-nav ml-auto">
               <a class="nav-link" aria-current="page" href="#">Home</a>
               <a class="nav-link" href="#">About-Me</a>
-              <a class="nav-link" href="#">Portfolio</a>
+              <a class="nav-link" href="{% static 'resume-analytic.pdf' %}">Resume</a>
               <a class="nav-link disabled">Blog</a>
             </div>
           </div>
@@ -108,11 +110,16 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
+        
         <h1 class="fw-light">Hi, i am Mukti!</h1>
         <p class="lead text-muted">Hej, my name is Mukti R. Chapagain and i love to work with data. I love to work with Food and Nutrition data, different open datasource and develop AI tools.</p>
+        
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'Mukti-profilePic.jpg'%}"/>
+        
         <p>
           <a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Want to connect me in LinkedIn!</a>
         </p>
+        
       </div>
     </div>
   </section>
