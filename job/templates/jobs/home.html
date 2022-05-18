@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.98.0">
-    <title>Album example · Bootstrap v5.2</title>
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>Mukti R. Chapagain</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
 
@@ -89,17 +89,19 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Mukti R. Chapagain</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            
             <div class="navbar-nav ml-auto">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">About-Me</a>
+              <a class="nav-link" aria-current="page" href="https://www.linkedin.com/in/mrchapagain/">Connect-Me</a>
               <a class="nav-link" href="{% static 'resume-analytic.pdf' %}">Resume</a>
-              <a class="nav-link disabled">Blog</a>
+              <a class="nav-link active" href="#">Portfolio</a>
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
+
           </div>
         </div>
       </nav>
