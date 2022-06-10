@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t)gy(49mtnf4jw4n6h%7u#v0+=)b8344eyj-b9q^zuhdv80+q1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '178.62.108.251']
+ALLOWED_HOSTS = []#["""'localhost', '178.62.108.251'"""]
 
 
 # Application definition
@@ -137,8 +137,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-try:
+"""try:
     from .local_settings import *
 except ImportError:
-    pass
+    pass"""
 
