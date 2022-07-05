@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []#["""'localhost', '178.62.108.251'"""]
 # Application definition
 
 INSTALLED_APPS = [
+    'aboutme.apps.AboutmeConfig',
     'job.apps.JobConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',

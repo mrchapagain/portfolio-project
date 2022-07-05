@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="generator" content="">
-    <title>Mukti´s Blog</title>
+    <title>Mukti R. Chapagain</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
 
@@ -87,53 +87,80 @@
   <body>
     
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        
-        <div class="navbar-nav ml-auto">
-          <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
-          <a class="nav-link active" href="{% url 'alljobs' %}">Portfolio</a>
-          <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            
+            <div class="navbar-nav ml-auto">
+              <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
+              <a class="nav-link active" href="{% url 'alljobs' %}">Portfolio</a>
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
+            </div>
 
-      </div>
-    </div>
-  </nav>
+          </div>
+        </div>
+      </nav>
 </header>
 
 <main>
-    <div class="container">
-        <h1 class= "text-center pt-3"> Welcome to Food & Data blog!</h1>
-        <br />
-        <br />
-        <h2> latest Posts </h2>
-        <hr >
 
-        {% for blog in blogs.all %}
-        
-        <a href="{% url 'detail' blog.id %}"> <h3> {{ blog.title }} </h3> </a>
-        {{ blog.pub_date_pretty }}
-        
-        <br />
-        <img class= "img-fluid" src="{{ blog.image.url }}" width="600" height="500"/> 
-        
-        <br />
-        <p>{{ blog.summary }}</p>
-        <br />
-        <hr >
-        {% endfor %}
+  <section class="py-6 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Who am i?</h1>
+        <hr>
+        <h2 class="fw-light">Resume!</h2>
+        <p class="lead text-muted">I am Food scientist with knowledge and Data scientist with skills. I love to work with data and create value to the society and business.</p>
+        <br>
+        <h2 class="fw-light">My CV</h2>
+        <iframe src= "{% static 'resume-analytic.pdf' %}" width="900" height="700">CV of Mukti R. Chapagain</iframe>
+        <br>
+        <hr>
+        <!--
+          <h2 class="fw-light">Certificates</h2>
+          <iframe src= "{% static 'TechLabDS.pdf' %}" width="100%" height="60%"> Certificates</iframe>
+          <img class="bd-placeholder-img card-img-top" class= "img-fluid" width="100%" height="50%" src= "{% static 'TechLab-DataScience.png'%}"/> -->
+        <br>
+        <h2 class="fw-light">What i can do for you?</h2>
+        <p>
+          <!--<a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Want to connect me in LinkedIn!</a>-->
+        </p>
+        <hr>
+      </div>
     </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+
+        {% for doc in docs.all %}
+      <div class="col">
+        <p class="card-text"> {{ doc.title }}</p>
+        <div class="card-body">
+          <!--<img class= "img-fluid" src="{{ doc.image.url }}" width="600" height="500"/>-->
+            <!--<iframe src= "{{ doc.file.url }}" width="100%" height="60%"> </iframe>-->
+            <!--<p class="card-text">{{ doc.summary }}</p>-->
+          <small class="text-muted">9 mins</small>
+        </div>
+      </div>
+
+        {% endfor %}
+      
+      
+      </div>
+    </div>
+  </div>
 
 </main>
 
-<footer class="text-muted">
+<footer class="text-muted py-5">
   <div class="container text-center">
-      <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
+    <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
   </div>
 </footer>
 
