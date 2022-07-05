@@ -15,10 +15,10 @@ class Migration(migrations.Migration):
             name='AboutMe',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('pub_date', models.DateTimeField()),
+                ('body', models.TextField()),
                 ('title', models.CharField(max_length=255)),
                 ('image', models.ImageField(upload_to='images/')),
-                ('summary', models.CharField(max_length=500)),
-                ('file', models.FileField(upload_to='static/')),
             ],
         ),
     ]

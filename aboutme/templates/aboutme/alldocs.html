@@ -115,7 +115,7 @@
         <hr>
         <h2 class="fw-light">Resume!</h2>
         <p class="lead text-muted">I am Food scientist with knowledge and Data scientist with skills. I love to work with data and create value to the society and business.</p>
-        <br>
+        <br><hr>
         <h2 class="fw-light">My CV</h2>
         <iframe src= "{% static 'resume-analytic.pdf' %}" width="900" height="700">CV of Mukti R. Chapagain</iframe>
         <br>
@@ -124,8 +124,8 @@
           <h2 class="fw-light">Certificates</h2>
           <iframe src= "{% static 'TechLabDS.pdf' %}" width="100%" height="60%"> Certificates</iframe>
           <img class="bd-placeholder-img card-img-top" class= "img-fluid" width="100%" height="50%" src= "{% static 'TechLab-DataScience.png'%}"/> -->
-        <br>
-        <h2 class="fw-light">What i can do for you?</h2>
+        
+        <h2 class="text-center pt-2">What service can i offer!</h2>
         <p>
           <!--<a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Want to connect me in LinkedIn!</a>-->
         </p>
@@ -134,31 +134,26 @@
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
+  <div class="container">
 
-        {% for doc in docs.all %}
-        <!-- the box -->git 
-      <div class="col">
-        <p class="card-text"> {{ doc.title }}</p>
-        <div class="card-body">
-          <!--<img class= "img-fluid" src="{{ doc.image.url }}" width="600" height="500"/>-->
-            <!--<iframe src= "{{ doc.file.url }}" width="100%" height="60%"> </iframe>-->
-            <!--<p class="card-text">{{ doc.summary }}</p>-->
-          <small class="text-muted">9 mins</small>
-        </div>
-      </div>
-
-        {% endfor %}
-      
-      
-      </div>
-    </div>
-  </div>
+    {% for doc in aboutme.all %}
+    
+    <h3> {{ doc.title }} </h3>
+    {{ doc.pub_date_pretty }}
+    
+    <br />
+    <img class= "img-fluid" src="{{ doc.image.url }}" width="600" height="500"/> 
+    
+    <br />
+    <p>{{ doc.body }}</p>
+    <small class="text-muted">9 mins</small>
+    <br /><hr >
+    
+    {% endfor %}
+</div>
 
 </main>
-
+<hr>
 <footer class="text-muted py-5">
   <div class="container text-center">
     <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>

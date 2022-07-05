@@ -3,9 +3,12 @@ from django.db import models
 # Create your models here.
 class AboutMe(models.Model):
     title = models.CharField(max_length=255)
-    #image = models.ImageField(upload_to='images/')
-    #summary = models.CharField(max_length=500)
-    #file = models.FileField(upload_to='static/', max_length=100)
+    pub_date = models.DateTimeField()
+    body = models.TextField()
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.title
+
+    def pub_date_pretty(self):
+        return self.pub_date.strftime('%b %e %Y')
