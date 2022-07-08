@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
             name='Job',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                #('title', models.CharField(default= "Title", max_length=255)),
                 ('image', models.ImageField(upload_to='image/')),
                 ('summary', models.CharField(max_length=200)),
             ],

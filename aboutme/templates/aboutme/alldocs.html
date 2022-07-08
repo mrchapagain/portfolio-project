@@ -135,25 +135,40 @@
     </div>
   </section>
 
-  <div class="container">
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <h3> Some of my skills certifications. Click to the image to view bigger</h3>
+        
+        {% for aboutme in aboutmes.all %}
+        
+        <a href="{% url 'docdetail' aboutme.id %}"> <h3> {{ aboutme.title }} </h3> </a>
+        {{ aboutme.pub_date_pretty }}
+        <br />
+        <img class= "img-fluid" src="{{ aboutme.image.url }}" width="600" height="500"/> 
+        <h2> hi</h2>
+        <br />
+        <p>{{ aboutme.body }}</p>
+        <small class="text-muted">9 mins</small>
+        <br /><hr >
+        
+        {% endfor %}
 
-    {% for doc in aboutme.all %}
-    
-    <h3> {{ doc.title }} </h3>
-    {{ doc.pub_date_pretty }}
-    
-    <br />
-    <img class= "img-fluid" src="{{ doc.image.url }}" width="600" height="500"/> 
-    
-    <br />
-    <p>{{ doc.body }}</p>
-    <small class="text-muted">9 mins</small>
-    <br /><hr >
-    
-    {% endfor %}
-</div>
+      </div>
+    </div>
+  </div>
 
+  <section class="py-6 text-center container">
+    <div class="container">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-3">LinkedIn: Wanna be in my network?</a> <br>
+        <a href="https://www.researchgate.net/profile/Mukti-Chapagain" class="btn btn-primary my-3">ResearchGate: Wanna read my Research papers?</a><br>
+        <a href="https://github.com/mrchapagain" class="btn btn-primary my-3">GitHub: Wanna know more about Data Analytics?</a>
+      </div>
+    </div>
+  </section>
 </main>
+
 <hr>
 <footer class="text-muted py-5">
   <div class="container text-center">

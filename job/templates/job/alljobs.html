@@ -127,11 +127,12 @@
     <div class="container">
 
       <div class="list"> <!-- or row -->
+        <h3> Summary of the projects. Click to the image to get details</h3>
         {% for job in jobs.all %}
         <!-- the box -->
         <div class="col">
           <div class="card shadow-sm">
-            <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/>
+            <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
 
             <div class="card-body">
               <p class="card-text">{{ job.summary }}</p>
