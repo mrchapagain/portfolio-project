@@ -123,32 +123,24 @@
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
+  <div class="album py-6 bg-light">
     <div class="container">
-
-      <div class="list"> <!-- or row -->
-        <h3> Summary of the projects. Click to the image to get details</h3>
-        {% for job in jobs.all %}
-        <!-- the box -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
-
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="row"> <!-- or row -->
+        <h3> Summary of the projects. <br> </h3> <h5>Click the image to get details</h5>
         <hr>
 
+        {% for job in jobs.all %}
+          <!-- the box -->
+          <div class="col">
+            <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
+            <p class ="text_center">{{ job.pub_date }}</p>
+            <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
+            <p class="card-text">{{ job.summary }}</p>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+            </div>
+          </div>
         {% endfor %}
-      
       
       </div>
     </div>

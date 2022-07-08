@@ -106,11 +106,14 @@
 
 <main>
   <div class="container">
-      <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/>
-      <br />
-      <p class="container text_justify"> {{ job.summary }} </p>
+    <h1 class= "text-center pt-3"> {{ job.title }}  </h1>
+    <p class ="text_center">{{ job.pub_date }}</p>
+    <img class= "img-fluid" src="{{ job.image.url }}"/> 
+    <br />
+    <p class="container text_justify"> {{ blog.body }} </p>
 
   </div>
+  
 
 </main>
 
