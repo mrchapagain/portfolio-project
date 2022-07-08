@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="generator" content="">
-    <title>Mukti R. Chapagain</title>
+    <title>{{ blog.title }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
 
@@ -87,86 +87,38 @@
   <body>
     
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            
-            <div class="navbar-nav ml-auto">
-              <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
-              <a class="nav-link active" href="{% url 'alljobs' %}">Portfolio</a>
-              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
-            </div>
-
-          </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
+          <a class="nav-link active" href="{% url 'alljobs' %}">Portfolio</a>
+          <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
-      </nav>
+
+      </div>
+    </div>
+  </nav>
 </header>
 
 <main>
-
-  <section class="py-6 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        
-        <!--<h1 class="fw-light">Welcome to my Homepage!</h1>-->
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
-        <hr>
-        <h1> Navigation page</h1> <br>
-        <p> There is not only one futures but you need to choose one by creating it! </p>
-        <hr>        
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
     <div class="container">
-      <div class="row">
-        <h3> Summary of Protfolio´s title</h3>
-        
-        {% for job in jobs.all %}
-        <!-- the box -->
-          <h2> Summary of Protfolio Title</h2>
-          <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
-          <div class="card-body">
-            <p class="card-text">{{ job.summary }}</p>
-            <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-            </div>
-          </div>
-          <small class="text-muted">9 mins</small>
+        <h1 class= "text-center pt-3"> {{ aboutme.title }}  </h1>
+        <p class ="text_center">{{ aboutme.pub_date }}</p>
+        <img class= "img-fluid" src="{{ aboutme.image.url }}" width="600" height="500"/> 
+        <br />
+        <p class="container text_justify"> {{ aboutme.body }} </p>
 
-        {% endfor %}
-
-      </div>
     </div>
-    <hr>
-    
-    <div class="container">
-      <div class="row">
-        <h3> Summary of Blog´s itles</h3>
-          {% for blog in blog.all %}
-          <!-- the box -->
-        <h3> Summary of Blog titles</h3>
-        <a href="{% url 'detail' blog.id %}"> <h3> {{ blog.title }} </h3> </a>
-        {{ blog.pub_date_pretty }}
-        <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-        </div>
-
-          {% endfor %}
-
-      </div>
-    </div>
-
-  </div>
 
 </main>
 
-<footer class="text-muted py-5">
+<footer class="text-muted">
   <div class="container text-center">
       <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
   </div>
