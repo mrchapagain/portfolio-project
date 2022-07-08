@@ -1,16 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Job
+from blog.models import Blog
 
 # Create your views here.
 def  home(request):
     jobs= Job.objects
-    return render(request, 'job/home.html', {'job': jobs})
+    blogs= Blog.objects
+    return render(request, 'job/home.html', {'jobs': jobs, 'blogs': blogs})
 
 def  alljobs(request):
     jobs= Job.objects
-    return render(request, 'job/alljobs.html', {'job': jobs})
+    return render(request, 'job/alljobs.html', {'jobs': jobs})
 
 def jobdetail(request, job_id):
     detailjob = get_object_or_404(Job, pk=job_id)
     return render(request, 'job/jobdetail.html', {'job': detailjob})
-

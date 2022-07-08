@@ -135,23 +135,26 @@
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
+  <div class="album py-6 bg-light">
+  
     <div class="container">
       <div class="row">
-        <h3> Some of my skills certifications. Click to the image to view bigger</h3>
+        <h3> Some of my skills certifications.</h3>
+        <hr>
         
         {% for aboutme in aboutmes.all %}
-        
-        <a href="{% url 'docdetail' aboutme.id %}"> <h3> {{ aboutme.title }} </h3> </a>
-        {{ aboutme.pub_date_pretty }}
-        <br />
-        <img class= "img-fluid" src="{{ aboutme.image.url }}" width="600" height="500"/> 
-        <h2> hi</h2>
-        <br />
-        <p>{{ aboutme.body }}</p>
-        <small class="text-muted">9 mins</small>
-        <br /><hr >
-        
+        <div class="col">
+          <a href="{% url 'docdetail' aboutme.id %}"> <h3> {{ aboutme.title }} </h3> </a>
+          {{ aboutme.pub_date_pretty }}
+          <br/>
+          <a href="{% url 'docdetail' aboutme.id %}"> <img class= "img-fluid" src="{{ aboutme.image.url }}"/> </a>
+          <br/>
+          <p>{{ aboutme.summary }}</p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+          </div>      
+          <br/>
+        </div>
         {% endfor %}
 
       </div>
