@@ -8,14 +8,14 @@ import matplotlib.pyplot as plt
 import spacy
 import seaborn as sns
 
+
 def wordcloud_plot(df_col):
       plt.figure(figsize=(15, 10))
       allWords= ' '.join( [twts for twts in df_col] )
       wordCloud = WordCloud(width= 1000, height=500, random_state=21, max_font_size= 119).generate(allWords)
-      plt.figure(figsize=(15,10))
       plt.imshow(wordCloud, interpolation = "bilinear")
       plt.axis('off')
-      plt.show()
+      return plt
 
 def SentimentAnalysis(df):
       # first clean the text
@@ -65,5 +65,5 @@ def sentiment_plot(df):
       plt.xlabel('Sentiment')
       plt.ylabel('Counts')
       df['Analysis'].value_counts().plot(kind='bar')
-      plt.show()
+      return plt
     

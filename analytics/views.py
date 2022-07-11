@@ -20,13 +20,13 @@ def  allanalytics(request):
 
     wordclouds= wordcloud_plot(analyticss.index)
     sentiments= SentimentAnalysis(analyticss.reset_index())
-    sentimentsplot=sentiment_plot(sentiments)
+    sentimentsplot= sentiment_plot(sentiments)
     
     return render(request, 'analytics/allanalytics.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
 
-def analyticsdetail(request, analytics_id):
-    detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
-    return render(request, 'aboutme/analyticsdetail.html', {'analytics': detailanalytics})
+#def analyticsdetail(request, analytics_id):
+    #detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
+    #return render(request, 'aboutme/analyticsdetail.html', {'analytics': detailanalytics})
 
 def index(request):
     if request.method == 'GET':

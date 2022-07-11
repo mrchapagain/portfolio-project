@@ -40,7 +40,5 @@ def tweets_by_user(user):
       
       return df_by_id
 
-def export(self):           
-    return self.df
-
-
+      #def export(df_by_id):
+            #return self.df_by_id
