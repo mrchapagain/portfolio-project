@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-#from .models import Analytics
+from .models import MyModel
 
-#admin.site.register(Analytics)
+admin.site.register(MyModel)
 

@@ -36,7 +36,7 @@ def tweets_by_user(user):
       df_by_id['Time']=df_by_id['Time'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
       #now lets make only tweets thats has not Re-Tweeted!
-      df_by_id= df_by_id[~df_by_id.Tweets.str.contains("RT")].set_index('Tweets')
+      df_by_id= df_by_id[~df_by_id.Tweets.str.contains("RT")]
       
       return df_by_id
 

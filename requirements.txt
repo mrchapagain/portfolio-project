@@ -28,3 +28,7 @@ matplotlib==3.5.2
 spacy==3.3.1
 seaborn==0.11.2
 wordcloud==1.8.2.2
+django_matplotlib==0.1
+openpyxl==3.0.10
+panel==0.13.1
+hvplot==0.7.3

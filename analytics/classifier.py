@@ -15,7 +15,8 @@ def wordcloud_plot(df_col):
       wordCloud = WordCloud(width= 1000, height=500, random_state=21, max_font_size= 119).generate(allWords)
       plt.imshow(wordCloud, interpolation = "bilinear")
       plt.axis('off')
-      return plt
+      plt.show()
+      #plt.savefig('wordcloud')
 
 def SentimentAnalysis(df):
       # first clean the text

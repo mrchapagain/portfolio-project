@@ -128,13 +128,30 @@
         <hr>
         
           <div class="col">
-            <a> <h5 class="card-text">Tweet Data Frame</h5> </a>
+            <a> <h5 class="card-text">Table with Tweet streeming data </h5> </a>
             <div class="card-body">
-              <p class="card-text">{{ analyticss }}</p>
-            
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
-              </div>
+
+              <table>
+                <tr>
+                  {% for col in analyticss.columns %}
+                    <td>
+                      {{ col }}
+                    </td>
+                  {% endfor %}
+                </tr>
+                  {% for index, row in analyticss.iterrows %}
+                <tr>
+                  {% for cell in row %}
+                    <td>
+                      {{ cell }}
+                    </td>
+                  {% endfor %}
+                </tr>
+                  {% endfor %}
+              </table>
+
+              <h3> 10 most liked or commented tweets</h3>
+          
             </div>
           </div>
 

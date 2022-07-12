@@ -10,7 +10,7 @@ def  allanalytics(request):
     tweeter_id= "DRNyheder" #input("Type Tweter-id which is after @, fx DRNyheder for DR News: ") # fxDRNyheder
     df_user_tweet= tweets_by_user(tweeter_id)
     # Top most liked tweets
-    mostlike_df_user_tweet= df_user_tweet.loc[df_user_tweet.Likes.nlargest(10).index]
+    mostlike_df_user_tweet= df_user_tweet.loc[df_user_tweet.Likes.nlargest(10).index].reset_index()
     #df_col= mostlike_df_user_tweet.index
 
     # Display sentiment df
@@ -18,8 +18,8 @@ def  allanalytics(request):
     
     analyticss= mostlike_df_user_tweet
 
-    wordclouds= wordcloud_plot(analyticss.index)
-    sentiments= SentimentAnalysis(analyticss.reset_index())
+    wordclouds= wordcloud_plot(df_user_tweet.Tweets)
+    sentiments= SentimentAnalysis(df_user_tweet)
     sentimentsplot= sentiment_plot(sentiments)
     
     return render(request, 'analytics/allanalytics.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
