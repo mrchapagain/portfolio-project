@@ -37,10 +37,13 @@ def datareader(data_link):
     return selected_dropped_data
 
 
-def data_plot(df_with_category):
+def co2_data_plot(selected_dropped_data):
+    # Group some of the elements from columns with categorical data
+    df_with_category= selected_dropped_data[['Category_en', 'Agriculture', 'iLUC', 'Processing',	'Packaging',	'Transport',	'Retail', 'Total_CO2_eq/kg']].groupby(by= ['Category_en'], sort=True).mean().sort_values(by=['Total_CO2_eq/kg'], ascending=False).round(decimals = 2)
+    
     # Stacked bar plot
+    rows= selected_dropped_data.shape[0]
     fig, ax= plt.subplots(figsize=(15, 10))
-
     ax.barh(df_with_category.index, df_with_category['Agriculture'], label= "Agriculture")
     ax.barh(df_with_category.index, df_with_category['iLUC'], label='iLUC')
     ax.barh(df_with_category.index, df_with_category['Packaging'], label='Packaging')
@@ -49,10 +52,12 @@ def data_plot(df_with_category):
 
     plt.xticks(rotation=50)
     plt.title("Total CO2 equivalent per Kilo Gram of the Product Category")
-    plt.xlabel("Product Category")
-    plt.ylabel("Total CO2 equivalent/Kg")
+    plt.ylabel("Product Category")
+    plt.xlabel("Total average CO2 equivalent/Kg")
     ax.legend()
-    return fig
+    plt.savefig("portfolio/static/co2_data_plot_toshow.png")
+    #graph = fig.to_html(full_html=False, default_height=500, default_width=700)
+    plt.close() 
 
 
 def selected_foodinfo(selected_dropped_data):
@@ -72,4 +77,4 @@ def selected_foodinfo(selected_dropped_data):
         print(Style.RESET_ALL)
         print(f'\t Fat amount = {name_choosen._get_value(0, "Fat_g")}, \n\t Carb amount = {name_choosen._get_value(0, "Carb_g")}, \n\t Protein amount = {name_choosen._get_value(0, "Protein_g")}')
         print("*" * 60)
-    return block
+    return block()

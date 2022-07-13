@@ -142,9 +142,9 @@
               <table style="width:100%">
                 <tr>
                   {% for col in sentiments.columns %}
-                    <td>
+                    <th style="white-space:nowrap">
                       {{ col }}
-                    </td>
+                    </th>
                   {% endfor %}
                 </tr>
                   {% for index, row in sentiments.iterrows %}

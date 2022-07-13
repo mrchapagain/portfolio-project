@@ -80,6 +80,13 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        background-color: #96D4D4;
+      }
     </style>
 
     
@@ -113,7 +120,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= ""/>
         <hr>
-        <h1> Analytics page</h1>
+        <h1> Food CO2 emission Analytics</h1>
         <h3> Choose name of the food get the CO2 and energy information! </h3>
         <hr>        
       </div>
@@ -124,22 +131,21 @@
   <div class="album py-6 bg-light">
     <div class="container">
       <div class="row">
-        <h3> CO2 Emission dataset</h3>
+        <h3> Rows of the 5 higest and 5 least CO2 contributor</h3>
         <hr>
         
           <div class="col">
-            <a> <h5 class="card-text"> Food Data Frame</h5> </a>
+            <a> <h5 class="card-text"> </h5> </a>
             <div class="card-body">
-              <table>
+              <table style="width:100%">
                 <tr>
-                  {% for col in fooddatas.columns %}
-                    <td>
+                  {% for col in top10_fooddatas.columns %}
+                    <th style="white-space:nowrap">
                       {{col}}
-                    </td>
+                    </th>
                   {% endfor %}
                 </tr>
-                  {% for index, row in fooddatas.iterrows %}
-                  
+                  {% for index, row in top10_fooddatas.iterrows %}
                     <tr>
                       {% for cell in row %}
                         <td>
@@ -159,17 +165,21 @@
     
     <div class="container">
       <div class="row">
-        <h3> Plot from Your search</h3>
+        <h3> Bar graph of data with different food category grupped</h3>
         <hr>
 
           <!-- the box -->
           <div class="col">
-            <a> <h5> Plot </h5> </a>
+            <a> <h5> </h5> </a>
 
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{{ plots }}" alt="Word-Cloud image" width=500 height=auto /> </a>
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'co2_data_plot_toshow.png' %}" alt="Word-Cloud image" width=500 height=auto /> </a>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
             </div>
+            <p> From above we can see:<br>
+              - The Meat and Poultry category is the highest contributor of the total CO2 List item emission where most of the share come from Agriculture and then iLUC <br>
+              - Fruits and Vegetables are the least contributors of total CO2 emission and most of the share come from transportation
+            </p>
           </div>
         
       </div>
@@ -179,13 +189,14 @@
 
     <div class="container">
       <div class="row">
-        <h3> Display of information about choosen food item </h3>
+        <h3> Display detail CO2 and Energy info of the indivisual food item </h3>
         <hr>
         
           <div class="col">
-            <a> <h5 class="card-text">Food information</h5> </a>
+            <a> <h5 class="card-text"> </h5> </a>
             <div class="card-body">
-              <p class="card-text">{{ foodinfo }}</p>
+              {{ item_foodinfo }}
+              <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'selected_foodinfo_toshow.png' %}" alt="Detail information of selected food item" width=500 height=auto /> </a>
             
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
