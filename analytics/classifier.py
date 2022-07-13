@@ -3,12 +3,14 @@ import re
 #from PIL import Image
 from textblob import TextBlob
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 import spacy.cli
-spacy.cli.download("en_core_web_lg")
-nlp = spacy.load('en_core_web_lg')
+#spacy.cli.download("en_core_web_lg")
+#nlp = spacy.load('en_core_web_lg')
 from nltk.stem.snowball import SnowballStemmer
 
 
@@ -21,8 +23,8 @@ def wordcloud_plot(df_col):
       wordcloud = WordCloud(stopwords=stopwords, width= 1000, height=500, random_state=21, max_font_size= 119, background_color="skyblue").generate(allWords)
       plt.axis('off')
       plt.imshow(wordcloud, interpolation = "bilinear")
-      #wordcloud.to_file("static/wordcloud_toshow.png")
-      return wordcloud
+      wordcloud.to_file("portfolio/static/wordcloud_toshow.png")
+      #return wordcloud
 
 
 def SentimentAnalysis(df):
@@ -66,11 +68,16 @@ def SentimentAnalysis(df):
 def sentiment_plot(df_withsentiment):
       rows=df_withsentiment.shape[0]
       plt.figure()
+      #plt.bar(df_withsentiment.Analysis.unique(), df_withsentiment['Analysis'].value_counts(), color ='grey', width = 0.4)
+      #sns.barplot(df_withsentiment['Analysis'], df_withsentiment['Analysis'].value_counts())
+      df_withsentiment['Analysis'].value_counts().plot(kind='bar')
+      plt.xticks(rotation=20)
       plt.title(f'Sentiment Analysis of {rows} tweets')
       plt.xlabel('Sentiment of the tweets')
-      plt.ylabel(f'Counts of sentiments')
-      df_withsentiment['Analysis'].value_counts().plot(kind='bar')
-      return plt
+      plt.ylabel('Counts of sentiments')
+      plt.savefig("portfolio/static/sentiment_plot_toshow.png")
+      plt.close() 
+
 
 ## Function to find most mentioned words with NLP
 def most_mentioned_words(df_by_id):

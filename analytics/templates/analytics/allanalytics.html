@@ -80,6 +80,14 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        background-color: #96D4D4;
+      }
     </style>
 
     
@@ -122,24 +130,24 @@
   
 
   <div class="album py-6 bg-light">
+
     <div class="container">
       <div class="row">
-        <h3> Tweeter Analytics</h3>
+        <h3> Sentiment analytics of the tweets streeming from user</h3>
         <hr>
-        
+
           <div class="col">
-            <a> <h5 class="card-text">Table with Tweet streeming data </h5> </a>
             <div class="card-body">
 
-              <table>
+              <table style="width:100%">
                 <tr>
-                  {% for col in analyticss.columns %}
+                  {% for col in sentiments.columns %}
                     <td>
                       {{ col }}
                     </td>
                   {% endfor %}
                 </tr>
-                  {% for index, row in analyticss.iterrows %}
+                  {% for index, row in sentiments.iterrows %}
                 <tr>
                   {% for cell in row %}
                     <td>
@@ -149,9 +157,8 @@
                 </tr>
                   {% endfor %}
               </table>
-
-              <h5> 10 most liked or commented tweets</h5>
-          
+              <h5> 10 most liked Tweets and their sentiments Analytics</h5>
+            
             </div>
           </div>
 
@@ -166,9 +173,9 @@
 
           <!-- the box -->
           <div class="col">
-            <a> <h5> Word Clud </h5> </a>
+            <a> <h5> </h5> </a>
 
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{{ wordclouds }}" alt="Word-Cloud image" width=500 height=auto /> </a>
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" width=500 height=auto /> </a>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
             </div>
@@ -185,30 +192,10 @@
         <hr>
         
           <div class="col">
-            <a> <h5 class="card-text">Sentiments Plot</h5> </a>
+            <a> <h5 class="card-text"> </h5> </a>
             <div class="card-body">
-              <p class="card-text">{{ sentimentsplot }}</p>
-            
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
-              </div>
-            </div>
-          </div>
-
-      </div>
-    </div>
-    <hr>
-
-    <div class="container">
-      <div class="row">
-        <h3> Sentiment analytics of the tweets</h3>
-        <hr>
-
-          <div class="col">
-            <a> <h5 class="card-text">Sentiments Data-Frame</h5> </a>
-            <div class="card-body">
-              <p class="card-text">{{ sentiments }}</p>
-            
+              <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" width=auto height=auto />
+              <br>
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
               </div>

@@ -11,19 +11,17 @@ def  allanalytics(request):
     # lets use the function to ge the dataframe which gives fataframe with index
     df_user_tweet= tweets_by_user(tweeter_id)
 
-    # Top 10 most liked tweets and lets rearrange columns and index
-    analyticss= df_user_tweet.loc[df_user_tweet.Likes.nlargest(10).index].reset_index(drop=True)[['Tweets', 'Likes', 'Time']]
-
     #lets use word cloud function to get the wordcloud figure
     wordclouds= wordcloud_plot(df_user_tweet.Tweets)
 
-    # use function to get dataframe with sentiment Analytic column
-    sentiments= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
+    # use function to get dataframe with sentiment Analytic column for 10 most liked tweets
+    df_user_tweet_sentiment= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
+    sentiments= df_user_tweet_sentiment.loc[df_user_tweet_sentiment.Likes.nlargest(10).index].reset_index(drop=True)
 
     # Plot the Analytics columns of the sentiment dataframe 
-    sentimentsplot= sentiment_plot(sentiments)
+    sentimentsplot= sentiment_plot(df_user_tweet_sentiment)
     
-    return render(request, 'analytics/allanalytics.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
+    return render(request, 'analytics/allanalytics.html', {'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
 
 #def analyticsdetail(request, analytics_id):
     #detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
@@ -47,30 +45,13 @@ def  keywordsearch(request):
     ksentimentsplot= sentiment_plot(ksentiments)
 
     # Plot of the most mentioned text from Keyword search dataframe 
-    most_mentioned_words(df_user_tweet)
+    kmostmentionword= most_mentioned_words(df_user_tweet)
     
-    return render(request, 'analytics/allanalytics.html', {'kanalyticss': kanalyticss, 'kwordclouds': kwordclouds, 'ksentiments':ksentiments, 'ksentimentsplot':ksentimentsplot})
+    return render(request, 'analytics/allanalytics.html', {'kanalyticss': kanalyticss, 'kwordclouds': kwordclouds, 'ksentiments':ksentiments, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword':kmostmentionword})
 
 
 def index(request):
-    if request.method == 'GET':
-        tweeter_id= "DRNyheder" #input("Type Tweter-id which is after @, fx DRNyheder for DR News: ") # fxDRNyheder
-        # lets use the function to ge the dataframe which gives fataframe with index
-        df_user_tweet= tweets_by_user(tweeter_id)
-
-        # Top 10 most liked tweets and lets rearrange columns and index
-        analyticss= df_user_tweet.loc[df_user_tweet.Likes.nlargest(10).index].reset_index(drop=True)[['Tweets', 'Likes', 'Time']]
-
-        #lets use word cloud function to get the wordcloud figure
-        wordclouds= wordcloud_plot(df_user_tweet.Tweets)
-
-        # use function to get dataframe with sentiment Analytic column
-        sentiments= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
-
-        # Plot the Analytics columns of the sentiment dataframe 
-        sentimentsplot= sentiment_plot(sentiments)
-
-        
+    if request.method == 'GET':         
         return render(request, 'analytics/index-search.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
 
 
@@ -78,20 +59,5 @@ def index(request):
 # Create your views here.
 def result(request):
     if request.method == 'POST':
-        tweeter_id= "DRNyheder" #input("Type Tweter-id which is after @, fx DRNyheder for DR News: ") # fxDRNyheder
-        # lets use the function to ge the dataframe which gives fataframe with index
-        df_user_tweet= tweets_by_user(tweeter_id)
-
-        # Top 10 most liked tweets and lets rearrange columns and index
-        analyticss= df_user_tweet.loc[df_user_tweet.Likes.nlargest(10).index].reset_index(drop=True)[['Tweets', 'Likes', 'Time']]
-
-        #lets use word cloud function to get the wordcloud figure
-        wordclouds= wordcloud_plot(df_user_tweet.Tweets)
-
-        # use function to get dataframe with sentiment Analytic column
-        sentiments= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
-
-        # Plot the Analytics columns of the sentiment dataframe 
-        sentimentsplot= sentiment_plot(sentiments)
-    
+           
         return render(request, 'analytics/result.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
