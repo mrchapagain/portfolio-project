@@ -14,7 +14,9 @@ def allfooddatas(request):
     #data_link = load_workbook(filename)
     #path= "static/"
     data_link = "https://github.com/mrchapagain/FoodClimateAnalytics/raw/main/ClimateData.xlsx" # glob.glob(path + '*.xlsx')
-    fooddatas= datareader(data_link)
+    fooddatas= datareader(data_link).head()
+
+    #graph = fig.to_html(full_html=False, default_height=500, default_width=700)
 
     plots= data_plot(fooddatas)
     foodinfo= selected_foodinfo(fooddatas)

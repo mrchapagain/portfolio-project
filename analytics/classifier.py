@@ -1,27 +1,32 @@
-# Create a function to compute Negetive, Neutral and Positive analysis
+# Analytics functions
 import re
+#from PIL import Image
 from textblob import TextBlob
-from wordcloud import WordCloud 
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
 import matplotlib.pyplot as plt
-
-# Libaries for sentiment analytics (NLP)
-import spacy
 import seaborn as sns
+
+import spacy.cli
+spacy.cli.download("en_core_web_lg")
+nlp = spacy.load('en_core_web_lg')
+from nltk.stem.snowball import SnowballStemmer
 
 
 def wordcloud_plot(df_col):
-      plt.figure(figsize=(15, 10))
+      # Create stopword list
+      stopwords = set(STOPWORDS)
+      stopwords.update(['https'])
+      plt.figure()
       allWords= ' '.join( [twts for twts in df_col] )
-      wordCloud = WordCloud(width= 1000, height=500, random_state=21, max_font_size= 119).generate(allWords)
-      plt.imshow(wordCloud, interpolation = "bilinear")
+      wordcloud = WordCloud(stopwords=stopwords, width= 1000, height=500, random_state=21, max_font_size= 119, background_color="skyblue").generate(allWords)
       plt.axis('off')
-      plt.show()
-      #plt.savefig('wordcloud')
+      plt.imshow(wordcloud, interpolation = "bilinear")
+      #wordcloud.to_file("static/wordcloud_toshow.png")
+      return wordcloud
+
 
 def SentimentAnalysis(df):
       # first clean the text
-      text= df['Tweets']
-
       def cleanText(text):
             text= re.sub(r'@[A-Za-z0-9]+', '',text) # Removed @mentions
             text= re.sub(r'#', '',text) # the '#' symbol
@@ -30,6 +35,7 @@ def SentimentAnalysis(df):
             text= re.sub(r'https?:\/\/\s+', '',text) # Removed the hyper link
             return text
 
+      text= df['Tweets']
       #clean tweets
       df['Tweets']= df['Tweets'].apply(cleanText)
 
@@ -48,23 +54,63 @@ def SentimentAnalysis(df):
             if score < 0: return 'Negetive'
             elif score == 0: return 'Neutral'
             else: return 'Positive'
-
+      # add Analytics column in the data frame
       df['Analysis']= df['Polarity'].apply(getAnalysis)
       #show the data
-      df= df[['Tweets', 'Likes', 'Time', 'Analysis']].set_index('Tweets')
-      return df
+      df_withsentiment= df
+      return df_withsentiment
     
-def export(self):
-      return self.df
+#def export(self):return self.df
 
-
-
-#Plot the sentiment
-# # Plot and visualize the counts
-def sentiment_plot(df):
-      plt.title('Sentiment Analysis of tweets')
-      plt.xlabel('Sentiment')
-      plt.ylabel('Counts')
-      df['Analysis'].value_counts().plot(kind='bar')
+#Plot the sentiment dataframe
+def sentiment_plot(df_withsentiment):
+      rows=df_withsentiment.shape[0]
+      plt.figure()
+      plt.title(f'Sentiment Analysis of {rows} tweets')
+      plt.xlabel('Sentiment of the tweets')
+      plt.ylabel(f'Counts of sentiments')
+      df_withsentiment['Analysis'].value_counts().plot(kind='bar')
       return plt
-    
+
+## Function to find most mentioned words with NLP
+def most_mentioned_words(df_by_id):
+      # Split all the sentances and creat the list of sentence of from the tweet columns
+      list_of_sentences = [sentence for sentence in df_by_id.Tweets]
+
+      lines = []
+      for sentence in list_of_sentences:
+            words = sentence.split()
+            for w in words:
+                  lines.append(w)
+
+      # Removing Punctuation by using Regular Expression (RegEx)
+      lines = [re.sub(r'[^A-Za-z0-9]+', '', x) for x in lines]
+      lines2= []
+      for word in lines:
+            if word != '':
+                  lines2.append(word)
+      
+      # Stemming the words to their root
+      s_stemmer = SnowballStemmer(language='english')
+      stem= []
+      for word in lines2:
+            stem.append(s_stemmer.stem(word))
+
+      # Removing all the stop words
+      stem2= []
+      for word in stem:
+            if word not in nlp.Defaults.stop_words:
+                  stem2.append(word)
+      # Time to creat Dataframe 
+      df2 = pd.DataFrame(stem2)
+      df2 = df2[0].value_counts()
+      
+      # Lets visualize
+      def vis(df2):
+            df2= df2[:20,]
+            plt.figure()
+            sns.barplot(df2.values, df2.index, alpha=1)
+            plt.title(f'Top words Overall from Tweet search')
+            plt.ylabel('Word from Tweet')
+            plt.xlabel('Count of Words')
+      return vis(df2)

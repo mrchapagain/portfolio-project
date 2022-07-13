@@ -52,6 +52,7 @@ def data_plot(df_with_category):
     plt.xlabel("Product Category")
     plt.ylabel("Total CO2 equivalent/Kg")
     ax.legend()
+    return fig
 
 
 def selected_foodinfo(selected_dropped_data):
@@ -71,4 +72,4 @@ def selected_foodinfo(selected_dropped_data):
         print(Style.RESET_ALL)
         print(f'\t Fat amount = {name_choosen._get_value(0, "Fat_g")}, \n\t Carb amount = {name_choosen._get_value(0, "Carb_g")}, \n\t Protein amount = {name_choosen._get_value(0, "Protein_g")}')
         print("*" * 60)
-    return block()
+    return block
