@@ -80,6 +80,14 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        background-color: #96D4D4;
+      }
     </style>
 
     
@@ -111,39 +119,94 @@
   <section class="py-6 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        
-        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/>
-        <p>
-            <hr> <h1 class="fw-light">Some of my latest projects</h1> <hr>
-          <!--<a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Linkeding</a>-->
-        </p>
-        
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= ""/>
+        <hr>
+        <h1> Analytics page</h1>
+        <h3> Input your data and get the analytics! </h3>
+        <hr>        
       </div>
     </div>
   </section>
+  
 
   <div class="album py-6 bg-light">
+
     <div class="container">
-      <div class="row"> <!-- or row -->
-        <h3> Summary of the projects. <br> </h3> <h5>Click the image to get details</h5>
+      <div class="row">
+        <h3> Sentiment analytics of the tweets streeming from user</h3>
         <hr>
 
-        {% for job in jobs.all %}
+          <div class="col">
+            <div class="card-body">
+
+              <table style="width:100%">
+                <tr>
+                  {% for col in sentiments.columns %}
+                    <th style="white-space:nowrap">
+                      {{ col }}
+                    </th>
+                  {% endfor %}
+                </tr>
+                  {% for index, row in sentiments.iterrows %}
+                <tr>
+                  {% for cell in row %}
+                    <td>
+                      {{ cell }}
+                    </td>
+                  {% endfor %}
+                </tr>
+                  {% endfor %}
+              </table>
+              <h5> 10 most liked Tweets and their sentiments Analytics</h5>
+            
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <hr>
+    
+    <div class="container">
+      <div class="row">
+        <h3> Word-Cloud from Your Tweet search</h3>
+        <hr>
+
           <!-- the box -->
           <div class="col">
-            <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
-            <p class ="text_center">{{ job.pub_date }}</p>
-            <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
-            <p class="card-text">{{ job.summary }}</p>
+            <a> <h5> </h5> </a>
+
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" width=500 height=auto /> </a>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
             </div>
           </div>
-        {% endfor %}
-      
+        
       </div>
     </div>
+    <hr>
+
+
+    <div class="container">
+      <div class="row">
+        <h3> Sentiment analytics of the tweets</h3>
+        <hr>
+        
+          <div class="col">
+            <a> <h5 class="card-text"> </h5> </a>
+            <div class="card-body">
+              <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" width=auto height=auto />
+              <br>
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <hr>
+    
+
   </div>
 
 </main>
