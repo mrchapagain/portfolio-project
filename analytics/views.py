@@ -4,8 +4,7 @@ from .classifier import *
 from job.models import Job
 from blog.models import Blog
 from django.shortcuts import HttpResponse
-from itables import init_notebook_mode
-init_notebook_mode(all_interactive=True)
+
 
 # Create your views here.
 def  allanalytics(request):

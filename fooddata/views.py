@@ -4,8 +4,8 @@ from .data import *
 
 import glob
 from openpyxl import load_workbook
-from itables import init_notebook_mode
-init_notebook_mode(all_interactive=True)
+#from itables import init_notebook_mode
+#init_notebook_mode(all_interactive=True)
 
 # Create your views here.
 
