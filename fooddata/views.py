@@ -1,24 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .datavis import *
-from .data import *
+#from .data import *
 
 import glob
 from openpyxl import load_workbook
-from itables import init_notebook_mode
-init_notebook_mode(all_interactive=True)
-
-# Create your views here.
+#from itables import init_notebook_mode
+#init_notebook_mode(all_interactive=True)
 
 def allfooddatas(request):
-    #Lets use function to read data
+    #Lets initiate the class that has been defined in datavis page
     data_link = "https://github.com/mrchapagain/FoodClimateAnalytics/raw/main/ClimateData.xlsx" # glob.glob(path + '*.xlsx')
-    allfooddatas= datareader(data_link).sort_values(by=['Total_CO2_eq_perkg'], ascending=False).round(decimals = 2)
+    cls= FoodCo2Analytics()
+    
+    #Lets use function to read data
+    allfooddatas= cls.datareader(data_link).sort_values(by=['Total_CO2_eq_perkg'], ascending=False).round(decimals = 2)
 
     # Rows of the 5 higest and 5 least CO2 contributor
     top10_fooddatas= allfooddatas.tail(5).append(allfooddatas.head(5))
 
     #Lets use the function to display graph of data with categor grupped
-    co2_foodplots= co2_data_plot(allfooddatas)
+    co2_foodplots= cls.co2_data_plot(allfooddatas)
 
     # Lets use function to display detail food info of indivisual item
     #item_foodinfo= print(selected_foodinfo(allfooddatas))

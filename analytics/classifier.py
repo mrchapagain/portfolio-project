@@ -3,10 +3,12 @@ import re
 #from PIL import Image
 from textblob import TextBlob
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
-import matplotlib
-matplotlib.use('TkAgg')
+from tkinter import *
+#import matplotlib
+#matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 
 import spacy.cli
 #spacy.cli.download("en_core_web_lg")

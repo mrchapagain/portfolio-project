@@ -85,8 +85,13 @@
         border: 1px solid black;
         border-collapse: collapse;
       }
-      th, td {
-        background-color: #96D4D4;
+      
+      tr:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
+      }
+      
+      th:nth-child(even),td:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
       }
     </style>
 
@@ -116,17 +121,56 @@
 
 <main>
 
-  <section class="py-6 text-center container">
-    <div class="row py-lg-5">
+  <section class="container">
+    <div class="py-6 text-center container">
       <div class="col-lg-6 col-md-8 mx-auto">
         <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= ""/>
         <hr>
         <h1> Analytics page</h1>
-        <h3> Input your data and get the analytics! </h3>
+        <h3> Latest trends from Social Networks? </h3>
         <hr>        
       </div>
     </div>
   </section>
+
+  <div class="container">
+    <div class="py-6 text-center container">
+      <h5><strong>Click</strong> the button to choose  Tweet type </h5>
+        <div class="tab">
+          <button class="tablinks" onclick="{{ wordclouds }}"> Tweets streeming from User_ID </button>
+          <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Tweets streeming from Keywords_search </button>
+        </div>
+        
+        <div id="User_ID" class="tabcontent">
+          <h3></h3>
+        </div>
+        <div id="Keywords_search" class="tabcontent">
+          <h3></h3>
+        </div> 
+          <hr>
+        
+        <div class="py-6 text-center container">
+          <h5></h5>
+            
+            <form action="/index.html" method="get">
+              <label for= 'item_list' > <strong> Choose the Twiteer ID from the box :> </strong> </label>
+              <input list='item_list' name='item_list' id='item_list'>
+              <datalist id='item_list'>
+              
+                {% for item_name in df_rows_list %}
+                {{item_name}}
+                <option value='option'>
+                {% endfor %}
+              </datalist>
+              <input type="submit">
+            </form>
+            <p><strong>Note:</strong> After choosing the ID Tweets analytics will be display below.</p>
+        </div><hr>
+          
+
+    </div><hr>
+      
+  </div>
   
 
   <div class="album py-6 bg-light">

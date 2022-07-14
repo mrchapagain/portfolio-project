@@ -132,13 +132,11 @@
 
   
   <div class="container">
-      <h3> Choose the item to explore detail information</h3>
-      <hr>
       <div class="py-6 text-center container">
         <h5>The Food item name with category</h1>
           
           <form action="/index.html" method="get">
-            <label for= 'item_list' > <strong> Choose your Food item from the list: </strong> </label>
+            <label for= 'item_list' > <strong> Choose your Food item from here :> </strong> </label>
             <input list='item_list' name='item_list' id='item_list'>
             <datalist id='item_list'>
             
@@ -149,28 +147,28 @@
             </datalist>
             <input type="submit">
           </form>
-          <p><strong>Note:</strong> Choose with dropdown.</p>
+          <p><strong>Note:</strong> Choose the food-item from dropdown list to explore detail information.</p>
       </div>
         <hr>
       
         <div>
-        <h2>Detail information of the choosen food item </h2>
-        <div><button onClick="window.location.reload();"> <h5></h5>Refresh Here to get new item</button></div>
-        <table style="width:100%">
-                <tr>
-                  {% for col in name_choosen.columns %}
-                    <th style="white-space:nowrap"> {{col}} </th>              
-                  {% endfor %}
-                </tr>
-                  {% for index, row in name_choosen.iterrows %}
-                    <tr>
-                      {% for cell in row %}
-                        <td> {{cell}} </td>
-                      {% endfor %}
-                    </tr>
-                  {% endfor %}
-              </table>        
-      </div>
+          <h2>Detail information of the choosen food item </h2>
+          <div><button onClick="window.location.reload();"> <h5></h5>Refresh Here to get new item</button></div>
+          <table style="width:100%">
+            <tr>
+              {% for col in name_choosen.columns %}
+              <th style="white-space:nowrap"> {{col}} </th>              
+              {% endfor %}
+            </tr>
+            {% for index, row in name_choosen.iterrows %}
+            <tr>
+              {% for cell in row %}
+              <td> {{cell}} </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </table>        
+        </div>
 
       <!-- <div class="col">
         <section class="py-6 text-center container">
