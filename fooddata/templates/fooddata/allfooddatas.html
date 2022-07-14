@@ -84,8 +84,13 @@
         border: 1px solid black;
         border-collapse: collapse;
       }
-      th, td {
-        background-color: #96D4D4;
+      
+      tr:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
+      }
+      
+      th:nth-child(even),td:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
       }
     </style>
 
@@ -133,12 +138,13 @@
         <h5>The Food item name with category</h1>
           
           <form action="/index.html" method="get">
-            <label for= 'item_list' >Choose your Food item from the list:</label>
+            <label for= 'item_list' > <strong> Choose your Food item from the list: </strong> </label>
             <input list='item_list' name='item_list' id='item_list'>
             <datalist id='item_list'>
-              {{ df_rows_list }}
+            
               {% for item_name in df_rows_list %}
-              <option value={{ item_name }}>
+              {{item_name}}
+              <option value='option'>
               {% endfor %}
             </datalist>
             <input type="submit">
@@ -146,10 +152,10 @@
           <p><strong>Note:</strong> Choose with dropdown.</p>
       </div>
         <hr>
-      <div>
+      
+        <div>
         <h2>Detail information of the choosen food item </h2>
-        <button onClick="window.location.reload();">Refresh Here to get new item</button> 
-        <br>
+        <div><button onClick="window.location.reload();"> <h5></h5>Refresh Here to get new item</button></div>
         <table style="width:100%">
                 <tr>
                   {% for col in name_choosen.columns %}
