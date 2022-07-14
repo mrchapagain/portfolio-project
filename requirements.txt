@@ -74,3 +74,4 @@ virtualenv==20.14.1
 wasabi==0.9.1
 webencodings==0.5.1
 wordcloud==1.8.2.2
+itables==1.1.2

@@ -17,7 +17,8 @@ from nltk.stem.snowball import SnowballStemmer
 def wordcloud_plot(df_col):
       # Create stopword list
       stopwords = set(STOPWORDS)
-      stopwords.update(['https'])
+      stopwords.update(['https', 'er', 'og', 't', 'co', 'en', 'før', 'fra', 'se', 'har', 'vil', 'nyt', 'end', 
+      'kan', 'så', 'på', 'som', 'nu', 'ikke', 'men', 'om', 'vi', 'et', 'af', 'var'])
       plt.figure()
       allWords= ' '.join( [twts for twts in df_col] )
       wordcloud = WordCloud(stopwords=stopwords, width= 1000, height=500, random_state=21, max_font_size= 119, background_color="skyblue").generate(allWords)

@@ -116,17 +116,83 @@
 <main>
 
   <section class="py-6 text-center container">
-    <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= ""/>
+        <!--<img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "", alt="Food CO2 emission"/>-->
         <hr>
         <h1> Food CO2 emission Analytics</h1>
-        <h3> Choose name of the food get the CO2 and energy information! </h3>
+        <h3> What is the carbon footprint of your diet? </h3>
         <hr>        
       </div>
-    </div>
   </section>
+
   
+  <div class="container">
+      <h3> Choose the item to explore detail information</h3>
+      <hr>
+      <div class="py-6 text-center container">
+        <h5>The Food item name with category</h1>
+          
+          <form action="/index.html" method="get">
+            <label for= 'item_list' >Choose your Food item from the list:</label>
+            <input list='item_list' name='item_list' id='item_list'>
+            <datalist id='item_list'>
+              {{ df_rows_list }}
+              {% for item_name in df_rows_list %}
+              <option value={{ item_name }}>
+              {% endfor %}
+            </datalist>
+            <input type="submit">
+          </form>
+          <p><strong>Note:</strong> Choose with dropdown.</p>
+      </div>
+        <hr>
+      <div>
+        <h2>Detail information of the choosen food item </h2>
+        <button onClick="window.location.reload();">Refresh Here to get new item</button> 
+        <br>
+        <table style="width:100%">
+                <tr>
+                  {% for col in name_choosen.columns %}
+                    <th style="white-space:nowrap"> {{col}} </th>              
+                  {% endfor %}
+                </tr>
+                  {% for index, row in name_choosen.iterrows %}
+                    <tr>
+                      {% for cell in row %}
+                        <td> {{cell}} </td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+              </table>        
+      </div>
+
+      <!-- <div class="col">
+        <section class="py-6 text-center container">
+          
+          <dl>
+            <dt>Food product choosen: {{ name_choosen.Product_en.values }} </dt> 
+            <dt>Food category releted to: {{ name_choosen.Category_en.values }}</dt>
+            <dt>Total CO2 emission contribution: {{ name_choosen.Total_CO2_eq_perkg.values }}</dt>
+              <dd>- Agriculture= {{ name_choosen.Agriculture.values }},</dd>
+              <dd>- iLUC= {{ name_choosen.iLUC.values }},</dt>
+              <dd>- Processing = {{ name_choosen.Processing.values }},</dd>
+              <dd>- Packaging = {{ name_choosen.Packaging.values }},</dd>
+              <dd>- Transport = {{ name_choosen.Transport.values }},</dd>
+              <dd>- Retail = {{ name_choosen.Retail.values }}</dd>
+            <dt>Total Energy_KJ: {{ name_choosen.Energy_KJ.values }}</dt>
+              <dd>Fat amount = {{ name_choosen.Fat_g.values }},</dd>
+              <dd>Carb amount = {{ name_choosen.Carb_g.values }},</dd>
+              <dd>Protein amount = {{ name_choosen.Protein_g.values }}</dd>
+          </dl> 
+        </section>
+          
+        <div class="card-body">
+        
+        </div>
+      </div> -->
+  </div>
+  <hr>
+
 
   <div class="album py-6 bg-light">
     <div class="container">
@@ -185,29 +251,7 @@
       </div>
     </div>
     <hr>
-
-
-    <div class="container">
-      <div class="row">
-        <h3> Display detail CO2 and Energy info of the indivisual food item </h3>
-        <hr>
-        
-          <div class="col">
-            <a> <h5 class="card-text"> </h5> </a>
-            <div class="card-body">
-              {{ item_foodinfo }}
-              <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'selected_foodinfo_toshow.png' %}" alt="Detail information of selected food item" width=500 height=auto /> </a>
-            
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
-              </div>
-            </div>
-          </div>
-
-      </div>
-    </div>
-    <hr>
-    
+   
 
   </div>
 
