@@ -17,8 +17,3 @@ def  alljobs(request):
 def jobdetail(request, job_id):
     detailjob = get_object_or_404(Job, pk=job_id)
     return render(request, 'job/jobdetail.html', {'job': detailjob})
-
-def  index(request):
-    jobs= Job.objects
-    blogs= Blog.objects
-    return render(request, 'job/index.html', {'jobs': jobs, 'blogs': blogs})
