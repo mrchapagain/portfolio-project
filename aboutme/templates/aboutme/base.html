@@ -76,6 +76,18 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      
+      tr:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
+      }
+      
+      th:nth-child(even),td:nth-child(even) {
+        background-color: rgba(150, 212, 212, 0.4);
+      }
     </style>
 
     </head>
@@ -103,35 +115,28 @@
         </header>
 
         <main>
-            <section class="py-6 text-center container">
-                <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
-                    <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/>
-                    <p><hr> 
-                        <h1 class="fw-light">Some of my latest projects</h1> <hr>
-                    <!--<a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Linkeding</a>-->
-                    </p> 
-                </div>
-                </div>
-            </section>
 
-            <!--Portfolio section start here -->
+          <!--page to display data from result start here -->
+          <section class="py-6 text-center container">
+              {% block section %}
+              {% endblock section %}
+          </section>
+          <!--page to display data from result end here -->
 
-            <!--page to insert index start here -->
-            <div class="py-6 text-center container">
-                {% block jobs %}
-                {% endblock jobs %}
-            </div>
-            <!--page to insert index end here -->
+          <!--page to display data from result start here -->
+          <div class="py-6 text-center container">
+              {% block info_select %}
+              {% endblock info_select %}
+          </div>
+          <!--page to display data from result end here -->
+          
+          <!--page to insert index start here -->
+          <div class="album py-6 bg-light">
+              {% block info_display %}
+              {% endblock info_display %}
+          </div>
+          <!--page to insert index end here -->
             
-            <!--page to display data from result start here -->
-            <div class="album py-6 bg-light">
-                {% block blogs %}
-                {% endblock blogs %}
-            </div>
-            <!--page to display data from result end here -->
-        
         </main>
 
 
