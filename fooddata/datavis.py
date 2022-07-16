@@ -45,15 +45,15 @@ class FoodCo2Analytics():
         
         # Stacked bar plot
         rows= selected_dropped_data.shape[0]
-        fig, ax= plt.subplots(figsize=(15, 10))
+        fig, ax= plt.subplots(figsize=(10, 5))
         ax.barh(df_with_category.index, df_with_category['Agriculture'], label= "Agriculture")
         ax.barh(df_with_category.index, df_with_category['iLUC'], label='iLUC')
         ax.barh(df_with_category.index, df_with_category['Packaging'], label='Packaging')
         ax.barh(df_with_category.index, df_with_category['Transport'], label='Transport')
         ax.barh(df_with_category.index, df_with_category['Retail'], label='Retail')
 
-        plt.xticks(rotation=50)
-        plt.title("Total CO2 equivalent per Kilo Gram of the Product Category")
+        plt.xticks(rotation=20)
+        plt.title(f'"Share of the Total CO2 contribution of the {rows}"')
         plt.ylabel("Product Category")
         plt.xlabel("Total average CO2 equivalent/Kg")
         ax.legend()
