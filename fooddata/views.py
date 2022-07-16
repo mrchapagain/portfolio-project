@@ -26,4 +26,8 @@ def allfooddatas(request):
     df_rows_list= allfooddatas.Product_en.tolist()
     name_choosen =  allfooddatas.sample().reset_index(drop=True)
 
-    return render(request, 'fooddata/allfooddatas.html', {'allfooddatas': allfooddatas, 'top10_fooddatas': top10_fooddatas, 'co2_foodplots': co2_foodplots, 'df_rows_list': df_rows_list, 'name_choosen':name_choosen}) #'item_foodinfo': item_foodinfo
+    # Bar chart of the single item choosen (name_choosen)
+    #namechoosen_foodplots= cls.co2_data_plot(name_choosen)
+
+    return render(request, 'fooddata/allfooddatas.html', {'allfooddatas': allfooddatas, 'top10_fooddatas': top10_fooddatas, 'df_rows_list': df_rows_list, 'name_choosen':name_choosen, 'co2_foodplots': co2_foodplots}) 
+    #'item_foodinfo': item_foodinfo, 'namechoosen_foodplots': namechoosen_foodplots 

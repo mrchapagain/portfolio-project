@@ -1,0 +1,57 @@
+{% extends "aboutme/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+    <div class="row py-lg-6">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <!--<h1 class="fw-light">Who am i?</h1>-->
+            <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'about-me.jpg'%}"/>
+            <hr>
+            <h1 class="fw-light">My resume!</h1>
+            <p class="lead text-muted">I am Food scientist with knowledge and Data scientist with skills. I love to work with data and create value to the society and business.</p><hr>
+        </div>
+    </div> 
+{% endblock section %}
+
+
+<!--- START of info selection -->
+{% block info_select %}
+    <h5><strong>Click</strong> Wnat to know more about me? </h5>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity({{event}}, 'User_ID')"> Click for Resume </button>
+        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Click for Certificates </button>
+    </div><br>
+
+    <!--- Display for resume -->          
+    <div id="User_ID" class="tabcontent">
+        <hr>
+        <h2 class="fw-light">My CV</h2>
+        <iframe src= "{% static 'resume-analytic.pdf' %}" width="900" height="700">CV of Mukti R. Chapagain</iframe><br>
+        <hr>
+    </div>
+
+    <!--- Display for Certificates --> 
+    <div id="Keywords_search" class="tabcontent">
+        <h5>Certificates</h5>
+    </div>  <hr>
+  
+{% endblock info_select %}
+
+
+<!--- start of info display -->
+{% block info_display %}
+    {% block info_display_baseextended %}
+    {% endblock info_display_baseextended %}
+{% endblock info_display %}
+
+<!--- START of social media connection -->
+{% block social_connection %}
+    <div class="container">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-3">LinkedIn: Wanna be in my network?</a> <br>
+        <a href="https://www.researchgate.net/profile/Mukti-Chapagain" class="btn btn-primary my-3">ResearchGate: Wanna read my Research papers?</a><br>
+        <a href="https://github.com/mrchapagain" class="btn btn-primary my-3">GitHub: Wanna know more about Data Analytics?</a>
+      </div>
+    </div>
+{% endblock social_connection %}

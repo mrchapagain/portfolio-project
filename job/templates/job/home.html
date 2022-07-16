@@ -1,183 +1,68 @@
+{% extends "job/base.html" %}
+{% load static %}
 
-<!doctype html>
-<html lang="en">
-  {% load static %}
+<!--- Start of SECTION -->
+{% block section %}
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      
+      <!--<h1 class="fw-light">Welcome to my Homepage!</h1>-->
+      <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
+      <hr>
+      <h1> Navigation page</h1> <br>
+      <p> There is not only one futures but you need to choose one by creating it! </p>
+      <hr>        
+    </div>
+  </div>
+{% endblock section %}
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
-    <title>Mukti R. Chapagain</title>
+<!--- START of info selection -->
+{% block info_select %}
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
+{% endblock info_select %}
 
-    
+<!--- start of info display -->
+{% block info_display %}
+<div class="container">
+  <div class="row">
+    <h3> Summary of Protfolio´s title</h3>
+    <hr>
+    {% for job in jobs.all %}
 
-    
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
-  </head>
-  <body>
-    
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            
-            <div class="navbar-nav ml-auto">
-              <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
-              <a class="nav-link active" href="{% url 'alljobs' %}">Portfolio</a>
-              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
-            </div>
-
+      <div class="col">
+        <a href="{% url 'jobdetail' job.id %}"> <h5 class="card-text">{{ job.title }}</h5> </a>
+        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
+        <div class="card-body">
+          <p class="card-text">{{ job.summary }}</p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
           </div>
         </div>
-      </nav>
-</header>
-
-<main>
-
-  <section class="py-6 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        
-        <!--<h1 class="fw-light">Welcome to my Homepage!</h1>-->
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
-        <hr>
-        <h1> Navigation page</h1> <br>
-        <p> There is not only one futures but you need to choose one by creating it! </p>
-        <hr>        
+        <small class="text-muted">9 mins</small>
       </div>
-    </div>
-  </section>
+    {% endfor %}
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <h3> Summary of Protfolio´s title</h3>
-        <hr>
-        {% for job in jobs.all %}
+  </div>
+</div><hr>
 
-          <div class="col">
-            <a href="{% url 'jobdetail' job.id %}"> <h5 class="card-text">{{ job.title }}</h5> </a>
-            <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
-              </div>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        {% endfor %}
-
-      </div>
-    </div>
+<div class="container">
+  <div class="row">
+    <h3> Summary of Blog´s Titles</h3>
     <hr>
-    
-    <div class="container">
-      <div class="row">
-        <h3> Summary of Blog´s Titles</h3>
-        <hr>
-    
-        {% for blog in blogs.all %}
-          <!-- the box -->
-          <div class="col">
-            <a href="{% url 'detail' blog.id %}"> <h5> {{ blog.title }} </h5> </a>
-            {{ blog.pub_date_pretty }}
-            <a href="{% url 'detail' blog.id  %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}"/> </a>
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
-            </div>
-          </div>
-        {% endfor %}
 
+    {% for blog in blogs.all %}
+      <!-- the box -->
+      <div class="col">
+        <a href="{% url 'detail' blog.id %}"> <h5> {{ blog.title }} </h5> </a>
+        {{ blog.pub_date_pretty }}
+        <a href="{% url 'detail' blog.id  %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}"/> </a>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+        </div>
       </div>
-    </div>
+    {% endfor %}
+
   </div>
-
-</main>
-
-<footer class="text-muted py-5">
-  <div class="container text-center">
-      <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
-  </div>
-</footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-      
-  </body>
-</html>
+</div>
+</div>
+{% endblock info_display %}
