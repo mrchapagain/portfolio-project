@@ -1,6 +1,35 @@
 {% extends "job/base.html" %}
 {% load static %}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--- Start of SECTION -->
 {% block section %}
   <div class="row py-lg-5">
@@ -23,46 +52,26 @@
 
 <!--- start of info display -->
 {% block info_display %}
-<div class="container">
-  <div class="row">
-    <h3> Summary of Protfolio´s title</h3>
-    <hr>
-    {% for job in jobs.all %}
+  <div class="container">
+      <h3> Summary of Blog articles</h3><hr>
+    <div class="col">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-      <div class="col">
-        <a href="{% url 'jobdetail' job.id %}"> <h5 class="card-text">{{ job.title }}</h5> </a>
-        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}"/> </a>
-        <div class="card-body">
-          <p class="card-text">{{ job.summary }}</p>
-          <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click image</button>
+        {% for blog in blogs.all %}
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="col">
+              <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
+                {{ blog.pub_date_pretty }}
+              <a href="{% url 'detail' blog.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}" width='100%' height="100%"/> </a>
+              <p class="card-text">{{ blog.summary }}</p>
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <small class="text-muted">9 mins</small>
+        {% endfor %}
+          
       </div>
-    {% endfor %}
-
-  </div>
-</div><hr>
-
-<div class="container">
-  <div class="row">
-    <h3> Summary of Blog´s Titles</h3>
-    <hr>
-
-    {% for blog in blogs.all %}
-      <!-- the box -->
-      <div class="col">
-        <a href="{% url 'detail' blog.id %}"> <h5> {{ blog.title }} </h5> </a>
-        {{ blog.pub_date_pretty }}
-        <a href="{% url 'detail' blog.id  %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}"/> </a>
-        <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
-        </div>
-      </div>
-    {% endfor %}
-
-  </div>
-</div>
-</div>
+    </div>
+  </div><hr>
 {% endblock info_display %}
