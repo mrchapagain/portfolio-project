@@ -1,61 +1,105 @@
-{% extends "job/base.html" %}
+{% extends "job/base-extended.html" %}
 {% load static %}
 
-<!--- Start of SECTION -->
-{% block section %}
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        
-        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/>
-        <p>
-            <hr> <h1 class="fw-light">Some of my latest projects</h1> <hr>
-          <!--<a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-2">Linkeding</a>-->
-        </p>
-        
-      </div>
+<!--- START of Tweet streem info-display-->
+{% block info_select_baseextended_tweetstreem %}
+
+{% endblock info_select_baseextended_tweetstreem %}
+
+<!--- START of Food CO2 footprint info-display -->
+{% block info_display_baseextended_foodco2 %}
+<div>
+    <div class="row"> <!-- or row -->
+    <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5>
+    <hr>
+
+    {% for job in jobs.all %}
+        <!-- the box -->
+        <div class="col">
+        <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
+        <p class ="text_center">{{ job.pub_date }}</p>
+        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
+        <p class="card-text">{{ job.summary }}</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+        </div>
+        </div>
+    {% endfor %}
+    
     </div>
-{% endblock section %}
+</div>
+{% endblock info_display_baseextended_foodco2 %}
 
-<!--- START of info selection -->
-{% block info_select %}
-    <h5><strong>Click</strong> the button to explore data and analytics</h5>
-      <div class="tab">
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Tweets streeming Analytics </button>
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Food CO2 footprint Analytics </button>
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Google trends analytics </button>
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Healthy food promotion </button>
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Food ontology </button>
-      </div>
-      
-      <div id="User_ID" class="tabcontent">
-        <h3></h3>
-      </div>
-      <div id="Keywords_search" class="tabcontent">
-        <h3></h3>
-      </div> <hr>
-{% endblock info_select %}
 
-<!--- start of info display -->
-{% block info_display %}
-    <div class="container">
-      <div class="row"> <!-- or row -->
-        <h3> Summary of the projects. <br> </h3> <h5>Click the image to get details</h5>
+<!--- START of Google Trend info-display -->
+{% block info_display_baseextended_googletrend %}
+<div class="album py-6 bg-light">
+    <div class="row"> <!-- or row -->
+    <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5>
+    <hr>
+
+    {% for job in jobs.all %}
+        <!-- the box -->
+        <div class="col">
+        <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
+        <p class ="text_center">{{ job.pub_date }}</p>
+        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
+        <p class="card-text">{{ job.summary }}</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+        </div>
+        </div>
+    {% endfor %}
+    
+    </div>
+</div>
+{% endblock info_display_baseextended_googletrend %}
+
+<!--- START of Health Promotion info-display -->
+{% block info_display_baseextended_healthpromotion %}
+    <div class="album py-6 bg-light">
+        <div class="row"> <!-- or row -->
+        <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5>
         <hr>
 
         {% for job in jobs.all %}
-          <!-- the box -->
-          <div class="col">
+            <!-- the box -->
+            <div class="col">
             <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
             <p class ="text_center">{{ job.pub_date }}</p>
             <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
             <p class="card-text">{{ job.summary }}</p>
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
             </div>
-          </div>
+            </div>
         {% endfor %}
-      
-      </div>
+        
+        </div>
     </div>
-{% endblock info_display %}
+{% endblock info_display_baseextended_healthpromotion %}
+
+
+<!--- START of Food Ontology info-display -->
+{% block info_display_baseextended_foodontology %}
+<div class="album py-6 bg-light">
+    <div class="row"> <!-- or row -->
+    <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5>
+    <hr>
+
+    {% for job in jobs.all %}
+        <!-- the box -->
+        <div class="col">
+        <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
+        <p class ="text_center">{{ job.pub_date }}</p>
+        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
+        <p class="card-text">{{ job.summary }}</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+        </div>
+        </div>
+    {% endfor %}
+    
+    </div>
+</div>
+{% endblock info_display_baseextended_foodontology %}
