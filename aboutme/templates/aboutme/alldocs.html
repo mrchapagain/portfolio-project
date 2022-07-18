@@ -13,13 +13,12 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  
 
                 {% for aboutme in aboutmes.all %}
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center ">
                     <div class="col">
-                        <a href="{% url 'docdetail' aboutme.id %}"> <h3 class="card-text"> {{ aboutme.title }} </h3> </a><br/>
-                        <a href="{% url 'docdetail' aboutme.id %}"> <img class= "img-fluid" src="{{ aboutme.image.url }}" width='100%' height="100%"/> </a> <br/>
-                        <p class="card-text">{{ aboutme.summary }} - {{ aboutme.pub_date_pretty }}</p>
+                        <a href="{% url 'docdetail' aboutme.id %}"> <h3>{{ aboutme.title }}</h3></a>
+                        <a href="{% url 'docdetail' aboutme.id %}"> <img class= "img-fluid" src="{{ aboutme.image.url }}" width='100%' height="100%"/> </a> <br>
                         <div class="btn-group"> 
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image to make it bigger</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Click the image larger view</button>
                         </div>  <br/>
                     </div>
                 </div>

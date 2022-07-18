@@ -128,32 +128,31 @@
 
           <!--page to display data from result start here -->
           <section class="py-6 text-center container">
-              {% block section %}
-              {% endblock section %}
+            {% block section %}
+            {% endblock section %}
           </section>
-          <!--page to display data from result end here -->
+        <!--page to display data from result end here -->
 
-          <!--page to display data from result start here -->
-          <div class="py-6 text-center container">
+        <!--page to display data from result start here -->
+          <div class="py-6 text-center container" style="background-color:rgb(12, 131, 111)">
               {% block info_select %}
               {% endblock info_select %}
           </div>
-          <!--page to display data from result end here -->
-          
-          <!--page to insert index start here -->
-          <div class="album py-6 bg-light">
+        <!--page to display data from result end here -->
+        
+        <!--page to insert index start here -->
+          <div class="py-6 bg-light">
               {% block info_display %}
               {% endblock info_display %}
           </div>
-          <!--page to insert index end here -->
+        <!--page to insert index end here -->
 
-          <!--- START of social media connection -->
-          <div class="album py-6 bg-light">
-              {% block social_connection %}
+        <!--- START of social media connection -->
+          <div class="py-6 bg-light">
+            {% block social_connection %}
 
-              {% endblock social_connection %}
+            {% endblock social_connection %}
           </div>
-            
         </main>
 
 
@@ -178,7 +177,7 @@
           evt.currentTarget.className += "active";
         }
         // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
+          document.getElementById("defaultOpen").click();
         </script>
   </body>
 </html>
