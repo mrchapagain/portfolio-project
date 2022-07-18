@@ -1,44 +1,30 @@
-{% extends "fooddata/base.html" %}
+{% extends "fooddata/base-extended.html" %}
 {% load static %}
 
-<!--- Start of SECTION -->
-{% block section %}
-    <div class="col-lg-6 col-md-8 mx-auto">
-        <!--<img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "", alt="Food CO2 emission"/>-->
-        <hr>
-        <h1> Food CO2 emission Analytics</h1>
-        <h3> What is the carbon footprint of your diet? </h3>
-        <hr>        
-    </div> 
-{% endblock section %}
+<!--- Start of User-input section for food item -->
+  {% block info_select_baseextended_fooditem %}
+    <form action="/index.html" method="get">
+      <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
+      <input list='item_list' name='item_list' id='item_list'>
+      
+      <datalist id='item_list'>
+      {% for item_name in df_rows_list %}
+      <option value={{ item_name }}>
+      {% endfor %}
+      </datalist>
+      
+      <input type="submit">
+    </form>
+    <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr> 
+    <div><button onClick="window.location.reload();"> <h5>Refresh Here to get new item</h5></button></div><br>
+  {% endblock info_select_baseextended_fooditem %}
 
 
-<!--- START of info selection -->
-{% block info_select %}
-    <!-- Box to choose item -->
-    <h5>The Food item name with category</h1>  
-        <form action="/index.html" method="get">
-            <label for= 'item_list' > <strong> Choose your Food item from here :> </strong> </label>
-            <input list='item_list' name='item_list' id='item_list'>
-            
-            <datalist id='item_list'>
-            {% for item_name in df_rows_list %}
-            <option value={{ item_name }}>
-            {% endfor %}
-            </datalist>
-            
-            <input type="submit">
-        </form>
-    <p><strong>Note:</strong> Choose the food-item from dropdown list to explore detail information.</p><hr>
-{% endblock info_select %}
-
-
-<!--- start of info display -->
-{% block info_display %}
+<!--- Start of info-display section for food item -->
+  {% block info_display_baseextended_fooditem %}
     <!--- Single data-frame of the seleted item-->
-    <div class="text-center container">
-        <h2>Detail information of the choosen food item </h2>
-        <div><button onClick="window.location.reload();"> <h5></h5>Refresh Here to get new item</button></div>
+      <div class="text-center container" style="background-color:#e8f0ef">
+        <h4> CO2 contribution from seleted food item</h4>
         <table>
         <tr>
             {% for col in name_choosen.columns %}
@@ -53,49 +39,48 @@
         </tr>
         {% endfor %}
         </table>        
-    </div> <br> <hr>
+      </div> <hr>
 
     <!--- Single chart of the seleted item-->
-    <div class="container">
-      <h3> Bar graph of CO2 contribution from seleted food item</h3> <hr>
+      <div class="container" style="background-color:#e8f0ef">
+        <h4> Visualization of above data</h4>
+        <div class="col">
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'co2_data_plot_toshow.png' %}" alt="Word-Cloud image"/> </a>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Click to image to make it bigger</button>
+            </div>
+        </div>
+      </div> <hr>
+  {% endblock info_display_baseextended_fooditem %}
+
+
+<!--- Start of User-input section for food group -->
+  {% block info_select_baseextended_foodgroup %}
+      <form action="/index.html" method="get">
+          <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
+          <input list='item_list' name='item_list' id='item_list'>
+          
+          <datalist id='item_list'>
+          {% for item_name in df_rows_list %}
+          <option value={{ item_name }}>
+          {% endfor %}
+          </datalist>
+          
+          <input type="submit">
+      </form>
+    <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
+  {% endblock info_select_baseextended_foodgroup %}
+
+
+  {% block info_display_baseextended_foodgroup %}
+    <!--- Group chart of the seleted food category-->
+    <div class="container" style="background-color:#e8f0ef">
+      <h3> Bar graph of CO2 contribution from seleted food category</h3>
       <div class="col">
           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'co2_data_plot_toshow.png' %}" alt="Word-Cloud image"/> </a>
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image to make it bigger</button>
           </div>
       </div>
     </div> <hr>
-
-{% endblock info_display %}
-
-<!--- START of social media connection -->
-{% block social_connection %}
-
-  <div class="container">
-    <div class="row">
-      <h3> Rows of the 5 higest and 5 least CO2 contributor</h3><hr>
-        <div class="col">
-          <a> <h5 class="card-text"> </h5> </a>
-          <div class="card-body">
-            
-            <table style="width:100%">
-              <tr>
-                {% for col in top10_fooddatas.columns %}
-                  <th style="white-space:nowrap">{{col}}</th>
-                {% endfor %}
-              </tr>
-                {% for index, row in top10_fooddatas.iterrows %}
-                  <tr>
-                    {% for cell in row %}
-                      <td>{{cell}}</td>
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-            </table>           
-            
-          </div>
-        </div>
-    </div>
-  </div>  <hr>
-
-{% endblock social_connection %}
+    {% endblock info_display_baseextended_foodgroup %}

@@ -17,51 +17,41 @@
 
 <!--- START of info selection -->
 {% block info_select %}
-    <h5><strong>Click</strong> the button to choose  Tweet type </h5>
-    <div class="tab">
-        <button class="tablinks" onclick="openCity({{event}}, 'User_ID')"> Tweets streeming from User_ID </button>
-        <button class="tablinks" onclick="openCity({{event}}, 'Keywords_search')"> Tweets streeming from Keywords_search </button>
-    </div><br>
-
-    <!--- Tweet with User_ID user-input section -->          
-    <div id="User_ID" class="tabcontent">
-        <h5>User_ID serch section</h5>
-        <div class="py-6 text-center container">
-          <form action="/index.html" method="get">
-              <label for= 'item_list' > <strong> Choose the Twiteer ID from the box :> </strong> </label>
-              <input list='item_list' name='item_list' id='item_list'>
-              <datalist id='item_list'> 
-                  {% for item_name in df_rows_list %}
-                  {{item_name}}
-                  <option value='option'>
-                  {% endfor %}
-              </datalist>
-                  <input type="submit">
-          </form>
-          <p><strong>Note:</strong> After choosing the ID Tweets analytics will be display below.</p>
+    <h5><strong>BUTTON</strong> to choose to choose tweets types </h5> <br>
+    
+        <div class="tab">
+        <button class="tablinks" onclick="openUserinpt(event, 'Keywords_search')" id="defaultOpen">Tweets streeming from Keywords_search</button>
+        <button class="tablinks" onclick="openUserinpt(event, 'User_ID')" >Tweets streeming from User_ID</button>
         </div><hr>
-    </div>
 
-    <!--- Tweet with Keyword-Search user-input section --> 
-    <div id="Keywords_search" class="tabcontent">
-        <h5>keyword serch section</h5>
-    </div>  <hr>
-  
+        <!--- Tweet with Keyword-Search section --> 
+        <div id='Keywords_search' class="tabcontent" style="background-color:#a9d1ca">
+            <h4>Tweet User_ID choose box</h4>
+            {% block info_select_baseextended_keyword %}
+            {% endblock info_select_baseextended_keyword %}
+
+            {% block info_display_baseextended_keyword %}
+            {% endblock info_display_baseextended_keyword %}
+        </div>
+
+        <!--- Tweet with User_ID section --> 
+        <div id='User_ID' class="tabcontent" style="background-color:#a9d1ca">
+            <h4>Tweet Keyword choose box</h4>
+            {% block info_select_baseextended_userid %}
+            {% endblock info_select_baseextended_userid %}
+            
+            {% block info_display_baseextended_userid %}
+            {% endblock info_display_baseextended_userid %} 
+        </div>
 {% endblock info_select %}
 
 
 <!--- start of info display -->
 {% block info_display %}
-    {% block info_display_baseextended %}
-    {% endblock info_display_baseextended %}
+
 {% endblock info_display %}
 
 <!--- START of social media connection -->
 {% block social_connection %}
-    <h5><strong>Click</strong> the button to go to the social media</h5>
-    <div class="col-lg-6 col-md-8 mx-auto">
-      <a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-3">LinkedIn: Wanna be in my network?</a> <br>
-      <a href="https://www.researchgate.net/profile/Mukti-Chapagain" class="btn btn-primary my-3">ResearchGate: Wanna read my Research papers?</a><br>
-      <a href="https://github.com/mrchapagain" class="btn btn-primary my-3">GitHub: Wanna know more about Data Analytics?</a>
-    </div>
+
 {% endblock social_connection %}

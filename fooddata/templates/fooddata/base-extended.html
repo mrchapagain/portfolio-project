@@ -1,0 +1,78 @@
+{% extends "fooddata/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <!--<img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "", alt="Food CO2 emission"/>-->
+        <hr>
+        <h1> Food CO2 emission Analytics</h1>
+        <h3> What is the carbon footprint of your diet? </h3>
+        <hr>        
+    </div> 
+{% endblock section %}
+
+
+<!--- START of info selection -->
+{% block info_select %}
+  <h5><strong>BUTTON</strong> to choose Food emission types </h5>
+
+      <div class="tab">
+      <button class="tablinks" onclick="openUserinpt(event, 'food_item')">Search by idivisual Food name</button>
+      <button class="tablinks" onclick="openUserinpt(event, 'food_group')" id="defaultOpen">Search by Food group</button>
+      </div><br><hr>
+
+      <div id="food_item" class="tabcontent" style="background-color:#a9d1ca">
+          <h4>Food item choose box</h4>
+          {% block info_select_baseextended_fooditem %}
+          {% endblock info_select_baseextended_fooditem %}
+
+          {% block info_display_baseextended_fooditem %}
+          {% endblock info_display_baseextended_fooditem %}
+      </div>
+
+      <div id='food_group' class="tabcontent" style="background-color:#a9d1ca">
+          <h4> Food category choose box</h3>
+          {% block info_select_baseextended_foodgroup %}
+          {% endblock info_select_baseextended_foodgroup %}
+          
+          {% block info_display_baseextended_foodgroup %}
+          {% endblock info_display_baseextended_foodgroup %}
+      </div>
+{% endblock info_select %}
+
+
+<!--- start of info display -->
+{% block info_display %}
+  <div class="container" style="background-color:#e8f0ef"> <br>
+    <div class="row">
+      <h4 style="background-color:#a9d1ca"> Rows of the 5 higest and 5 least CO2 contributor</h4><hr>
+        <div class="col">
+          <a> <h5 class="card-text"> </h5> </a>
+          <div class="card-body">
+            
+            <table style="width:100%">
+              <tr>
+                {% for col in top10_fooddatas.columns %}
+                  <th style="white-space:nowrap">{{col}}</th>
+                {% endfor %}
+              </tr>
+                {% for index, row in top10_fooddatas.iterrows %}
+                  <tr>
+                    {% for cell in row %}
+                      <td>{{cell}}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+            </table>           
+            
+          </div>
+        </div>
+    </div>
+  </div>  <hr>
+{% endblock info_display %}
+
+<!--- START of social media connection -->
+{% block social_connection %}
+
+{% endblock social_connection %}
