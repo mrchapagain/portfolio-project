@@ -88,6 +88,22 @@
       th:nth-child(even),td:nth-child(even) {
         background-color: rgba(150, 212, 212, 0.4);
       }
+      * {
+        box-sizing: border-box;
+      }
+      
+      .col {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+      }
+      
+      /* Clearfix (clear floats) */
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
     </style>
 
     </head>
