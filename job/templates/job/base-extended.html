@@ -16,49 +16,71 @@
 <!--- START of info selection -->
 {% block info_select %}
     <h5><strong>BUTTON</strong> to choose dufferent data Analytics </h5>
-      <div class="tab">
-        <button class="tablinks" onclick="openUserinpt(event, 'tweet_streem')" id="defaultOpen">Tweets streeming Analytics</button>
+      <div class="tab" >
+        <button class="tablinks" onclick="openUserinpt(event, 'tweet_streem')">Tweets streeming Analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'food_co2')">Food CO2 footprint Analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'google_trend')">Google trends analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'health_promotion')">Healthy food promotion</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'food_ontology')">Food ontology</button>
-      </div><br><hr>
+        <button class="tablinks" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food ontology</button>
+      </div><hr>
+
+      <div class="container" style="background-color:#a9d1ca"> 
+        <div class="col">
+          <div id="tweet_streem" class="tabcontent" style="background-color:#a9d1ca">
+            <h3>Tweets streeming Analytics</h3>
+              {% block info_display_baseextended_tweetstreem %}
+              {% endblock info_display_baseextended_tweetstreem %}
+          </div>
+    
+          <div id='food_co2' class="tabcontent">
+            <h3> Food CO2 footprint Analytics</h3>
+              {% block info_display_baseextended_foodco2 %}
+              {% endblock info_display_baseextended_foodco2 %}
+          </div>
+    
+          <div id='google_trend' class="tabcontent">
+          <h3> Google trends analytics</h3>
+            {% block info_display_baseextended_googletrend %}
+            {% endblock info_display_baseextended_googletrend %}
+          </div>
+    
+          <div id='health_promotion' class="tabcontent">
+          <h3> Healthy food promotion from info select</h3>
+            {% block info_display_baseextended_healthpromotion %}
+            {% endblock info_display_baseextended_healthpromotion %}
+          </div>
+    
+          <div id='food_ontology' class="tabcontent">
+          <h3> Food ontology</h3>
+            {% block info_display_baseextended_foodontology %}
+            {% endblock info_display_baseextended_foodontology %}
+          </div>
+        </div>
+      </div>
 {% endblock info_select %}
 
 
-<!--- start of info display -->
 {% block info_display %}
-  <div class="container"> 
-    <div class="col">
-      <div id="tweet_streem" class="tabcontent">
-        <h3>Tweets streeming Analytics</h3>
-          {% block info_select_baseextended_tweetstreem %}
-          {% endblock info_select_baseextended_tweetstreem %}
-      </div>
+<!--- start of info display -->
+  <div class="container"><br>
+    <h5> Image gallery of project portfolios</h5><hr>
+    <div class="col"> 
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">  
 
-      <div id='food_co2' class="tabcontent">
-        <h3> Food CO2 footprint Analytics</h3>
-          {% block info_display_baseextended_foodco2 %}
-          {% endblock info_display_baseextended_foodco2 %}
-      </div>
+            {% for job in jobs.all %}
+              <div class="justify-content-between align-items-center">
+                  <div class="col" style="background-color:#e2eceb">
+                      <a href="{% url 'jobdetail' job.id %}"> <h3>{{ job.title }}</h3></a>
+                      {{ job.pub_date_pretty }}
+                      <a href="{% url 'jobdetail' job.id %}"> <img class= "img-fluid bd-placeholder-img" src="{{ job.image.url }}" height="100%"/> </a> <br>
+                      <div class="btn-group"> 
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Click the image larger view</button>
+                      </div>  <br/>
+                  </div>
+              </div>
+            {% endfor %}
 
-      <div id='google_trend' class="tabcontent">
-      <h3> Google trends analytics</h3>
-        {% block info_display_baseextended_googletrend %}
-        {% endblock info_display_baseextended_googletrend %}
-      </div>
-
-      <div id='health_promotion' class="tabcontent">
-      <h3> Healthy food promotion from info select</h3>
-        {% block info_display_baseextended_healthpromotion %}
-        {% endblock info_display_baseextended_healthpromotion %}
-      </div>
-
-      <div id='food_ontology' class="tabcontent">
-      <h3> Food ontology</h3>
-        {% block info_display_baseextended_foodontology %}
-        {% endblock info_display_baseextended_foodontology %}
-      </div>
+        </div>   
     </div>
-  </div>
+  </div> 
 {% endblock info_display %}

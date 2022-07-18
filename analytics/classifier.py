@@ -4,9 +4,9 @@ import re
 from textblob import TextBlob
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
 from tkinter import *
-#import matplotlib
-#matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
 import seaborn as sns
 
 
