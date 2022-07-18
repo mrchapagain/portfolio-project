@@ -3,20 +3,20 @@
 
 <!--- start of CV display -->
 {% block info_select_baseextended_cv %}
-    <iframe src= "{% static 'resume-analytic.pdf' %}" width="900" height="700">CV of Mukti R. Chapagain</iframe><br>
+    <iframe src= "{% static 'resume-analytic.pdf' %}" width="100%" height="700">CV of Mukti R. Chapagain</iframe><br>
 {% endblock info_select_baseextended_cv %}
 
 <!--- start of Certificates display -->
 {% block info_display_baseextended_cert %}
     <div class="container">
         <div class="col"> 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">  
 
                 {% for aboutme in aboutmes.all %}
-                <div class="d-flex justify-content-between align-items-center ">
-                    <div class="col">
+                <div class="justify-content-between align-items-center">
+                    <div class="col" style="background-color:#e2eceb">
                         <a href="{% url 'docdetail' aboutme.id %}"> <h3>{{ aboutme.title }}</h3></a>
-                        <a href="{% url 'docdetail' aboutme.id %}"> <img class= "img-fluid" src="{{ aboutme.image.url }}" width='100%' height="100%"/> </a> <br>
+                        <a href="{% url 'docdetail' aboutme.id %}"> <img class= "img-fluid" src="{{ aboutme.image.url }}" height="100%"/> </a> <br>
                         <div class="btn-group"> 
                             <button type="button" class="btn btn-sm btn-outline-secondary">Click the image larger view</button>
                         </div>  <br/>

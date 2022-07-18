@@ -22,14 +22,20 @@
       <button class="tablinks" onclick="openUserinpt(event, 'food_group')" id="defaultOpen">Search by Food group</button>
       </div><br><hr>
 
-      <div id="food_item" class="tabcontent" style="background-color:rgb(169, 209, 202)">
-          <h3>CO2 foot-print detail of choosen food item</h3>
+      <div id="food_item" class="tabcontent" style="background-color:#a9d1ca">
+          <h4>Food item choose box</h4>
           {% block info_select_baseextended_fooditem %}
           {% endblock info_select_baseextended_fooditem %}
+
+          {% block info_display_baseextended_fooditem %}
+          {% endblock info_display_baseextended_fooditem %}
       </div>
 
-      <div id='food_group' class="tabcontent" style="background-color:rgb(169, 209, 202)">
-          <h3> CO2 foot-print detail of of choosen food category</h3>
+      <div id='food_group' class="tabcontent" style="background-color:#a9d1ca">
+          <h4> Food category choose box</h3>
+          {% block info_select_baseextended_foodgroup %}
+          {% endblock info_select_baseextended_foodgroup %}
+          
           {% block info_display_baseextended_foodgroup %}
           {% endblock info_display_baseextended_foodgroup %}
       </div>
@@ -38,9 +44,9 @@
 
 <!--- start of info display -->
 {% block info_display %}
-  <div class="container">
+  <div class="container" style="background-color:#e8f0ef"> <br>
     <div class="row">
-      <h3> Rows of the 5 higest and 5 least CO2 contributor</h3><hr>
+      <h4 style="background-color:#a9d1ca"> Rows of the 5 higest and 5 least CO2 contributor</h4><hr>
         <div class="col">
           <a> <h5 class="card-text"> </h5> </a>
           <div class="card-body">

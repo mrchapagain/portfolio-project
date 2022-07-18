@@ -21,28 +21,32 @@
     <div class="tab">
     <button class="tablinks" onclick="openUserinpt(event, 'My_Cv')">My CV</button>
     <button class="tablinks" onclick="openUserinpt(event, 'My_Certificates')" id="defaultOpen">My Certificates</button>
-    </div><br><hr>
+    </div><hr>
+
+    <div id="My_Cv" class="tabcontent" style="background-color:#a9d1ca">
+        <h3>Latest CV of Mukti R. Chapagain</h3>
+        {% block info_select_baseextended_cv %}
+        {% endblock info_select_baseextended_cv %}
+    </div>
+
+    <div id='My_Certificates' class="tabcontent" style="background-color:#a9d1ca">
+        <h3> Some of the skills Certificates of Mukti R. Chapagain</h3>
+        {% block info_display_baseextended_cert %}
+        {% endblock info_display_baseextended_cert %}
+    </div>
+    
+    <div class="container"> 
+        <div class="col">
+            
+        </div>
+    </div>
 
 {% endblock info_select %}
 
 
 <!--- start of info display -->
 {% block info_display %}
-    <div class="container"> 
-        <div class="col">
-            <div id="My_Cv" class="tabcontent">
-                <h3>Latest CV of Mukti R. Chapagain</h3>
-                {% block info_select_baseextended_cv %}
-                {% endblock info_select_baseextended_cv %}
-            </div>
-
-            <div id='My_Certificates' class="tabcontent">
-                <h3> Some of the skills Certificates of Mukti R. Chapagain</h3>
-                {% block info_display_baseextended_cert %}
-                {% endblock info_display_baseextended_cert %}
-            </div>
-        </div>
-    </div>
+    
 {% endblock info_display %}
 
 <!--- START of social media connection -->

@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .apiauth import *
 from .classifier import *
-from job.models import Job
-from blog.models import Blog
 from django.shortcuts import HttpResponse
 
 

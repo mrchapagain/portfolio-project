@@ -7,5 +7,5 @@ urlpatterns = [
     #path('<int:job_id>/', views.jobdetail, name='jobdetail'),
     path('', views.allanalytics, name='allanalytics'),
     path('home', views.index, name='index'),
-    path('crawl', views.result, name='result'),
+    path('keywordsearch', views.keywordsearch, name='keywordsearch'),
 ]
