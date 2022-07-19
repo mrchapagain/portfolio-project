@@ -10,15 +10,18 @@ def  allanalytics(request):
     df_user_tweet= tweets_by_user(tweeter_id)
 
     #lets use word cloud function to get the wordcloud figure
-    title= f"Word-cloud of tweets from -> {tweeter_id}"
+    rows=df_user_tweet.shape[0]
+    title= f'Word-Cloud of tweets {rows} from {tweeter_id}'
     wordclouds= wordcloud_plot(df_user_tweet.Tweets, title)
 
     # use function to get dataframe with sentiment Analytic column for 10 most liked tweets
     df_user_tweet_sentiment= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
     sentiments= df_user_tweet_sentiment.loc[df_user_tweet_sentiment.Likes.nlargest(10).index].reset_index(drop=True)
 
-    # Plot the Analytics columns of the sentiment dataframe 
-    sentimentsplot= sentiment_plot(df_user_tweet_sentiment)
+    # Plot the Analytics columns of the sentiment dataframe
+    rows=df_user_tweet_sentiment.shape[0]
+    title= f'Sentiment Analysis of tweets {rows} from {tweeter_id}'
+    sentimentsplot= sentiment_plot(df_user_tweet_sentiment, title)
     
     return render(request, 'analytics/allanalytics.html', {'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
 
@@ -35,14 +38,17 @@ def  keywordsearch(request):
     kanalyticss= df_by_keywords.loc[df_by_keywords.Likes.nlargest(10).index].reset_index(drop=True)[['Time', 'Tweets', 'Likes', 'User']]
 
     #lets use word cloud function to get the wordcloud figure
-    title= f"Word-cloud of tweets from -> {keywords}"
+    rows=df_by_keywords.shape[0]
+    title= f'Word-Cloud of tweets {rows} from {tweeter_id}'
     kwordclouds= wordcloud_plot(df_by_keywords.Tweets, title)
 
     # use function to get dataframe with sentiment Analytic column
     ksentiments= SentimentAnalysis(df_by_keywords)[['Tweets', 'Likes', 'Time', 'User', 'Analysis']]
 
-    # Plot the Analytics columns of the sentiment dataframe 
-    ksentimentsplot= sentiment_plot(ksentiments)
+    # Plot the Analytics columns of the sentiment dataframe
+    rows=ksentiments.shape[0]
+    title=f'Sentiment Analysis of tweets {rows} from {keywords}'
+    ksentimentsplot= sentiment_plot(ksentiments, title)
 
     # Plot of the most mentioned text from Keyword search dataframe 
     kmostmentionword= most_mentioned_words(df_user_tweet)

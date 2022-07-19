@@ -13,25 +13,7 @@ import seaborn as sns
 import spacy.cli
 #spacy.cli.download("en_core_web_lg")
 #nlp = spacy.load('en_core_web_lg')
-from nltk.stem.snowball import SnowballStemmer
-
-
-def wordcloud_plot(df_col, title):
-      # Create stopword list
-      stopwords = set(STOPWORDS)
-      stopwords.update(['https', 'er', 'og', 't', 'co', 'en', 'før', 'fra', 'se', 'har', 'vil', 'nyt', 'end', 
-      'kan', 'så', 'på', 'som', 'nu', 'ikke', 'men', 'om', 'vi', 'et', 'af', 'var'])
-      plt.figure(figsize=(8.5,6))
-      allWords= ' '.join( [twts for twts in df_col] )
-      wordcloud = WordCloud(stopwords=stopwords, max_words=50, width= 800, height=550, random_state=21, max_font_size= 119, background_color="skyblue").generate(allWords)
-      plt.axis('off')
-      plt.imshow(wordcloud, interpolation = "bilinear")
-      plt.title(title, fontsize=12)
-      #plt.offline.plot(fig, auto_open = False, output_type="div")
-      wordcloud.to_file("portfolio/static/wordcloud_toshow.png")
-      return plt
-
-       
+from nltk.stem.snowball import SnowballStemmer    
 
 
 def SentimentAnalysis(df):
@@ -82,17 +64,32 @@ def get_graph():
       buffer.close()
       return graph
 
-def sentiment_plot(df_withsentiment):
-      rows=df_withsentiment.shape[0]
+def sentiment_plot(df_withsentiment, title):
       plt.switch_backend('AGG')
-      plt.figure(figsize=(7.5,5))
-      plt.title(f'Sentiment Analysis of {rows} tweets')
+      plt.figure(figsize=(4,3))
+      plt.title(title, fontsize=10)
       #plt.bar(df_withsentiment.Analysis.unique(), df_withsentiment['Analysis'].value_counts(), color ='grey', width = 0.4)
       #sns.barplot(df_withsentiment['Analysis'], df_withsentiment['Analysis'].value_counts())
       df_withsentiment['Analysis'].value_counts().plot(kind='bar')
       plt.xticks(rotation=20)
       plt.xlabel('Sentiment of the tweets')
       plt.ylabel('Counts of sentiments')
+      plt.tight_layout()
+      graph=get_graph()
+      return graph
+
+def wordcloud_plot(df_col, title):
+      # Create stopword list
+      stopwords = set(STOPWORDS)
+      stopwords.update(['https', 'er', 'og', 't', 'co', 'en', 'før', 'fra', 'se', 'har', 'vil', 'nyt', 'end', 
+      'kan', 'så', 'på', 'som', 'nu', 'ikke', 'men', 'om', 'vi', 'et', 'af', 'var'])
+      plt.switch_backend('AGG')
+      plt.figure(figsize=(4,3))
+      plt.title(title, fontsize=10)
+      allWords= ' '.join( [twts for twts in df_col] )
+      wordcloud = WordCloud(stopwords=stopwords, max_words=50, width= 390, height=290, random_state=21, max_font_size= 100, background_color="skyblue").generate(allWords)
+      plt.imshow(wordcloud, interpolation = "bilinear")
+      plt.axis('off')
       plt.tight_layout()
       graph=get_graph()
       return graph
