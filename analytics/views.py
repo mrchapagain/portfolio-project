@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .apiauth import *
 from .classifier import *
-from django.shortcuts import HttpResponse
 
 
 # Create your views here.
@@ -11,7 +10,8 @@ def  allanalytics(request):
     df_user_tweet= tweets_by_user(tweeter_id)
 
     #lets use word cloud function to get the wordcloud figure
-    wordclouds= wordcloud_plot(df_user_tweet.Tweets)
+    title= f"Word-cloud of tweets from -> {tweeter_id}"
+    wordclouds= wordcloud_plot(df_user_tweet.Tweets, title)
 
     # use function to get dataframe with sentiment Analytic column for 10 most liked tweets
     df_user_tweet_sentiment= SentimentAnalysis(df_user_tweet)[['Tweets', 'Likes', 'Time', 'Analysis']]
@@ -35,7 +35,8 @@ def  keywordsearch(request):
     kanalyticss= df_by_keywords.loc[df_by_keywords.Likes.nlargest(10).index].reset_index(drop=True)[['Time', 'Tweets', 'Likes', 'User']]
 
     #lets use word cloud function to get the wordcloud figure
-    kwordclouds= wordcloud_plot(df_by_keywords.Tweets)
+    title= f"Word-cloud of tweets from -> {keywords}"
+    kwordclouds= wordcloud_plot(df_by_keywords.Tweets, title)
 
     # use function to get dataframe with sentiment Analytic column
     ksentiments= SentimentAnalysis(df_by_keywords)[['Tweets', 'Likes', 'Time', 'User', 'Analysis']]

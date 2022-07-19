@@ -34,13 +34,19 @@
             <!-- word-cloud fig -->
               <div class="col">
                 <h5> Word-Cloud from tweets</h5><hr>
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/> </a>
+                <!-- <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/> </a>-->
+                  {% if ksentimentsplot %}
+                    <img src="data:image/png;base64, {{ ksentimentsplot|safe }}">
+                  {% endif %}
               </div> <br>
             
               <!--Sentiment chart-->
               <div class="col">
                 <h5> Sentiment analytics of tweets</h5>  <hr>
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/></a><br>
+                <!--<a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/></a><br>-->
+                  {% if ksentimentsplot %}
+                    <img src="data:image/png;base64, {{ ksentimentsplot|safe }}">
+                  {% endif %}
               </div>
 
           </div> 
@@ -111,13 +117,19 @@
         <!-- word-cloud fig -->
           <div class="col">
             <h5> Word-Cloud from tweets</h5><hr>
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/> </a>
+            <!--<a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'wordcloud_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/> </a>-->
+              {% if sentimentsplot %}
+                  <img src="data:image/png;base64, {{ sentimentsplot|safe }}">
+              {% endif %}
           </div> <br>
         
           <!--Sentiment chart-->
           <div class="col">
             <h5> Sentiment analytics of tweets</h5>  <hr>
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/></a><br>
+            <!--<a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'sentiment_plot_toshow.png' %}" alt="Word-Cloud image" style="width:100%"/></a><br>-->
+              {% if sentimentsplot %}
+                  <img src="data:image/png;base64, {{ sentimentsplot|safe }}">
+              {% endif %}
           </div>
 
       </div> 
