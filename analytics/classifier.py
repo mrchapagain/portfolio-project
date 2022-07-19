@@ -12,8 +12,9 @@ import seaborn as sns
 
 import spacy.cli
 #spacy.cli.download("en_core_web_lg")
-#nlp = spacy.load('en_core_web_lg')
-from nltk.stem.snowball import SnowballStemmer    
+nlp = spacy.load('en_core_web_lg')
+from nltk.stem.snowball import SnowballStemmer   
+s_stemmer = SnowballStemmer(language='english') 
 
 
 def SentimentAnalysis(df):
@@ -67,7 +68,7 @@ def get_graph():
 def sentiment_plot(df_withsentiment, title):
       plt.switch_backend('AGG')
       plt.figure(figsize=(4,3))
-      plt.title(title, fontsize=10)
+      plt.title(title, fontsize=8)
       #plt.bar(df_withsentiment.Analysis.unique(), df_withsentiment['Analysis'].value_counts(), color ='grey', width = 0.4)
       #sns.barplot(df_withsentiment['Analysis'], df_withsentiment['Analysis'].value_counts())
       df_withsentiment['Analysis'].value_counts().plot(kind='bar')
@@ -85,7 +86,7 @@ def wordcloud_plot(df_col, title):
       'kan', 'så', 'på', 'som', 'nu', 'ikke', 'men', 'om', 'vi', 'et', 'af', 'var'])
       plt.switch_backend('AGG')
       plt.figure(figsize=(4,3))
-      plt.title(title, fontsize=10)
+      plt.title(title, fontsize=8)
       allWords= ' '.join( [twts for twts in df_col] )
       wordcloud = WordCloud(stopwords=stopwords, max_words=50, width= 390, height=290, random_state=21, max_font_size= 100, background_color="skyblue").generate(allWords)
       plt.imshow(wordcloud, interpolation = "bilinear")
