@@ -1,4 +1,7 @@
 
+# import function from Analytics clasification where visualization function is created
+from analytics.classifier import get_graph
+
 # Importing the required libaries for EDA
 import pandas as pd
 import numpy as np
@@ -43,26 +46,48 @@ class FoodCo2Analytics():
     def co2_data_plot(self, selected_dropped_data):
         self.selected_dropped_data= selected_dropped_data
         # Group some of the elements from columns with categorical data
-        df_with_category= selected_dropped_data[['Category_en', 'Agriculture', 'iLUC', 'Processing',	'Packaging',	'Transport',	'Retail', 'Total_CO2_eq_perkg']].groupby(by= ['Category_en'], sort=True).mean().sort_values(by=['Total_CO2_eq_perkg'], ascending=False).round(decimals = 2)
+        df_with_category= selected_dropped_data[['Category_en', 'Agriculture', 'iLUC', 'Processing', 'Packaging',	'Transport',	'Retail', 'Total_CO2_eq_perkg']].groupby(by= ['Category_en'], sort=True).mean().sort_values(by=['Total_CO2_eq_perkg'], ascending=False).round(decimals = 2)
         
         # Stacked bar plot
         rows= selected_dropped_data.shape[0]
+        plt.switch_backend('AGG')
         fig, ax= plt.subplots(figsize=(10, 5))
         ax.barh(df_with_category.index, df_with_category['Agriculture'], label= "Agriculture")
         ax.barh(df_with_category.index, df_with_category['iLUC'], label='iLUC')
+        ax.barh(df_with_category.index, df_with_category['Packaging'], label='Processing')
         ax.barh(df_with_category.index, df_with_category['Packaging'], label='Packaging')
         ax.barh(df_with_category.index, df_with_category['Transport'], label='Transport')
         ax.barh(df_with_category.index, df_with_category['Retail'], label='Retail')
 
+        #sns.barplot(df2.values, df2.index, alpha=1)
         plt.xticks(rotation=20)
         plt.title(f'"Share of the Total CO2 contribution of the {rows}"')
         plt.ylabel("Product Category")
         plt.xlabel("Total average CO2 equivalent/Kg")
         ax.legend()
-        plt.savefig("portfolio/static/co2_data_plot_toshow.png")
-        #graph = fig.to_html(full_html=False, default_height=500, default_width=700)
-        plt.close() 
+        plt.tight_layout()
+        graph=get_graph()
+        return graph  
 
+
+    def piechart_fooditem(self, df_fooditem):
+        self.df_fooditem=df_fooditem
+
+        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+        labels = ['Agriculture', 'iLUC', 'Processing', 'Packaging', 'Transport', 'Retail']
+        sizes =  df_fooditem[labels].values.tolist()[0] # 3rd to 8th column value from indivisual-item 
+        explode = (0, 0, 0, 0, 0.1, 0)  # only "explode" the 5th slice (i.e. 'Transport')
+
+        fig, ax = plt.subplots()
+        ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        #plt.title(f'"Share of the Total CO2 contribution of the Food-item: {data_fooditem.Product_en.values}"')
+        plt.tight_layout()
+        graph=get_graph()
+        return graph  
+
+    
     def selected_foodinfo(selected_dropped_data):
         self.selected_dropped_data=selected_dropped_data
         name_choosen =  selected_dropped_data.sample().reset_index(drop=True)
@@ -82,3 +107,7 @@ class FoodCo2Analytics():
             print(f'\t Fat amount = {name_choosen._get_value(0, "Fat_g")}, \n\t Carb amount = {name_choosen._get_value(0, "Carb_g")}, \n\t Protein amount = {name_choosen._get_value(0, "Protein_g")}')
             print("*" * 60)
         return block()
+
+
+
+     

@@ -42,15 +42,24 @@
       </div> <hr>
 
     <!--- Single chart of the seleted item-->
-      <div class="container" style="background-color:#e8f0ef">
-        <h4> Visualization of above data</h4>
-        <div class="col">
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'co2_data_plot_toshow.png' %}" alt="Word-Cloud image"/> </a>
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Click to image to make it bigger</button>
-            </div>
-        </div>
-      </div> <hr>
+    <!--- Group chart of the seleted food category-->
+    <div class="container" style="background-color:#e8f0ef">
+      <h3> </h3>
+      
+      <!--Bar chart for category-->
+      <div class="col">
+        <h4> Share of CO2 contribution from seleted food item: {{name_choosen.Product_en.values}}</h4> <hr>
+          {% if co2_foodplots_item %}
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
+          {% endif %}
+      </div>
+
+      <div class="btn-group"> <br>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
+      </div>
+
+    </div> <hr>
+
   {% endblock info_display_baseextended_fooditem %}
 
 
@@ -75,12 +84,19 @@
   {% block info_display_baseextended_foodgroup %}
     <!--- Group chart of the seleted food category-->
     <div class="container" style="background-color:#e8f0ef">
-      <h3> Bar graph of CO2 contribution from seleted food category</h3>
+      <h3> </h3>
+      
+      <!--Bar chart for category-->
       <div class="col">
-          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="{% static 'co2_data_plot_toshow.png' %}" alt="Word-Cloud image"/> </a>
-          <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click to image to make it bigger</button>
-          </div>
+        <h4> Bar graph of CO2 contribution from seleted food category</h4>  <hr>
+          {% if co2_foodplots_category %}
+            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_category|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
+          {% endif %}
       </div>
+
+      <div class="btn-group"> <br>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
+      </div>
+
     </div> <hr>
     {% endblock info_display_baseextended_foodgroup %}
