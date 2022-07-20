@@ -21,13 +21,14 @@
     
         <div class="tab">
         <button class="tablinks" onclick="openUserinpt(event, 'Keywords_search')" id="defaultOpen">Tweets streeming from Keywords_search</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'User_ID')" >Tweets streeming from User_ID</button>
+        <button class="tablinks" onclick="openUserinpt(event, 'User_ID')">Tweets streeming from User_ID</button>
         </div><hr>
 
         <!--- Tweet with Keyword-Search section --> 
         <div id='Keywords_search' class="tabcontent" style="background-color:#a9d1ca">
             <h4>Tweet User_ID choose box</h4>
             {% block info_select_baseextended_keyword %}
+                
             {% endblock info_select_baseextended_keyword %}
 
             {% block info_display_baseextended_keyword %}
@@ -37,11 +38,11 @@
         <!--- Tweet with User_ID section --> 
         <div id='User_ID' class="tabcontent" style="background-color:#a9d1ca">
             <h4>Tweet Keyword choose box</h4>
-            {% block info_select_baseextended_userid %}
-            {% endblock info_select_baseextended_userid %}
-            
-            {% block info_display_baseextended_userid %}
-            {% endblock info_display_baseextended_userid %} 
+                {% block info_select_baseextended_userid %}
+                {% endblock info_select_baseextended_userid %}
+                
+                {% block info_display_baseextended_userid %}
+                {% endblock info_display_baseextended_userid %}            
         </div>
 {% endblock info_select %}
 

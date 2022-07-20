@@ -26,13 +26,13 @@ def tweets_by_user(user):
       tweets_obj= tweepy.Cursor(api.user_timeline, screen_name=user, count=200, tweet_mode="extended").items(limit)
               
       # Create Data Frame
-      columns= ['Tweets', 'Likes', 'Time', 'User']
+      columns= ['Tweets', 'Likes', 'Created_at', 'User']
       tweets = []
       for i in tweets_obj:
             tweets.append([i.full_text, i.favorite_count, i.created_at, i.user.screen_name])
 
       df_by_id= pd.DataFrame(tweets, columns=columns)
-      df_by_id['Time']=df_by_id['Time'].apply(lambda x: x.strftime('%Y-%m-%d'))
+      df_by_id['Created_at']=df_by_id['Created_at'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
       #now lets make only tweets thats has not Re-Tweeted!
       df_by_id= df_by_id[~df_by_id.Tweets.str.contains("RT")]
@@ -46,13 +46,13 @@ def tweets_by_keywords(keywords):
       api_methods=['search_tweets', 'search_30_day', 'search_full_archive', 'search_users', 'search_geo']
       tweets_obj= tweepy.Cursor(api.search_tweets, q=keywords, count=100, tweet_mode="extended").items(limit)
       # Create Data Frame
-      columns= ['Tweets', 'Created_at', 'User']
+      columns= ['Tweets', 'Likes', 'Created_at', 'User']
       tweets = []
       for i in tweets_obj:
-            tweets.append([i.full_text, i.created_at, i.user.screen_name])
+            tweets.append([i.full_text, i.favorite_count, i.created_at, i.user.screen_name])
       df_by_keywords= pd.DataFrame(tweets, columns=columns)
       df_by_keywords['Created_at']= df_by_keywords['Created_at'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
       #now lets make only tweets thats has not Re-Tweeted!
-      df_by_keywords= df_by_keywords[~df_by_keywords.Tweets.str.contains("RT")]
+      #df_by_keywords= df_by_keywords[~df_by_keywords.Tweets.str.contains("RT")] # better to use that has retweeted
       return df_by_keywords

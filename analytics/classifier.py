@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 import seaborn as sns
+import pandas as pd
 
 
 import spacy.cli
@@ -85,10 +86,10 @@ def wordcloud_plot(df_col, title):
       stopwords.update(['https', 'er', 'og', 't', 'co', 'en', 'før', 'fra', 'se', 'har', 'vil', 'nyt', 'end', 
       'kan', 'så', 'på', 'som', 'nu', 'ikke', 'men', 'om', 'vi', 'et', 'af', 'var'])
       plt.switch_backend('AGG')
-      plt.figure(figsize=(4,3))
+      plt.figure(figsize=(8,4))
       plt.title(title, fontsize=8)
       allWords= ' '.join( [twts for twts in df_col] )
-      wordcloud = WordCloud(stopwords=stopwords, max_words=50, width= 390, height=290, random_state=21, max_font_size= 100, background_color="skyblue").generate(allWords)
+      wordcloud = WordCloud(stopwords=stopwords, max_words=100, width= 800, height=400, random_state=21, max_font_size= 75, background_color="skyblue").generate(allWords)
       plt.imshow(wordcloud, interpolation = "bilinear")
       plt.axis('off')
       plt.tight_layout()
@@ -97,7 +98,7 @@ def wordcloud_plot(df_col, title):
 
 
 ## Function to find most mentioned words with NLP
-def most_mentioned_words(df_by_id):
+def most_mentioned_words(df_by_id, keyword):
       # Split all the sentances and creat the list of sentence of from the tweet columns
       list_of_sentences = [sentence for sentence in df_by_id.Tweets]
 
@@ -131,10 +132,16 @@ def most_mentioned_words(df_by_id):
       
       # Lets visualize
       def vis(df2):
-            df2= df2[:20,]
-            plt.figure()
+            df2= df2[:10,]
+            plt.switch_backend('AGG')
+            plt.figure(figsize=(4,3))
             sns.barplot(df2.values, df2.index, alpha=1)
-            plt.title(f'Top words Overall from Tweet search')
+            #plt.xticks(rotation=20)
+            plt.title(f'Top {df2.index.shape} words from Tweet search with {keyword}', fontsize=8)
             plt.ylabel('Word from Tweet')
             plt.xlabel('Count of Words')
+            plt.tight_layout()
+            graph=get_graph()
+            return graph
       return vis(df2)
+      
