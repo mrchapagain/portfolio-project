@@ -22,42 +22,51 @@
 
 <!--- Start of info-display section for food item -->
   {% block info_display_baseextended_fooditem %}
+  <div class="container" style="background-color:#e8f0ef">
+      <h4> Name of food-item: {{name_choosen.Product_en.values}}</h4>
+      <div class="row"> <br>
+
+          <!--- To make two pie chart display side by side-->        
+          <!--Pie chart for item-->
+          <div class="col">
+            <h5> Share of CO2 contribution</h5> <hr>
+              {% if co2_foodplots_item %}
+                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
+              {% endif %}
+          </div>
+
+          <!--Pie chart for item-energy-->
+          <div class="col">
+            <h5> Share of Energy ccontent </h5> <hr>
+              {% if energy_foodplots_item %}
+                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ energy_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
+              {% endif %}
+          </div>
+      </div> 
+
+          <div class="btn-group"> <br>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
+          </div>
+
+    </div> <hr>
+
     <!--- Single data-frame of the seleted item-->
-      <div class="text-center container" style="background-color:#e8f0ef">
-        <h4> CO2 contribution from seleted food item</h4>
-        <table>
-        <tr>
-            {% for col in name_choosen.columns %}
-            <th style="white-space:nowrap"> {{col}} </th>              
-            {% endfor %}
-        </tr>
-        {% for index, row in name_choosen.iterrows %}
-        <tr>
-            {% for cell in row %}
-            <td> {{cell}} </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-        </table>        
-      </div> <hr>
-
-    <!--- Single chart of the seleted item-->
-    <!--- Group chart of the seleted food category-->
-    <div class="container" style="background-color:#e8f0ef">
-      <h3> </h3>
-      
-      <!--Bar chart for category-->
-      <div class="col">
-        <h4> Share of CO2 contribution from seleted food item: {{name_choosen.Product_en.values}}</h4> <hr>
-          {% if co2_foodplots_item %}
-            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
-          {% endif %}
-      </div>
-
-      <div class="btn-group"> <br>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
-      </div>
-
+    <div class="text-center container" style="background-color:#e8f0ef"> <br>
+      <h4> CO2 contribution from seleted food item</h4>
+      <table style="width:100%">
+      <tr>
+          {% for col in name_choosen.columns %}
+          <th style="white-space:nowrap"> {{col}} </th>              
+          {% endfor %}
+      </tr>
+      {% for index, row in name_choosen.iterrows %}
+      <tr>
+          {% for cell in row %}
+          <td> {{cell}} </td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+      </table> <br>        
     </div> <hr>
 
   {% endblock info_display_baseextended_fooditem %}

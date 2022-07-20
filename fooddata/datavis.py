@@ -70,7 +70,7 @@ class FoodCo2Analytics():
         return graph  
 
 
-    def piechart_fooditem(self, df_fooditem):
+    def piechart_fooditem_co2(self, df_fooditem):
         self.df_fooditem=df_fooditem
 
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
@@ -82,7 +82,28 @@ class FoodCo2Analytics():
         ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90)
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        #plt.title(f'"Share of the Total CO2 contribution of the Food-item: {data_fooditem.Product_en.values}"')
+        #plt.title(f'"Total CO2 contribution equivalent per KG: {df_fooditem.Total_CO2_eq_perkg.values}"', fontsize=12)
+        ax.text(1.05, 0.01, f'"Total CO2 contribution equivalent per KG in grams: {df_fooditem.Total_CO2_eq_perkg.values}"', fontsize=12, verticalalignment='bottom', horizontalalignment='right', transform=ax.transAxes, color='red')
+        plt.tight_layout()
+        graph=get_graph()
+        return graph  
+
+
+    def piechart_fooditem_energy(self, df_fooditem):
+        self.df_fooditem=df_fooditem
+
+        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+        labels = ['Fat_g', 'Carb_g', 'Protein_g']
+        sizes =  df_fooditem[labels].values.tolist()[0] # 3rd to 8th column value from indivisual-item 
+        explode = (0, 0, 0.05)  # only "explode" the 3rd slice (i.e. 'Protein')
+
+        fig, ax = plt.subplots()
+        ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        #plt.title(f'"Total Energy in KJ: {df_fooditem.Energy_KJ.values}"', fontsize=12)
+        ax.text(1.05, 0.005, f'"Total Energy in KJ: {df_fooditem.Energy_KJ.values}"', fontsize=12, verticalalignment='bottom', horizontalalignment='right', transform=ax.transAxes, color='red')
+
         plt.tight_layout()
         graph=get_graph()
         return graph  
