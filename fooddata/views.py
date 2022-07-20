@@ -5,6 +5,13 @@ from .datavis import *
 #import glob
 #from openpyxl import load_workbook
 
+def itm_tosearch(request):
+    return render(request, 'fooddata/allfooddatas.html')
+    
+
+def cat_tosearch(request):
+    return render(request, 'fooddata/allfooddatas.html')
+
 def allfooddatas(request):
     #Lets initiate the class that has been defined in datavis page
     data_link = "https://github.com/mrchapagain/FoodClimateAnalytics/raw/main/ClimateData.xlsx" # glob.glob(path + '*.xlsx')

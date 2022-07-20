@@ -3,20 +3,31 @@
 
 <!--- Start of User-input section for food item -->
   {% block info_select_baseextended_fooditem %}
-    <form action="/index.html" method="get">
-      <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
-      <input list='item_list' name='item_list' id='item_list'>
-      
-      <datalist id='item_list'>
-      {% for item_name in df_rows_list %}
-      <option value={{ item_name }}>
-      {% endfor %}
-      </datalist>
-      
-      <input type="submit">
-    </form>
-    <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr> 
-    <div><button onClick="window.location.reload();"> <h5>Refresh Here to get new item</h5></button></div><br>
+    <div class="py-6 text-center container"><br>
+      <h5> Food-item select section</h5>
+
+      <form action="itm_tosearch", method='post'>
+          {% csrf_token %}
+        <label for= 'item_list' > <strong> Choose food item here :> </strong> </label>
+        <input type="text", name='fooditm'>
+        <input type="submit">
+      </form>
+
+      <!--- <form action="/index.html" method="get">
+          <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
+          <input list='item_list' name='item_list' id='item_list'>
+          
+          <datalist id='item_list'>
+          {% for item_name in df_rows_list %}
+          <option value={{ item_name }}>
+          {% endfor %}
+          </datalist>
+          
+          <input type="submit">
+      </form>-->
+      <p><strong>Note:</strong> Choose the food-item from dropdown list to explore detail information.</p><hr> 
+      <div><button onClick="window.location.reload();"> <h5>Refresh Here to get new item</h5></button></div><br>
+    </div>
   {% endblock info_select_baseextended_fooditem %}
 
 
@@ -74,19 +85,30 @@
 
 <!--- Start of User-input section for food group -->
   {% block info_select_baseextended_foodgroup %}
-      <form action="/index.html" method="get">
-          <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
-          <input list='item_list' name='item_list' id='item_list'>
-          
-          <datalist id='item_list'>
-          {% for item_name in df_rows_list %}
-          <option value={{ item_name }}>
-          {% endfor %}
-          </datalist>
-          
+    <div class="py-6 text-center container"><br>
+      <h5> Food category select section</h5>
+
+        <form action="cat_tosearch", method='post'>
+            {% csrf_token %}
+          <label for= 'item_list' > <strong> Choose food category here :> </strong> </label>
+          <input type="text", name='foodcat'>
           <input type="submit">
-      </form>
-    <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
+        </form>
+        
+        <!--- <form action="/index.html" method="get">
+            <label for= 'item_list' > <strong> Choose your Food group from here :> </strong> </label>
+            <input list='item_list' name='item_list' id='item_list'>
+            
+            <datalist id='item_list'>
+            {% for item_name in df_rows_list %}
+            <option value={{ item_name }}>
+            {% endfor %}
+            </datalist>
+            
+            <input type="submit">
+        </form>-->
+      <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
+    </div>
   {% endblock info_select_baseextended_foodgroup %}
 
 
