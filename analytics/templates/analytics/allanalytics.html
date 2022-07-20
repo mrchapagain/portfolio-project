@@ -8,10 +8,10 @@
       <!--- Tweet with Keyword-search user-input box --> 
     <div class="py-6 text-center container"><br>
       <h5> User_Id select section</h5>
-        <form action="userid_tosearch", method='POST'>
+        <form action="userid_tosearch", method='post'>
             {% csrf_token %}
           <label for= 'item_list' > <strong> Enter tweet User_Id to search tweets :> </strong> </label>
-          <input type="text", name="userid">
+          <input type="text", name='userid'>
           <input type="submit">
         </form>
        
@@ -107,12 +107,13 @@
   <!--- Tweet with Keyword-search user-input box --> 
   <div class="py-6 text-center container"><br>
       <h5> keyword serch section</h5>
-        <form action="keyword_tosearch", method='POST'>
+        <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
           <label for= 'item_list' > <strong> Enter Keyword to search tweets :> </strong> </label>
-              <input type="text", name="keyword">
+              <input type="text", name='keyword'>
           <input type="submit">
         </form>
+            
 
          <!--- <form action="/index.html" method="get">
             <label for= 'item_list' > <strong> Choose the Keyword from the box:> </strong> </label>
@@ -140,7 +141,7 @@
             <div class="col">
               <h5> Most mentioned word in the tweets</h5>  <hr>
                 {% if kmostmentionword %}
-                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Word-Cloud image" style="height:100%; width:100%"/> </a>
                 {% endif %}
             </div>
 
