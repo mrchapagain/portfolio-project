@@ -95,6 +95,7 @@ class FoodCo2Analytics():
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
         labels = ['Fat_g', 'Carb_g', 'Protein_g']
         sizes =  df_fooditem[labels].values.tolist()[0] # 3rd to 8th column value from indivisual-item 
+        #sizes= [i*0 for i in sizes if i < 0 ]
         explode = (0, 0, 0.05)  # only "explode" the 3rd slice (i.e. 'Protein')
 
         fig, ax = plt.subplots()

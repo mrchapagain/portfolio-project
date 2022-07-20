@@ -29,7 +29,7 @@ def keyword_tosearch(request):
     # Plot of the most mentioned text from Keyword search dataframe 
     kmostmentionword= most_mentioned_words(df_by_keywords,  keywords)
 
-    return render(request, 'analytics/result-keyword.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword})
+    return render(request, 'analytics/allanalytics.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword})
 
 
 def userid_tosearch(request):
@@ -56,7 +56,7 @@ def userid_tosearch(request):
     # Plot of the most mentioned text from Keyword search dataframe 
     mostmentionword= most_mentioned_words(df_user_tweet,  tweeter_id)
 
-    return render(request, 'analytics/result-userid.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword})
+    return render(request, 'analytics/allanalytics.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword})
 
 
 # Create your views here.
