@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     #path('<int:job_id>/', views.jobdetail, name='jobdetail'),
     path('', views.allanalytics, name='allanalytics'),
-    path('home', views.index, name='index'),
-    path('kwsearch', views.keywordsearch, name='keywordsearch'),
+    path('index', views.index, name='index'),
+    path('keyword_tosearch', views.keyword_tosearch, name='keyword_tosearch'),
+    path('userid_tosearch', views.userid_tosearch, name='userid_tosearch'),
 ]

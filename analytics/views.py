@@ -1,12 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from django.http import HttpResponse
 from .apiauth import *
 from .classifier import *
 
 
 # Create your views here.
+def keyword_tosearch(request):
+    keywords= request.POST['keyword']
+    #if request.method == 'POST':
+    return render(request, 'analytics/result.html', {'keywords':keywords})
+
+def userid_tosearch(request):
+    tweeter_id= request.POST['userid']
+    #if request.method == 'POST':
+    return render(request, 'analytics/result.html', {'tweeter_id':tweeter_id})
+
+
+# Create your views here.
 def  allanalytics(request):
     # User_id section
-    
+    #tweeter_id= request.POST['userid']
     tweeter_id= "DRNyheder" #input("Type Tweter-id which is after @, fx DRNyheder for DR News: ") # fxDRNyheder
     # lets use the function to ge the dataframe which gives fataframe with index
     df_user_tweet= tweets_by_user(tweeter_id)
@@ -30,8 +44,9 @@ def  allanalytics(request):
 
     
     # Keywordsection 
+    #keywords= request.POST['keyword']
     keywords= "Health" 
-    #input('Type the word you want to search tweet by: ')
+    
     df_by_keywords = tweets_by_keywords(keywords)
 
     #lets use word cloud function to get the wordcloud figure
@@ -84,13 +99,5 @@ def  keywordsearch(request):
     return render(request, 'analytics/keywordsearch.html', {'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword':kmostmentionword}) # 
 
 def index(request):
-    if request.method == 'GET':         
-        return render(request, 'analytics/index-search.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
-
-
-
-# Create your views here.
-def result(request):
-    if request.method == 'POST':
-                  
-        return render(request, 'analytics/result.html', {'analyticss': analyticss, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot})
+    #if request.method == 'GET':  
+    return render(request, 'analytics/index.html')

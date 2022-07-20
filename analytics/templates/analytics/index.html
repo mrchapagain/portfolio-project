@@ -1,0 +1,14 @@
+{% extends "analytics/allanalytics.html" %}
+{% load static %}
+
+{% block content%}
+    <h1> This is from index template</h1>
+
+    <form action="keyword_tosearch", method='POST'>
+        {% csrf_token %}
+
+        Enter Keyword to search tweets : <input type="text", name="keyword">
+        <input type="submit">
+    </form>
+
+{% endblock %}
