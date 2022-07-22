@@ -5,7 +5,18 @@
 {% block info_display_baseextended_tweetstreem %}
 <div style="background-color:#e8f0ef">
     <div class="row"> <!-- or row -->
-        <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5><hr>
+        <h3> Tweets streeming Analytics<br> </h3><hr>
+
+        {% for job in jobs.all %}
+            <!-- the box -->
+            <div class="col">
+                <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
+                <p class ="text_center">{{ job.pub_date }}</p>
+                <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
+                <p class="card-text">{{ job.summary }}</p>
+            </div>
+        {% endfor %}
+
     </div><br>
         <div class="btn-group"><br>
             <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
@@ -14,11 +25,13 @@
 
 {% endblock info_display_baseextended_tweetstreem %}
 
+
+
 <!--- START of Food CO2 footprint info-display -->
 {% block info_display_baseextended_foodco2 %}
 <div style="background-color:#e8f0ef">
     <div class="row"> <!-- or row -->
-        <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5><hr>
+        <h3> Food CO2 footprint Analytics <br> </h3> <hr>
 
         {% for job in jobs.all %}
             <!-- the box -->
@@ -38,19 +51,21 @@
 {% endblock info_display_baseextended_foodco2 %}
 
 
+
+
 <!--- START of Google Trend info-display -->
     {% block info_display_baseextended_googletrend %}
         <div class="album py-6 bg-light" style="background-color:#e8f0ef">
             <div class="row"> <!-- or row -->
-                <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5> <hr>
+                <h3> Google trends analytics <br> </h3> <hr>
 
-                {% for job in jobs.all %}
+                {% for google in googles.all %}
                     <!-- the box -->
                     <div class="col">
-                        <a href="{% url 'jobdetail' job.id %}"> <p class="card-text"> <h3>{{ job.title }}</h3></p> </a>
-                        <p class ="text_center">{{ job.pub_date }}</p>
-                        <a href="{% url 'jobdetail' job.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ job.image.url }}" width="300" height="200"/> </a>
-                        <p class="card-text">{{ job.summary }}</p>
+                        <a> <p class="card-text"> <h3>{{ google.title }}</h3></p> </a>
+                        <p class ="text_center">{{ google.pub_date }}</p>
+                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" width="300" height="200"/> </a>
+                        <p class="card-text">{{ google.summary }}</p>
                     </div>
                 {% endfor %}
             
@@ -61,11 +76,14 @@
         </div><br>
     {% endblock info_display_baseextended_googletrend %}
 
+
+
+
 <!--- START of Health Promotion info-display -->
     {% block info_display_baseextended_healthpromotion %}
         <div class="album py-6 bg-light" style="background-color:#e8f0ef">
             <div class="row"> <!-- or row -->
-                <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5><hr>
+                <h3> Healthy food promotion <br> </h3> <hr>
 
                 {% for job in jobs.all %}
                     <!-- the box -->
@@ -85,11 +103,13 @@
     {% endblock info_display_baseextended_healthpromotion %}
 
 
+
+
 <!--- START of Food Ontology info-display -->
     {% block info_display_baseextended_foodontology %}
     <div class="album py-6 bg-light" style="background-color:#e8f0ef">
         <div class="row"> <!-- or row -->
-            <h3> Health promotion from alldocs. <br> </h3> <h5>Click the image to get details</h5>
+            <h3> Food ontology data exploration<br> </h3> 
             <hr>
 
             {% for job in jobs.all %}

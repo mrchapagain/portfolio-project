@@ -7,13 +7,13 @@
       <h5> </h5>
 
       <form action="itm_tosearch", method='post'>
-          {% csrf_token %}
-        <label for= 'itm_name' > <strong> Choose food Food-Item here :> </strong> </label>
-            <select id="itm_name",name="itm_name">
-              {% for i in food_pair %}
-                <option value="{{ i.Category_en }}"> {{ i.Category_en }} : {{ i.Product_en }}  </option> 
-              {% endfor %}
-            </select>
+        {% csrf_token %}
+        <label for="itm_name"> <strong> Choose food Food-Item here :> </strong> </label>
+          <select id="itm_name", name="itm_name">
+            {% for i in food_pair %}
+            <option value="{{ i.Product_en }}"> {{ i.Product_en }} </option>
+            {% endfor %}
+          </select>
         <input type="submit">
       </form>
 
@@ -80,18 +80,21 @@
     <div class="py-6 text-center container">
       <h5> </h5>
 
-        <form action="cat_tosearch", method='post'>
-            {% csrf_token %}
-          <label for= 'cat_name' > <strong> Choose food category here :> </strong> </label>
-            <select id="cat_name",name="cat_name">
-              {% for i in food_pair %}
-                <option value="{{ i.Product_en }}"> {{ i.Product_en }} </option>
-                
-                 
-              {% endfor %}
-              </select>
-          <input type="submit">
-        </form>
+      <form action="cat_tosearch", method='post'>
+        {% csrf_token %}
+        <label for="cat_name"> <strong> Choose food category here :> </strong> </label>
+          <select id="cat_name", name="cat_name">
+            {% for i in food_pair %}
+              <optgroup label="{{ i.Category_en }}">
+                {% for n in i %}
+                <option value="{{ n.Product_en }}"> {{ n.Product_en }} </option> 
+                {% endfor %}
+              </optgroup>
+            {% endfor %}
+
+          </select>
+        <input type="submit">
+      </form>
     
       <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
     </div>

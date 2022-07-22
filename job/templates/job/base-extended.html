@@ -21,37 +21,37 @@
         <button class="tablinks" onclick="openUserinpt(event, 'food_co2')">Food CO2 footprint Analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'google_trend')">Google trends analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'health_promotion')">Healthy food promotion</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food ontology</button>
+        <button class="tablinks deactive" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food ontology</button>
       </div><hr>
 
       <div class="container" style="background-color:#a9d1ca"> 
         <div class="col">
           <div id="tweet_streem" class="tabcontent" style="background-color:#a9d1ca">
-            <h3>Tweets streeming Analytics</h3>
+            <h3></h3>
               {% block info_display_baseextended_tweetstreem %}
               {% endblock info_display_baseextended_tweetstreem %}
           </div>
     
           <div id='food_co2' class="tabcontent">
-            <h3> Food CO2 footprint Analytics</h3>
+            <h3> </h3>
               {% block info_display_baseextended_foodco2 %}
               {% endblock info_display_baseextended_foodco2 %}
           </div>
     
           <div id='google_trend' class="tabcontent">
-          <h3> Google trends analytics</h3>
+          <h3> </h3>
             {% block info_display_baseextended_googletrend %}
             {% endblock info_display_baseextended_googletrend %}
           </div>
     
           <div id='health_promotion' class="tabcontent">
-          <h3> Healthy food promotion from info select</h3>
+          <h3> </h3>
             {% block info_display_baseextended_healthpromotion %}
             {% endblock info_display_baseextended_healthpromotion %}
           </div>
     
           <div id='food_ontology' class="tabcontent">
-          <h3> Food ontology</h3>
+          <h3> </h3>
             {% block info_display_baseextended_foodontology %}
             {% endblock info_display_baseextended_foodontology %}
           </div>

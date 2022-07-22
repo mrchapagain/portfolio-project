@@ -8,9 +8,20 @@
       <!--- Tweet with Keyword-search user-input box --> 
     <div class="py-6 text-center container">
       <h5> </h5>
+      <form action="userid_tosearch", method='post'>
+          {% csrf_token %}
+          <label for='userid'> <strong> Choose tweeter User_ID here :> </strong> </label>
+          <select id="userid", name="userid">
+              {% for k, v in user_id_dict.items %}
+              <option value="{{ v }}"> {{ k }} </option> 
+              {% endfor %}
+          </select>
+          <input type="submit">
+        </form> 
+
         <form action="userid_tosearch", method='post'>
             {% csrf_token %}
-          <label for= 'item_list' > <strong> Enter tweet User_Id to search tweets and SUBMIT:> </strong> </label>
+          <label for='item_list'> <strong> Enter tweet User_Id to search tweets and SUBMIT:> </strong> </label>
           <input type="text", name='userid'>
           <input type="Submit">
         </form>
@@ -109,7 +120,7 @@
       <h5> </h5>
         <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
-          <label for= 'item_list' > <strong> Enter Keyword to search tweets and SUBMIT:> </strong> </label>
+          <label for='item_list'> <strong> Enter Keyword to search tweets and SUBMIT:> </strong> </label>
               <input type="text", name='keyword'>
           <input type="submit">
         </form>

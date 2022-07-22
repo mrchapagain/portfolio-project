@@ -61,9 +61,9 @@ def userid_tosearch(request):
 
 # Create your views here.
 def  allanalytics(request):
-    return render(request, 'analytics/allanalytics.html')
-    
+    user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
 
+    return render(request, 'analytics/allanalytics.html', {'user_id_dict':user_id_dict})
 
 #def analyticsdetail(request, analytics_id):
     #detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
