@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Job
+from .models import Job, Google
 from blog.models import Blog
-#from plotly.offline import plot
-# in the template {% outoscape off%} & {% endautoscape %}
+
+from ckeditor.fields import RichTextField
 
 # Create your views here.
 def  home(request):
@@ -12,7 +12,8 @@ def  home(request):
 
 def  alljobs(request):
     jobs= Job.objects
-    return render(request, 'job/alljobs.html', {'jobs': jobs})
+    googles= Google.objects
+    return render(request, 'job/alljobs.html', {'jobs': jobs, 'googles':googles})
 
 def jobdetail(request, job_id):
     detailjob = get_object_or_404(Job, pk=job_id)

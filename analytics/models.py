@@ -2,8 +2,11 @@ from django.db import models
 #from .classifier import Classifier
 
 # Create your models here.
-from django.db import models
-from django_matplotlib import MatplotlibFigureField
 
-class MyModel(models.Model):
-    figure = MatplotlibFigureField(figure='my_figure')
+class Tweetinput(models.Model):
+    title = models.CharField(max_length=255, default="Title")
+    tweetid= models.JSONField(encoder=None, decoder=None)
+    keyword= models.JSONField(encoder=None, decoder=None)
+
+    def __str__(self):
+        return self.title
