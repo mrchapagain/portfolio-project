@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Job, Google
+from .models import Job, Google, Tweet, Climate, Health, Ontology
 from blog.models import Blog
 
 from ckeditor.fields import RichTextField
@@ -13,7 +13,11 @@ def  home(request):
 def  alljobs(request):
     jobs= Job.objects
     googles= Google.objects
-    return render(request, 'job/alljobs.html', {'jobs': jobs, 'googles':googles})
+    tweets=Tweet.objects
+    climates=Climate.objects
+    healths=Health.objects
+    ontologys=Ontology.objects
+    return render(request, 'job/alljobs.html', {'jobs': jobs, 'googles':googles, 'tweets':tweets, 'climates':climates, 'healths':healths, 'ontologys':ontologys})
 
 def jobdetail(request, job_id):
     detailjob = get_object_or_404(Job, pk=job_id)
