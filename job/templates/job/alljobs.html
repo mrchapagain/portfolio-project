@@ -57,15 +57,17 @@
     {% block info_display_baseextended_googletrend %}
         <div class="album py-6 bg-light" style="background-color:#e8f0ef">
             <div class="row"> <!-- or row -->
-                <h3> Google trends analytics <br> </h3> <hr>
+                <h3> Google trends analytics </h3> <br> <hr>
 
                 {% for google in googles.all %}
                     <!-- the box -->
                     <div class="col">
-                        <a> <p class="card-text"> <h3>{{ google.title }}</h3></p> </a>
-                        <p class ="text_center">{{ google.pub_date }}</p>
-                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" width="300" height="200"/> </a>
-                        <p class="card-text">{{ google.summary }}</p>
+                        <a> <h5 class="card-text">{{ google.title }}</h5></a>
+                        <p class ="text_center">Publiced on: {{ google.pub_date }}</p>
+                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" /> </a>
+                        <div class="texbox">
+                            <p> <pre> {{ google.body }} </pre> </p>
+                        </div>
                     </div>
                 {% endfor %}
             

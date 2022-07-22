@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Job,Tweet,Climate,Google,Health,Ontology
+from .models import *
 
 admin.site.register(Job)
 admin.site.register(Tweet)
