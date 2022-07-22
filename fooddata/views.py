@@ -63,5 +63,5 @@ def allfooddatas(request):
 
     #food_cat_list= allfooddatas[['Category_en', 'Agriculture', 'iLUC', 'Processing', 'Packaging', 'Transport', 'Retail', 'Total_CO2_eq/kg']].groupby(by= ['Category_en'], sort=True).mean().sort_values(by=['Total_CO2_eq/kg'], ascending=False).round(decimals = 2).index.tolist()
 
-    return render(request, 'fooddata/allfooddatas.html', {'allfooddatas': allfooddatas, 'top10_fooddatas': top10_fooddatas, 'food_pair':food_pair}) 
+    return render(request, 'fooddata/allfooddatas.html', {'allfooddatas': allfooddatas, 'top10_fooddatas': top10_fooddatas, 'food_pair':food_pair, 'co2_foodplots_category':co2_foodplots_category}) 
     #'item_foodinfo': item_foodinfo, 'namechoosen_foodplots': namechoosen_foodplots 

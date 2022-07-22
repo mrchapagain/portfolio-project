@@ -55,7 +55,7 @@ class Climate(models.Model):
 class Google(models.Model):
     title = models.CharField(max_length=255, default="Title")
     pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/', height_field=128, width_field=128)
+    image = models.ImageField(upload_to='images/')#, height_field=128, width_field=128
     body = models.TextField(default=" ")
     body2 = RichTextField(default=" ")
 
@@ -67,11 +67,6 @@ class Google(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
-
-    #def get_image(self):
-        #image = Image.open(self.image)
-        #resized_image = image.resize((128, 128))
-        #return resized_image
 
 class Health(models.Model):
     title = models.CharField(max_length=255, default="Title")

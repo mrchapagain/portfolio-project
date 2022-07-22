@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Job, Google
 from blog.models import Blog
 
+from ckeditor.fields import RichTextField
+
 # Create your views here.
 def  home(request):
     jobs= Job.objects
