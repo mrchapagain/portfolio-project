@@ -7,3 +7,11 @@ class Climatedf(models.Model):
 
     def __str__(self):
         return self.title
+
+class Foodinput(models.Model):
+    title = models.CharField(max_length=255, default="Title")
+    tweetid= models.JSONField(encoder=None, decoder=None)
+    keyword= models.JSONField(encoder=None, decoder=None)
+
+    def __str__(self):
+        return self.title

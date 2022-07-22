@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .apiauth import *
 from .classifier import *
+from .models import Tweetinput
 
 
 # Create your views here.

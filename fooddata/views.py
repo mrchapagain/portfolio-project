@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .datavis import *
+from .models import Climatedf, Foodinput
 
 #from .data import *
 #import glob

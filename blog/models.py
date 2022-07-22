@@ -1,4 +1,6 @@
 from django.db import models
+
+from ckeditor.fields import RichTextField
 ##STEEPS
 # Creat A Blog Models
 # -title
@@ -20,6 +22,7 @@ class Blog(models.Model):
     pub_date = models.DateTimeField()
     body = models.TextField()
     image = models.ImageField(upload_to='images/')
+    body2 = RichTextField(default=" ")
 
     def __str__(self):
         return self.title

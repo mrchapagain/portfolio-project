@@ -7,6 +7,8 @@ class Job(models.Model):
     pub_date = models.DateTimeField(null=True)
     image = models.ImageField(upload_to='images/')
     body = models.TextField(default=" ")
+    body2 = RichTextField(default=" ")
+    
 
     def __str__(self):
         return self.title
@@ -22,6 +24,7 @@ class Tweet(models.Model):
     pub_date = models.DateTimeField(null=True)
     image = models.ImageField(upload_to='images/')
     body = models.TextField(default=" ")
+    body2 = RichTextField(default=" ")
 
     def __str__(self):
         return self.title
@@ -75,6 +78,7 @@ class Health(models.Model):
     pub_date = models.DateTimeField(null=True)
     image = models.ImageField(upload_to='images/')
     body = models.TextField(default=" ")
+    body2 = RichTextField(default=" ")
 
     def __str__(self):
         return self.title
@@ -91,6 +95,7 @@ class Ontology(models.Model):
     pub_date = models.DateTimeField(null=True)
     image = models.ImageField(upload_to='images/')
     body = models.TextField(default=" ")
+    body2 = RichTextField(default=" ")
 
     def __str__(self):
         return self.title
