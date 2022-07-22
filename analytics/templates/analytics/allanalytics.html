@@ -6,11 +6,11 @@
   <!--- Tweets with User-id user-imput box -->
   {% block info_select_baseextended_userid %}  
       <!--- Tweet with Keyword-search user-input box --> 
-    <div class="py-6 text-center container"><br>
-      <h5> User_Id select section</h5>
+    <div class="py-6 text-center container">
+      <h5> </h5>
         <form action="userid_tosearch", method='post'>
             {% csrf_token %}
-          <label for= 'item_list' > <strong> Enter tweet User_Id to search tweets :> </strong> </label>
+          <label for= 'item_list' > <strong> Enter tweet User_Id to search tweets and SUBMIT:> </strong> </label>
           <input type="text", name='userid'>
           <input type="Submit">
         </form>
@@ -105,11 +105,11 @@
   <!--- Start of User-input section --> 
   {% block info_select_baseextended_keyword  %}
   <!--- Tweet with Keyword-search user-input box --> 
-  <div class="py-6 text-center container"><br>
-      <h5> keyword serch section</h5>
+  <div class="py-6 text-center container">
+      <h5> </h5>
         <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
-          <label for= 'item_list' > <strong> Enter Keyword to search tweets :> </strong> </label>
+          <label for= 'item_list' > <strong> Enter Keyword to search tweets and SUBMIT:> </strong> </label>
               <input type="text", name='keyword'>
           <input type="submit">
         </form>

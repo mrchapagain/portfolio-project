@@ -76,6 +76,8 @@ class FoodCo2Analytics():
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
         labels = ['Agriculture', 'iLUC', 'Processing', 'Packaging', 'Transport', 'Retail']
         sizes =  df_fooditem[labels].values.tolist()[0] # 3rd to 8th column value from indivisual-item 
+        sizes = [0 if i < 0 else i for i in sizes] # Negetive value replace with 0
+
         explode = (0, 0, 0, 0, 0.1, 0)  # only "explode" the 5th slice (i.e. 'Transport')
 
         fig, ax = plt.subplots()
