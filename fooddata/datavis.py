@@ -16,13 +16,13 @@ from colorama import Fore, Back, Style
 
 class FoodCo2Analytics():
     # Import data
-    def datareader(self, data_link):
-        self.data_link= data_link
+    def datareader(self, data_object):
+        self.data_object= data_object
         # Loading the data into the data-frame
         col_names= ["id", "Product_dk", "Category_dk", "Product_en", "Category_en", "Unit", "Agriculture", "iLUC", "Processing", "Packaging", "Transport", "Retail", "Total_CO2_eq_perkg", "Energy_KJ", "Fat_g", "Carb_g", "Protein_g", "Data_Source", "Comments", "GPC_Level4_en", "ID_Food", "ID_Pack", "ID_Retail", "GPC_Category_en", "GPC_Category_dk", "GPC_Level4_dk", "product_type", "GPC_level1", "Food_group", "GPC_level2", "Un/Processed", "GPC_Level3", "Extra_category"]
         # Read data with Pandas as Excel.
         # Original columns name are replaced with ralavant names (col_names)
-        data= pd.read_excel(data_link, sheet_name=1, index_col=False, header=None, skiprows=1, names= col_names).round(decimals = 2)
+        data= pd.read_excel(data_object, sheet_name=1, index_col=False, header=None, skiprows=1, names= col_names).round(decimals = 2)
         cols_to_use= ["Product_en", "Category_en", "Agriculture", "iLUC", "Processing", "Packaging", "Transport", "Retail", "Total_CO2_eq_perkg", "Energy_KJ", "Fat_g", "Carb_g", "Protein_g"]
         selected_data= data.loc[:, cols_to_use].round(decimals = 2)
         # I could not change or replace NaN value with replace() or fillna() method, which i would like to replace with 3.5 and 13.0. So i use inefficient method.

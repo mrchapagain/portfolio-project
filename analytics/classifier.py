@@ -12,8 +12,8 @@ import pandas as pd
 
 
 import spacy.cli
-#spacy.cli.download("en_core_web_lg")
-#nlp = spacy.load('en_core_web_lg')
+spacy.cli.download("en_core_web_lg")
+nlp = spacy.load('en_core_web_lg')
 from nltk.stem.snowball import SnowballStemmer   
 s_stemmer = SnowballStemmer(language='english') 
 
