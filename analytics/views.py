@@ -29,8 +29,10 @@ def keyword_tosearch(request):
 
     # Plot of the most mentioned text from Keyword search dataframe 
     kmostmentionword= most_mentioned_words(df_by_keywords,  keywords)
+    #Keyword list for user input
+    keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
 
-    return render(request, 'analytics/allanalytics.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword})
+    return render(request, 'analytics/allanalytics.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword, 'keyword_dict':keyword_dict})
 
 
 def userid_tosearch(request):
@@ -56,8 +58,10 @@ def userid_tosearch(request):
 
     # Plot of the most mentioned text from Keyword search dataframe 
     mostmentionword= most_mentioned_words(df_user_tweet,  tweeter_id)
+    # user_id list for user input choice
+    user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
 
-    return render(request, 'analytics/allanalytics.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword})
+    return render(request, 'analytics/allanalytics.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword, 'user_id_dict':user_id_dict})
 
 
 # Create your views here.
