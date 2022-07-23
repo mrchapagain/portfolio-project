@@ -9,19 +9,21 @@
     <div class="py-6 text-center container">
       <h5> </h5>
       <form action="userid_tosearch", method='post'>
-          {% csrf_token %}
-          <label for='userid'> <strong> Choose tweeter User_ID here :> </strong> </label>
-          <input type="text", name='userid'>
-          <select id="userid", name="userid">
-              {% for k, v in user_id_dict.items %}
-              <option value="{{ v }}"> {{ k }} </option> 
-              {% endfor %}
-          </select>
-          
-          <input type="submit">
+              {% csrf_token %}
+          <fieldset>
+            <label for='userid'> <strong> Choose or Type tweeter User_ID here and SUBMIT:> </strong> </label>
+            <input type="text", name='userid'>
+            <select id="userid", name="userid">
+                {% for k, v in user_id_dict.items %}
+                <option value="{{ v }}"> {{ k }} </option> 
+                {% endfor %}
+            </select>
+            
+            <input type="submit">
+
+          </fieldset>
         </form> 
        
-
       <p><strong>Note:</strong> After choosing the ID Tweets analytics will be display below.</p>
     </div><hr>
   {% endblock info_select_baseextended_userid %}
@@ -103,9 +105,14 @@
       <h5> </h5>
         <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
-          <label for='item_list'> <strong> Enter Keyword to search tweets and SUBMIT:> </strong> </label>
+              <label for='keyword'> <strong> Type or Choose keyword to search tweets and SUBMIT:> </strong> </label>
               <input type="text", name='keyword'>
-          <input type="submit">
+              <select id="keyword", name="keyword">
+                {% for k, v in keyword_dict.items %}
+                  <option value="{{ v }}"> {{ k }} </option> 
+                {% endfor %}
+              </select>
+              <input type="submit">
         </form>
 
       <p><strong>Note:</strong> After choosing the keyword tweets analytics will be display below.</p>

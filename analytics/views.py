@@ -63,8 +63,9 @@ def userid_tosearch(request):
 # Create your views here.
 def  allanalytics(request):
     user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
+    keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
 
-    return render(request, 'analytics/allanalytics.html', {'user_id_dict':user_id_dict})
+    return render(request, 'analytics/allanalytics.html', {'user_id_dict':user_id_dict, 'keyword_dict':keyword_dict})
 
 #def analyticsdetail(request, analytics_id):
     #detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
