@@ -1,0 +1,68 @@
+{% extends "aboutme/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+    <div class="row py-lg-6">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <!--<h1 class="fw-light">Who am i?</h1>-->
+            <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'about-me.jpg'%}"/>
+            <hr>
+            <h1 class="fw-light">My resume!</h1>
+            <p class="lead text-muted">I am Food scientist with knowledge and Data scientist with skills. I love to solve business and societal challenge with the help of data.</p><hr>
+        </div>
+    </div> 
+{% endblock section %}
+
+
+<!--- START of info selection -->
+{% block info_select %}
+    <h5><strong>BUTTON</strong> to choose CV or Certificates </h5>
+    <div class="tab">
+    <button class="tablinks" onclick="openUserinpt(event, 'My_Cv')">My CV</button>
+    <button class="tablinks" onclick="openUserinpt(event, 'My_Certificates')" id="defaultOpen">My Certificates</button>
+    </div><hr>
+
+    <div id="My_Cv" class="tabcontent" style="background-color:#a9d1ca">
+        <h3>Latest CV of Mukti R. Chapagain</h3>
+        {% block info_select_baseextended_cv %}
+        {% endblock info_select_baseextended_cv %}
+    </div>
+
+    <div id='My_Certificates' class="tabcontent" style="background-color:#a9d1ca">
+        <h3> Some of the skills Certificates of Mukti R. Chapagain</h3>
+        {% block info_display_baseextended_cert %}
+        {% endblock info_display_baseextended_cert %}
+    </div>
+    
+    <div class="container"> 
+        <div class="col">
+            
+        </div>
+    </div>
+
+{% endblock info_select %}
+
+
+<!--- start of info display -->
+{% block info_display %}
+    
+{% endblock info_display %}
+
+<!--- START of social media connection -->
+{% block social_connection %}
+<section class="py-6 text-center container"> <br>
+    <h3>Link to my Sociial-Networks</h3>
+    <div class="row mx-auto">
+        <div class="col"> 
+            <a href="https://www.linkedin.com/in/mrchapagain/" class="btn btn-primary my-3" float="center"><strong> LinkedIn </strong> </a> <br>
+        </div>
+        <div class="col"> 
+            <a href="https://www.researchgate.net/profile/Mukti-Chapagain" class="btn btn-primary my-3" float="center"><strong> ResearchGate </strong></a><br>
+        </div>
+        <div class="col">
+            <a href="https://github.com/mrchapagain" class="btn btn-primary my-3" float="center"><strong> Git-Hub </strong></a>
+        </div>
+    </div>
+</section>
+{% endblock social_connection %}

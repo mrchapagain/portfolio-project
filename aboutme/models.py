@@ -15,3 +15,10 @@ class AboutMe(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
+
+class MyCv(models.Model):
+    title = models.CharField(max_length=255, default="Title")
+    my_cv= models.FileField(upload_to='images/')
+
+    def __str__(self):
+        return self.title

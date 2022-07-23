@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []#["""'localhost', '178.62.108.251'"""]
 # Application definition
 
 INSTALLED_APPS = [
+    'fooddata.apps.FooddataConfig',
+    'analytics.apps.AnalyticsConfig',
     'aboutme.apps.AboutmeConfig',
     'job.apps.JobConfig',
     'blog.apps.BlogConfig',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
