@@ -15,3 +15,10 @@ class Foodinput(models.Model):
 
     def __str__(self):
         return self.title
+
+class Massage(models.Model):
+    title = models.CharField(max_length=255, default="Title")
+    massage = models.TextField(default=" ")
+
+    def __str__(self):
+        return self.title
