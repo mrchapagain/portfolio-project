@@ -15,8 +15,11 @@ cymem==2.0.6
 decorator==5.1.1
 distlib==0.3.4
 Django==4.0.4
+django-ckeditor==6.4.2
+django-js-asset==2.0.0
 django-matplotlib==0.1
 en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.3.0/en_core_web_lg-3.3.0-py3-none-any.whl
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0-py3-none-any.whl
 environ==1.0
 et-xmlfile==1.1.0
 executing==0.8.3
@@ -92,4 +95,3 @@ wasabi==0.9.1
 wcwidth==0.2.5
 webencodings==0.5.1
 wordcloud==1.8.2.2
-django_ckeditor=6.4.2
