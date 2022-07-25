@@ -11,27 +11,26 @@ import seaborn as sns
 import pandas as pd
 
 #Librarry for stoppwworods (Spacy is better than NLTK)
-#import spacy
+
 from spacy.lang.en.stop_words import STOP_WORDS as en_stop #stopwords in English
 from spacy.lang.da.stop_words import STOP_WORDS as da_stop #stopwords in Danish
 final_stopwords= en_stop.union(da_stop)
 
-<<<<<<< HEAD
-import spacy.cli
-spacy.cli.download("en_core_web_lg")
-nlp = spacy.load('en_core_web_lg')
-from nltk.stem.snowball import SnowballStemmer   
-s_stemmer = SnowballStemmer(language='english') 
-=======
+#import spacy.cli
+#spacy.cli.download("en_core_web_lg")
+#nlp = spacy.load('en_core_web_lg')
+#from nltk.stem.snowball import SnowballStemmer   
+#s_stemmer = SnowballStemmer(language='english') 
+
 #Libraruies for Lexicon Normalization (Stemming & Lemmatization)
-#import nltk
-#nltk.download('omw-1.4')
+import nltk
+nltk.download('omw-1.4')
+nltk.download('wordnet')
 #for stemming
 #from nltk.stem.snowball import SnowballStemmer   
 #s_stemmer = SnowballStemmer(language='english') 
 #for Lemmatization
 from nltk.stem.wordnet import WordNetLemmatizer
->>>>>>> 09ec2746fd992b46e4175531342e5dff90baae7d
 
 
 # Function to clean text

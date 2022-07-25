@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 from seaborn import load_dataset
 import warnings
 warnings.filterwarnings("ignore")
-from colorama import Fore, Back, Style
+
 
 class FoodCo2Analytics():
     # Import data
@@ -88,8 +88,7 @@ class FoodCo2Analytics():
         ax.text(1.05, 0.01, f'"Total CO2 contribution equivalent per KG in grams: {df_fooditem.Total_CO2_eq_perkg.values}"', fontsize=12, verticalalignment='bottom', horizontalalignment='right', transform=ax.transAxes, color='red')
         plt.tight_layout()
         graph=get_graph()
-        return graph  
-
+        return graph
 
     def piechart_fooditem_energy(self, df_fooditem):
         self.df_fooditem=df_fooditem
@@ -109,29 +108,4 @@ class FoodCo2Analytics():
 
         plt.tight_layout()
         graph=get_graph()
-        return graph  
-
-    
-    def selected_foodinfo(selected_dropped_data):
-        self.selected_dropped_data=selected_dropped_data
-        name_choosen =  selected_dropped_data.sample().reset_index(drop=True)
-
-        def block(self):
-            print("*" * 60)
-            print(Fore.GREEN + f'Food product choosen: \t{name_choosen._get_value(0, "Product_en")}')
-            print("." * 40) 
-            print(Fore.RED + f'Food category releted to: \t{name_choosen._get_value(0, "Category_en")}')
-            print("." * 40)
-            print(Fore.GREEN + f'Total CO2 emission contribution:\t{name_choosen._get_value(0, "Total_CO2_eq_perkg")}')
-            print(Style.RESET_ALL)
-            print(f'\t Agriculture = {name_choosen._get_value(0, "Agriculture")}, \n\t iLUC = {name_choosen._get_value(0, "iLUC")}, \n\t Processing = {name_choosen._get_value(0, "Processing")}, \n\t Packaging = {name_choosen._get_value(0, "Packaging")}, \n\t Transport = {name_choosen._get_value(0, "Transport")}, \n\t Retail = {name_choosen._get_value(0, "Retail")}')
-            print("." * 40)
-            print(Fore.GREEN + f'Total Energy_KJ: \t{name_choosen._get_value(0, "Energy_KJ")}')
-            print(Style.RESET_ALL)
-            print(f'\t Fat amount = {name_choosen._get_value(0, "Fat_g")}, \n\t Carb amount = {name_choosen._get_value(0, "Carb_g")}, \n\t Protein amount = {name_choosen._get_value(0, "Protein_g")}')
-            print("*" * 60)
-        return block()
-
-
-
-     
+        return graph
