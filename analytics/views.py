@@ -9,8 +9,7 @@ from .models import Tweetinput
 # Create your views here.
 def keyword_tosearch(request):
     keywords= request.POST['keyword']
-    # Keywordsection 
-    #keywords= "Health" 
+    # use function defined on classifier.py to get the dataframe from keyword
     df_by_keywords = tweets_by_keywords(keywords)
 
     #lets use word cloud function to get the wordcloud figure
@@ -28,18 +27,17 @@ def keyword_tosearch(request):
     ksentimentsplot= sentiment_plot(ksentiments, title)
 
     # Plot of the most mentioned text from Keyword search dataframe 
-    kmostmentionword= most_mentioned_words(df_by_keywords,  keywords)
+    kmostmentionword= most_mentioned_words(ksentiments,  keywords)
     #Keyword list for user input
+    user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
     keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
 
-    return render(request, 'analytics/allanalytics.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword, 'keyword_dict':keyword_dict})
+    return render(request, 'analytics/allanalytics.html', {'keywords':keywords, 'kwordclouds': kwordclouds, 'user_id_dict':user_id_dict,  'ksentiments_top20':ksentiments_top20, 'ksentimentsplot':ksentimentsplot, 'kmostmentionword': kmostmentionword, 'keyword_dict':keyword_dict})
 
 
 def userid_tosearch(request):
     tweeter_id= request.POST['userid']
-    # User_id section
-    #tweeter_id= "DRNyheder" #input("Type Tweter-id which is after @, fx DRNyheder for DR News: ") # fxDRNyheder
-    # lets use the function to ge the dataframe which gives fataframe with index
+    # use function defined on classifier.py to get the dataframe from user_id which gives fataframe with index
     df_user_tweet= tweets_by_user(tweeter_id)
 
     #lets use word cloud function to get the wordcloud figure
@@ -57,11 +55,12 @@ def userid_tosearch(request):
     sentimentsplot= sentiment_plot(df_user_tweet_sentiment, title_keyword)
 
     # Plot of the most mentioned text from Keyword search dataframe 
-    mostmentionword= most_mentioned_words(df_user_tweet,  tweeter_id)
+    mostmentionword= most_mentioned_words(df_user_tweet_sentiment,  tweeter_id)
     # user_id list for user input choice
     user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
+    keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
 
-    return render(request, 'analytics/allanalytics.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword, 'user_id_dict':user_id_dict})
+    return render(request, 'analytics/allanalytics.html', {'tweeter_id':tweeter_id, 'wordclouds': wordclouds, 'sentiments':sentiments, 'sentimentsplot':sentimentsplot, 'mostmentionword': mostmentionword, 'user_id_dict':user_id_dict, 'keyword_dict':keyword_dict})
 
 
 # Create your views here.

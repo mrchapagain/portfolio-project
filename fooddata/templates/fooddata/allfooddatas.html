@@ -14,11 +14,10 @@
             <option value="{{ i.Product_en }}"> {{ i.Product_en }} <strong>( {{ i.Category_en }} )</strong></option>
             {% endfor %}
           </select>
-        <input type="submit">
+          <button type="submit" value="Submit" > Click to Submit </button>
       </form>
 
       <p><strong>Note:</strong> Choose the food-item from dropdown list to explore detail information.</p><hr> 
-      <div><button onClick="window.location.reload();"> <h5>Refresh Here to get new item</h5></button></div><br>
     </div>
   {% endblock info_select_baseextended_fooditem %}
 
@@ -90,8 +89,7 @@
             {% endfor %}
 
           </select>
-
-        <input type="submit">
+        <button type="submit" value="Submit" onclick="openUserinpt(event, 'food_group')"> Click to Submit </button>
       </form>
     
       <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
