@@ -27,7 +27,7 @@ def keyword_tosearch(request):
     ksentimentsplot= sentiment_plot(ksentiments, title)
 
     # Plot of the most mentioned text from Keyword search dataframe 
-    kmostmentionword= most_mentioned_words(df_by_keywords,  keywords)
+    kmostmentionword= most_mentioned_words(ksentiments,  keywords)
     #Keyword list for user input
     user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
     keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
@@ -55,7 +55,7 @@ def userid_tosearch(request):
     sentimentsplot= sentiment_plot(df_user_tweet_sentiment, title_keyword)
 
     # Plot of the most mentioned text from Keyword search dataframe 
-    mostmentionword= most_mentioned_words(df_user_tweet,  tweeter_id)
+    mostmentionword= most_mentioned_words(df_user_tweet_sentiment,  tweeter_id)
     # user_id list for user input choice
     user_id_dict= {"The Local Denmark":"TheLocalDenmark", "DR Nyheder": "DRNyheder", "The Copenhagen Post":"cphpost", "DR Nyheder Breaking":"DRBreaking", "CNN Breaking News":"cnnbrk","AajTak":"aajtak"}
     keyword_dict= {"Healthy diet": "healthy diet", "Protein diet": "Protein diet","Nordic food": "nordic food", "Nordic diet":"nordic diet", "Danish cuisine": "danish cuisine"}
