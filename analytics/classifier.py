@@ -11,14 +11,14 @@ import seaborn as sns
 import pandas as pd
 
 #Librarry for stoppwworods (Spacy is better than NLTK)
-import spacy
+#import spacy
 from spacy.lang.en.stop_words import STOP_WORDS as en_stop #stopwords in English
 from spacy.lang.da.stop_words import STOP_WORDS as da_stop #stopwords in Danish
 final_stopwords= en_stop.union(da_stop)
 
 #Libraruies for Lexicon Normalization (Stemming & Lemmatization)
-import nltk
-nltk.download('omw-1.4')
+#import nltk
+#nltk.download('omw-1.4')
 #for stemming
 #from nltk.stem.snowball import SnowballStemmer   
 #s_stemmer = SnowballStemmer(language='english') 
