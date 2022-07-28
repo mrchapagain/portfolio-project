@@ -20,7 +20,7 @@ class Job(models.Model):
         return self.pub_date.strftime('%b %e %Y')
 
 class Tweet(models.Model):
-    title = models.CharField(max_length=255, default="Title", default=" ")
+    title = models.CharField(max_length=255, default="Title")
     pub_date = models.DateTimeField(null=True, default=" ")
     image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
