@@ -3,7 +3,7 @@ from ckeditor.fields import RichTextField
 
 class Blog(models.Model):
     title = models.CharField(max_length=255, default=" ")
-    pub_date = models.DateTimeField(default=" ")
+    pub_date = models.DateTimeField()
     sum = models.TextField(max_length=255, default=" ")
     image = models.ImageField(upload_to='images/', default=" ")
     body = RichTextField(default=" ")
