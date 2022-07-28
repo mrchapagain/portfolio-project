@@ -4,13 +4,13 @@ from django.db import models
 # Create your models here.
 
 class Tweetid(models.Model):
-    tweetid= models.JSONField(encoder=None, decoder=None, null=True)
+    tweetid= models.JSONField(encoder=None, decoder=None, null=True,default=" ")
 
     def __str__(self):
         return self.name
 
 class Tweetkeyword(models.Model):
-    keyword= models.JSONField(encoder=None, decoder=None, null=True)
+    keyword= models.JSONField(encoder=None, decoder=None, null=True, default=" ")
 
     def __str__(self):
         return self.name

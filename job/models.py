@@ -4,8 +4,8 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Job(models.Model):
     title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
     
@@ -20,9 +20,9 @@ class Job(models.Model):
         return self.pub_date.strftime('%b %e %Y')
 
 class Tweet(models.Model):
-    title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=255, default="Title", default=" ")
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
 
@@ -38,8 +38,8 @@ class Tweet(models.Model):
 
 class Climate(models.Model):
     title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
 
@@ -54,8 +54,8 @@ class Climate(models.Model):
 
 class Google(models.Model):
     title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')#, height_field=128, width_field=128
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")#, height_field=128, width_field=128
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
 
@@ -70,8 +70,8 @@ class Google(models.Model):
 
 class Health(models.Model):
     title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
 
@@ -87,8 +87,8 @@ class Health(models.Model):
 
 class Ontology(models.Model):
     title = models.CharField(max_length=255, default="Title")
-    pub_date = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to='images/')
+    pub_date = models.DateTimeField(null=True, default=" ")
+    image = models.ImageField(upload_to='images/', default=" ")
     sum = models.TextField(max_length=255, default=" ")
     body = RichTextField(default=" ")
 

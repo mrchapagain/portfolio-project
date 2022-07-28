@@ -2,10 +2,10 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 class Blog(models.Model):
-    title = models.CharField(max_length=255)
-    pub_date = models.DateTimeField()
+    title = models.CharField(max_length=255, default=" ")
+    pub_date = models.DateTimeField(default=" ")
     sum = models.TextField(max_length=255, default=" ")
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default=" ")
     body = RichTextField(default=" ")
 
     def __str__(self):
