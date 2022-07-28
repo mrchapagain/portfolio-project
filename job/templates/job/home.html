@@ -1,0 +1,47 @@
+{% extends "job/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      
+      <!--<h1 class="fw-light">Welcome to my Homepage!</h1>-->
+      <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
+      <hr>
+      <h1> Navigation page</h1> <br>
+      <p> There is not only one futures but you need to choose one by creating it! </p>
+      <hr>        
+    </div>
+  </div>
+{% endblock section %}
+
+<!--- START of info selection -->
+{% block info_select %}
+
+{% endblock info_select %}
+
+<!--- start of info display -->
+{% block info_display %}
+  <div class="container">
+      <h3> Summary of Blog articles</h3><hr>
+    <div class="col">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for blog in blogs.all %}
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="col">
+              <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
+                {{ blog.pub_date_pretty }}
+              <a href="{% url 'detail' blog.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}" width='100%' height="100%"/> </a>
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+          
+      </div>
+    </div>
+  </div><hr>
+{% endblock info_display %}

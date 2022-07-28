@@ -1,0 +1,91 @@
+{% extends "analytics/base-extend.html" %}
+{% load static %}
+
+<!--- Start of User-input section --> 
+  {% block info_select_baseextended_keyword  %}
+  <!--- Tweet with Keyword-search user-input box --> 
+  <div class="py-6 text-center container">
+      <h5> </h5>
+        <form action="keyword_tosearch", method='post'>
+              {% csrf_token %}
+              <label for='keyword'> <strong> Type or Choose keyword to search tweets and SUBMIT:> </strong> </label>
+              <input type="text", name='keyword'>
+              <select id="keyword", name="keyword">
+                {% for kw_dict in keyword_dict %}
+                  {% for k, v in kw_dict.keyword.items %}
+                  <option value="{{ v }}"> {{ k }} </option> 
+                  {% endfor %}
+                {% endfor %}
+              </select>
+              <input type="submit">
+        </form>
+
+      <p><strong>Note:</strong> After choosing the keyword tweets analytics will be display below.</p>
+  </div><hr>
+  {% endblock info_select_baseextended_keyword %}
+
+
+<!--- Info display keyword search-->
+   {% block info_display_baseextended_keyword %}
+      <div class="container" style="background-color:#e8f0ef">
+          <h4> Figures with analytics of tweets from selected Keyword </h4>
+          <div class="row"> <br><!-- or row --> 
+          
+            <!--- To make word-cloud and Bar-chart display side by side-->
+            <!--Top mentioned words chart-->
+            <div class="col">
+              <h5> Most mentioned word in the tweets</h5>  <hr>
+                {% if kmostmentionword %}
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Word-Cloud image" style="height:100%; width:100%"/> </a>
+                {% endif %}
+            </div>
+
+              <!--Sentiment chart-->
+              <div class="col">
+                <h5> Sentiment analytics of tweets</h5>  <hr>
+                  {% if ksentimentsplot %}
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ ksentimentsplot|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+                  {% endif %}
+              </div>
+
+          </div> 
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button>
+              </div>
+              
+          <!-- word-cloud fig -->
+          <div class="col"><hr>
+            <h5> Word-Cloud from tweets</h5>
+              {% if kwordclouds %}
+                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kwordclouds|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+              {% endif %}
+          </div> <br>
+      </div> <hr>
+
+    <!-- Data frame -->
+      <div class="container" style="background-color:#e8f0ef">
+          <div class="row"><br>
+            <h5 style="background-color:#a9d1ca"> {{ ksentiments_top20.Tweets.shape }} latest Tweets search detail from the selected Keyword </h5> <br>
+              <div class="col">
+                <div class="card-body">
+
+                  <table style="width:100%">
+                    <tr>
+                      {% for col in ksentiments_top20.columns %}
+                        <th style="white-space:nowrap"> {{ col }} </th>                     
+                      {% endfor %}
+                    </tr>
+                      {% for index, row in ksentiments_top20.iterrows %}
+                    <tr>
+                          {% for cell in row %}
+                        <td>{{ cell }}</td>
+                          {% endfor %}
+                    </tr>
+                      {% endfor %}
+                  </table>
+                  
+                </div><br>
+              </div>
+          </div>
+      </div><hr>  
+ {% endblock info_display_baseextended_keyword %}

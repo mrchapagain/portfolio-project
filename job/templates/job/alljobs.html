@@ -1,0 +1,132 @@
+{% extends "job/base-extended.html" %}
+{% load static %}
+
+<!--- START of Tweet streem info-display-->
+{% block info_display_baseextended_tweetstreem %}
+<div style="background-color:#e8f0ef">
+    <div class="row"> <!-- or row -->
+        <h3> Tweets streeming Analytics<br> </h3><hr>
+
+        {% for tweet in tweets.all %}
+            <!-- the box -->
+            <div class="col">
+                <a > <p class="card-text"> <h3>{{ tweet.title }}</h3></p> </a>
+                <p class ="text_center">{{ tweet.pub_date }}</p>
+                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ tweet.image.url }}" width="300" height="200"/> </a>
+                <p class="card-text">{{ tweet.body|safe }}</p>
+            </div>
+        {% endfor %}
+
+    </div><br>
+        <div class="btn-group"><br>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+        </div>
+</div><br>
+
+{% endblock info_display_baseextended_tweetstreem %}
+
+
+
+<!--- START of Food CO2 footprint info-display -->
+{% block info_display_baseextended_foodco2 %}
+<div style="background-color:#e8f0ef">
+    <div class="row"> <!-- or row -->
+        <h3> Food CO2 footprint Analytics <br> </h3> <hr>
+
+        {% for climate in climates.all %}
+            <!-- the box -->
+            <div class="col">
+                <a > <p class="card-text"> <h3>{{ climate.title }}</h3></p> </a>
+                <p class ="text_center">{{ climate.pub_date }}</p>
+                <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ climate.image.url }}" width="300" height="200"/> </a>
+                <p class="card-text">{{ climate.body|safe }}</p>
+            </div>
+        {% endfor %}
+    
+    </div><br>
+        <div class="btn-group"><br>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+        </div><br>
+</div><br>
+{% endblock info_display_baseextended_foodco2 %}
+
+
+
+
+<!--- START of Google Trend info-display -->
+    {% block info_display_baseextended_googletrend %}
+        <div class="album py-6 bg-light" style="background-color:#e8f0ef">
+            <div class="row"> <!-- or row -->
+                <h3> Google trends analytics </h3> <br> <hr>
+
+                {% for google in googles.all %}
+                    <!-- the box -->
+                    <div class="col">
+                        <a> <h5 class="card-text">{{ google.title }}</h5></a>
+                        <p class ="text_center">Publiced on: {{ google.pub_date }}</p>
+                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" width=100% height="700"/> </a>
+                       
+                            <p class="card-text"> {{ google.body|safe }} </p>
+                        
+                    </div>
+                {% endfor %}
+            
+            </div><br>
+                <div class="btn-group"><br>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+                </div>
+        </div><br>
+    {% endblock info_display_baseextended_googletrend %}
+
+
+
+
+<!--- START of Health Promotion info-display -->
+    {% block info_display_baseextended_healthpromotion %}
+        <div class="album py-6 bg-light" style="background-color:#e8f0ef">
+            <div class="row"> <!-- or row -->
+                <h3> Healthy food promotion <br> </h3> <hr>
+
+                {% for health in healths.all %}
+                    <!-- the box -->
+                    <div class="col">
+                        <a > <p class="card-text"> <h3>{{ health.title }}</h3></p> </a>
+                        <p class ="text_center">{{ health.pub_date }}</p>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ health.image.url }}" width="auto" height="auto"/> </a>
+                        <p class="card-text">{{ health.body|safe }}</p>
+                    </div>
+                {% endfor %}
+            
+            </div><br>
+                <div class="btn-group"><br>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+                </div>
+        </div><br>
+    {% endblock info_display_baseextended_healthpromotion %}
+
+
+
+
+<!--- START of Food Ontology info-display -->
+    {% block info_display_baseextended_foodontology %}
+    <div class="album py-6 bg-light" style="background-color:#e8f0ef">
+        <div class="row"> <!-- or row -->
+            <h3> Food ontology data exploration<br> </h3> 
+            <hr>
+
+            {% for ontology in ontologys.all %}
+                <!-- the box -->
+                <div class="col">
+                    <a > <p class="card-text"> <h3>{{ ontology.title }}</h3></p> </a>
+                    <p class ="text_center">{{ ontology.pub_date }}</p>
+                    <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ ontology.image.url }}" width="300" height="200"/> </a>
+                    <p class="card-text">{{ ontology.body|safe }}</p>
+                </div><br>
+            {% endfor %}
+            
+        </div><br>
+            <div class="btn-group"><br>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+            </div><br>
+    </div><br>
+    {% endblock info_display_baseextended_foodontology %}

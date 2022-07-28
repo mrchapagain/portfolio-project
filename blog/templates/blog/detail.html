@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+ 
+{% endblock section %}
+
+
+<!--- START of info selection -->
+{% block info_select %}
+    <div class="container">
+        <h1 class= "text-center pt-3"> {{ blog.title }}  </h1>
+        <p class ="text_center">{{ blog.pub_date }}</p>
+        <h1 class= "text-center pt-3"> {{ blog.sumary }}  </h1>
+        <img class= "img-fluid" src="{{ blog.image.url }}"/> 
+        <br />
+        <p class="container text_justify"> {{ blog.body|safe }} </p>
+
+    </div>
+{% endblock info_select %}
+
+
+<!--- start of info display -->
+{% block info_display %}
+   
+{% endblock info_display %}
+
+<!--- START of social media connection -->
+{% block social_connection %}
+
+{% endblock social_connection %}

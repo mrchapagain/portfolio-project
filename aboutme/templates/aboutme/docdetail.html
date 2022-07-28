@@ -1,0 +1,32 @@
+{% extends "aboutme/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+ 
+{% endblock section %}
+
+
+<!--- START of info selection -->
+{% block info_select %}
+
+{% endblock info_select %}
+
+
+<!--- start of info display -->
+{% block info_display %}
+  <div class="container text-center">
+    <h1 class= "text-center pt-3"> {{ aboutme.title }}  </h1>
+    <p class ="text_center">{{ aboutme.pub_date }}</p>
+    <p class="container text_justify"> {{ aboutme.summary }} </p>
+    <img class= "img-fluid" src="{{ aboutme.image.url }}" width="600" height="500"/> 
+    <br />
+    <p class="container text_justify"> {{ aboutme.body|safe}} </p>
+  </div> 
+{% endblock info_display %}
+
+<!--- START of social media connection -->
+{% block social_connection %}
+
+{% endblock social_connection %}
+
