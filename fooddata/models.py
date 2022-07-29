@@ -3,11 +3,11 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Climatedf(models.Model):
-    df= models.FileField('uploads/%Y/%m/%d/', default=" ")
+    df= models.FileField('uploads/%Y/%m/%d/')
 
 
 class Foodinput(models.Model):
-    cat_items_dict= models.JSONField(encoder=None, decoder=None, default=" ")
+    cat_items_dict= models.JSONField(encoder=None, decoder=None)
 
 
 class Massage(models.Model):

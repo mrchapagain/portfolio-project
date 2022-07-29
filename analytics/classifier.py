@@ -1,9 +1,7 @@
 # Analytics functions
 import re
-#from PIL import Image
 from textblob import TextBlob
 from wordcloud import WordCloud
-from tkinter import *
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
@@ -23,7 +21,7 @@ final_stopwords= en_stop.union(da_stop)
 #s_stemmer = SnowballStemmer(language='english') 
 
 #Libraruies for Lexicon Normalization (Stemming & Lemmatization)
-import nltk
+#import nltk
 #nltk.download('omw-1.4')
 #nltk.download('wordnet')
 

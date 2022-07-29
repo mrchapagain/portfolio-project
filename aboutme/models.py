@@ -6,7 +6,7 @@ class AboutMe(models.Model):
     title = models.CharField(max_length=255, default="Title")
     pub_date = models.DateTimeField()
     sum= models.TextField(max_length=255, default=" ")
-    image = models.ImageField(upload_to='images/', default=" ")
+    image = models.ImageField(upload_to='images/')
     body = RichTextField(default=" ")
 
     def __str__(self):

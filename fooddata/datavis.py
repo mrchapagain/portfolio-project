@@ -9,7 +9,6 @@ import seaborn as sns
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
-from seaborn import load_dataset
 import warnings
 warnings.filterwarnings("ignore")
 
