@@ -12,7 +12,7 @@
             <div class="col">
                 <a > <p class="card-text"> <h3>{{ tweet.title }}</h3></p> </a>
                 <p class ="text_center">{{ tweet.pub_date }}</p>
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ tweet.image.url }}" width="300" height="200"/> </a>
+                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ tweet.image.url }}" /> </a>
                 <p class="card-text">{{ tweet.body|safe }}</p>
             </div>
         {% endfor %}
@@ -38,7 +38,7 @@
             <div class="col">
                 <a > <p class="card-text"> <h3>{{ climate.title }}</h3></p> </a>
                 <p class ="text_center">{{ climate.pub_date }}</p>
-                <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ climate.image.url }}" width="300" height="200"/> </a>
+                <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ climate.image.url }}" /> </a>
                 <p class="card-text">{{ climate.body|safe }}</p>
             </div>
         {% endfor %}
@@ -64,7 +64,7 @@
                     <div class="col">
                         <a> <h5 class="card-text">{{ google.title }}</h5></a>
                         <p class ="text_center">Publiced on: {{ google.pub_date }}</p>
-                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" width=100% height="700"/> </a>
+                        <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ google.image.url }}" /> </a>
                        
                             <p class="card-text"> {{ google.body|safe }} </p>
                         
@@ -92,7 +92,7 @@
                     <div class="col">
                         <a > <p class="card-text"> <h3>{{ health.title }}</h3></p> </a>
                         <p class ="text_center">{{ health.pub_date }}</p>
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ health.image.url }}" width="auto" height="auto"/> </a>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ health.image.url }}" /> </a>
                         <p class="card-text">{{ health.body|safe }}</p>
                     </div>
                 {% endfor %}
@@ -119,7 +119,7 @@
                 <div class="col">
                     <a > <p class="card-text"> <h3>{{ ontology.title }}</h3></p> </a>
                     <p class ="text_center">{{ ontology.pub_date }}</p>
-                    <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ ontology.image.url }}" width="300" height="200"/> </a>
+                    <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ ontology.image.url }}" /> </a>
                     <p class="card-text">{{ ontology.body|safe }}</p>
                 </div><br>
             {% endfor %}

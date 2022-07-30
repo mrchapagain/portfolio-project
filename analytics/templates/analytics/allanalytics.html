@@ -12,7 +12,7 @@
               {% csrf_token %}
           <fieldset>
             <label for='userid'> <strong> Choose or Type tweeter User_ID here and SUBMIT:> </strong> </label>
-            <input type="text", name='userid'>
+           <!-- <input type="text", name='userid'> -->
             <select id="userid", name="userid">
               {% for id_dict in user_id_dict %}
                 {% for k, v in id_dict.tweetid.items %}
@@ -107,7 +107,7 @@
         <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
               <label for='keyword'> <strong> Type or Choose keyword to search tweets and SUBMIT:> </strong> </label>
-              <input type="text", name='keyword'>
+              <!-- <input type="text", name='keyword'> -->
               <select id="keyword", name="keyword">
                 {% for kw_dict in keyword_dict %}
                   {% for k, v in kw_dict.keyword.items %}

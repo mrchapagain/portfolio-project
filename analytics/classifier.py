@@ -21,9 +21,9 @@ final_stopwords= en_stop.union(da_stop)
 #s_stemmer = SnowballStemmer(language='english') 
 
 #Libraruies for Lexicon Normalization (Stemming & Lemmatization)
-#import nltk
-#nltk.download('omw-1.4')
-#nltk.download('wordnet')
+import nltk
+nltk.download('omw-1.4')
+nltk.download('wordnet')
 
 #for stemming
 #from nltk.stem.snowball import SnowballStemmer   
