@@ -6,12 +6,12 @@ from django.db import models
 class Tweetid(models.Model):
     tweetid= models.JSONField(encoder=None, decoder=None, null=True)
 
-    #def __str__(self):
-        #return self.name
+   # def __str__(self):
+       # return self.name
 
 class Tweetkeyword(models.Model):
     keyword= models.JSONField(encoder=None, decoder=None, null=True)
 
     #def __str__(self):
-        #return self.name
+       # return self.name
         
