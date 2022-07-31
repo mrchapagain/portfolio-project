@@ -106,12 +106,8 @@
       <h5> </h5>
         <form action="keyword_tosearch", method='post'>
               {% csrf_token %}
-              <label for='keyword'> <strong> Type or Choose keyword to search tweets and SUBMIT:> </strong> </label>
-<<<<<<< HEAD
-              <!--<input type="text", name='keyword'>-->
-=======
+              <label for='keyword'> <strong> Choose keyword and SUBMIT:> </strong> </label>
               <!-- <input type="text", name='keyword'> -->
->>>>>>> 1fa59722ae0207b4f35d0baaf4472ac3335727de
               <select id="keyword", name="keyword">
                 {% for kw_dict in keyword_dict %}
                   {% for k, v in kw_dict.keyword.items %}
@@ -119,10 +115,19 @@
                   {% endfor %}
                 {% endfor %}
               </select>
-              <button type="submit" value="Submit">Click to Submit</button>
+              <button type="submit" value="Submit">Click to Submit keyword choosen</button>
         </form>
 
-      <p><strong>Note:</strong> After choosing the keyword tweets analytics will be display below.</p>
+                        <h5> OR</h5>
+
+        <form action="keyword_tosearch", method='post'>
+          {% csrf_token %}
+          <label for='keyword'> <strong> Type keyword and SUBMIT:> </strong> </label>
+          <input type="text", name='keyword'> 
+          <button type="submit" value="Submit">Click to Submit keyword typed</button>
+    </form>
+
+      <p><strong>Note:</strong> After Submit keyword tweets analytics will be display below.</p>
   </div><hr>
   {% endblock info_select_baseextended_keyword %}
 
