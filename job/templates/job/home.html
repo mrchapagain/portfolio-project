@@ -9,9 +9,17 @@
       <!--<h1 class="fw-light">Welcome to my Homepage!</h1>-->
       <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
       <hr>
-      <h1> Navigation page</h1> <br>
-      <p> There is not only one futures but you need to choose one by creating it! </p>
-      <hr>        
+      <h1> My personal page on Analytics! </h1> <br>
+      <p> 
+        <h3> Feel free to navigate yourself for; </h3>
+          <h4><ul>
+            <a href="{% url 'allblogs' %}"> <i>- Blog on Food, Nutrition & Sustainability Analytics</i> </a> <br> <br> 
+            <a href="{% url 'alljobs' %}"> <i>- Project portfolios</i> </a> <br><br> 
+            <a href="{% url 'allanalytics' %}"> <i>- Tweeter Analytics</i> </a> <br><br> 
+            <a href="{% url 'allfooddatas' %}"> <i>- Analytics on Food Climate impact</i> </a>
+          </ul></h4>
+        
+      </p> <hr>      
     </div>
   </div>
 {% endblock section %}
@@ -26,14 +34,14 @@
   <div class="container">
       <h3> Summary of Blog articles</h3><hr>
     <div class="col">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
 
         {% for blog in blogs.all %}
-          <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 400px">
+          <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
             <div class="col" style="background-color:#e2eceb">
               <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
                 {{ blog.pub_date_pretty }}
-              <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: 300px"/> </a>
+              <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: 250px"/> </a>
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
               </div>
@@ -44,4 +52,27 @@
       </div>
     </div>
   </div><hr>
+
+
+  <div class="container">
+    <h3> Summary of Project portfolios </h3><hr>
+  <div class="col">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
+
+      {% for job in jobs.all %}
+        <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
+          <div class="col" style="background-color:#e2eceb">
+            <a href="{% url 'detail' job.id %}"> <h5 class="card-text">{{ job.title }}</h5> </a>
+              {{ job.pub_date_pretty }}
+            <a href="{% url 'detail' job.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ job.image.url }}" style="height: 250px"/> </a>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+        
+    </div>
+  </div>
+</div><hr>
 {% endblock info_display %}
