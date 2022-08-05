@@ -143,7 +143,7 @@
             <div class="col">
               <h5> Most mentioned word in the tweets</h5>  <hr>
                 {% if kmostmentionword %}
-                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Word-Cloud image" style="height:100%; width:100%"/> </a>
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Plot formostmentioned words" style="height:100%; width:100%"/> </a>
                 {% endif %}
             </div>
 
@@ -151,7 +151,7 @@
               <div class="col">
                 <h5> Sentiment analytics of tweets</h5>  <hr>
                   {% if ksentimentsplot %}
-                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ ksentimentsplot|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ ksentimentsplot|safe }}" alt="Sentiment plot" style="height: 100%; width:100%"/> </a>
                   {% endif %}
               </div>
 
