@@ -85,7 +85,7 @@ def sentiment_plot(df_withsentiment, title):
       plt.figure(figsize=(4,3))
       plt.title(title, fontsize=8)
       #plt.bar(df_withsentiment.Analysis.unique(), df_withsentiment['Analysis'].value_counts(), color ='grey', width = 0.4)
-      sns.countplot(data= df_withsentiment, x= 'Analysis')
+      sns.countplot(data= df_withsentiment, x= 'Analysis', palette= {"Neutral": "blue", "Negetive": "red", "Positive": "green"})
       #df_withsentiment['Analysis'].value_counts().plot(kind='bar', color= {"Neutral": "blue", "Negetive": "red", "Positive": "green"})
       plt.xticks(rotation=20)
       plt.xlabel('Sentiment of the tweets')
