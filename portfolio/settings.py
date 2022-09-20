@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['159.65.89.151', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'dashboard.apps.DashboardConfig',
     'fooddata.apps.FooddataConfig',
     'analytics.apps.AnalyticsConfig',
     'aboutme.apps.AboutmeConfig',
