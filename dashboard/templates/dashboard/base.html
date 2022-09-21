@@ -141,6 +141,26 @@
             padding: 10px;
             font-size: 20px;
         }
+
+
+        /* To rotate table header */
+        th.rotate {
+          /* Something you can count on */
+          height: 280px;
+          white-space: nowrap;
+        }
+        
+        th.rotate > div {
+          transform: 
+            /* 45 is really 360 - 45 */
+            rotate(290deg);
+          
+        }
+        th.rotate > div > span {
+          border-bottom: 1px solid #ccc;
+          padding: 5px 10px;
+        }
+
            
     </style>
 </head>
@@ -197,7 +217,7 @@
 
         <!--div section for Footer START here -->
         <div class="footer1">
-            <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
+            <p>CopyRight Mukti R. Chapagain for SESAM 2030, {% now "Y" %}</p>
         </div>
         <!--div section for Footer END here -->
     

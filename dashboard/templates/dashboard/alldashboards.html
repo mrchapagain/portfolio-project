@@ -16,7 +16,7 @@
                  
                   <!-- <input type="text", name='userid'> -->
                   <select id="food_cat", name="food_cat">
-                    {% for group_name in df_group_list %}
+                    {% for group_name in food_group_list %}
                       <option value="{{ group_name }}"> {{ group_name }} </option> 
                     {% endfor %}
                   </select>
@@ -59,7 +59,7 @@
 
 <!--page to display of figure start here -->
 {% block info_display %}
-    <div class="main1" style="background-color:#71a39b">
+    <div class="main1" style="background-color:#71a39b; width:100%">
         <div style="background-color:#e8f0ef">
             <h4> Display visual of the choosen food item</h4>
             
@@ -69,16 +69,16 @@
               <!--fig 1.1-->
                 <div class="col">
                   <h5> Nutrition composition</h5>  <hr>
-                    {% if mostmentionword %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ mostmentionword|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+                    {% if pie_chart_energy %}
+                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="width:100%"/> </a>
                     {% endif %}
                 </div>
         
                 <!--fig 1.2-->
                 <div class="col">
                   <h5> Carbon Foot-print comparision </h5>  <hr>
-                    {% if sentimentsplot %}
-                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ sentimentsplot|safe }}" alt="Word-Cloud image" style="width:100%"/></a><br>
+                    {% if pie_chart_climate %}
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
                     {% endif %}
                 </div>
             </div> 
@@ -89,16 +89,16 @@
                 <!--fig 2.1-->
                   <div class="col">
                     <h5> Science </h5>  <hr>
-                      {% if mostmentionword %}
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ mostmentionword|safe }}" alt="Word-Cloud image" style="width:100%"/> </a>
+                      {% if barplot_climate_comparision %}
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_climate_comparision|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
                       {% endif %}
                   </div>
           
                   <!--fig 2.2-->
                   <div class="col">
                     <h5> Other interesting facts </h5>  <hr>
-                      {% if sentimentsplot %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ sentimentsplot|safe }}" alt="Word-Cloud image" style="width:100%"/></a><br>
+                      {% if group_plot_climate %}
+                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
                       {% endif %}
                   </div>
             </div>
@@ -116,13 +116,12 @@
               <h5> Data table</h5> <br>
                 <div class="col">
                   <div class="card-body">
-          
-                    <table style="width:100%">
+                    
+                    <!--Start of category-dataframe --> 
+                    <table>
                       <tr>
-
-                        <!--Start of category-dataframe --> 
                         {% for col in df_category.columns %}
-                          <th style="white-space:nowrap"> {{ col }} </th>                     
+                          <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
                         {% endfor %}
                       </tr>
                         {% for index, row in df_category.iterrows %}
@@ -135,8 +134,10 @@
                         <!--End of category-dataframe --> 
 
                         <!--Start of indivisual dataframe --> 
+                    <table>
+                      <tr>
                         {% for col in df_food_name.columns %}
-                          <th style="white-space:nowrap"> {{ col }} </th>                     
+                          <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                       
                         {% endfor %}
                       </tr>
                         {% for index, row in df_food_name.iterrows %}
