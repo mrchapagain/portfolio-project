@@ -14,6 +14,9 @@ from matplotlib import pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
+import ipywidgets as widgets
+from ipywidgets import interact, interactive, fixed, interact_manual
+
 
 class FridaDataAnalytics():
 
@@ -143,23 +146,37 @@ class FridaDataAnalytics():
       return graph
 
 
-  def foodwaste_portion_barplot(self, df_frida, food_category):
-      self.df_frida=df_frida
+  def foodwaste_portion_barplot(self, df_frida, svind_percentage, food_category):
+      self.df_frida= df_frida
+      self.svind_percentage= svind_percentage
       self.food_category= food_category
       
+      ## first acess right data from the given dataset
+      # Drop the rows with non numeric and change rest of the rows to float type
+      df_numeric_fridasvind= df_frida["Svind_%"].drop(df_frida[df_frida["Svind_%"] == "iv"].index).astype(float)
+      # Just select the desired row with waste % value
+      svind_condition=df_numeric_fridasvind[df_numeric_fridasvind > svind_percentage]
+      # Get whole datasetwith the condition above
+      df_frida_foodwaste= df_frida[["FødevareNavn", "Svind_%"]].iloc[svind_condition.index]
+      
+      # add column for eaten part
+      df_frida_foodwaste["Spiseligt_%"] = df_frida_foodwaste["Svind_%"].apply(lambda x: 100-x)
+      
+      ## code for plotting
+      
       plt.switch_backend('AGG')
+      plt.subplots(figsize=(15, 10))
+      plt.title(f'List of food-items from "{food_category}" category with over {svind_percentage} percent waste', fontsize=8)
 
-      plt.figure(figsize=(10, 5))
-      #plt.title(title, fontsize=8)
-      #sns.bar(df_fooditem_climate.Analysis.unique(), df_fooditem_climate['Analysis'].value_counts(), color ='grey', width = 0.4)
-      df_frida_with_category= df_frida[df_frida.FødevareGruppe== food_category]
-      sns.barplot(data= df_frida_with_category, x= "FødevareNavn", y= "Svind_%", palette= "hls") #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"}
+      #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Svind_%"], color="red") #Horizontal bar plot
+      #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Spiseligt_%"], color="green")
+      #sns.barplot(data= df_frida_foodwaste, x= 'FødevareNavn', y='Svind_%', palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
+      df_frida_foodwaste[["FødevareNavn", "Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
 
-      #df_fooditem_climate['Analysis'].value_counts().plot(kind='bar', color= {"Neutral": "blue", "Negetive": "red", "Positive": "green"})
-      plt.xticks(rotation=45)
-      plt.xlabel('Name of Food Category')
-      plt.ylabel('CO2 emission contribution')
+      plt.legend()
+      plt.xticks(rotation=75)
+      plt.xlabel(f'FødevareNavn lister indenfor "{food_category}" gruppe')
+      plt.ylabel('Spiseligtand and Svind %')
       plt.tight_layout()
       graph=get_graph()
       return graph
-

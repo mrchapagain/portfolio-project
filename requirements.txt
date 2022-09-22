@@ -94,3 +94,4 @@ wasabi==0.9.1
 wcwidth==0.2.5
 webencodings==0.5.1
 wordcloud==1.8.2.2
+ipywidgets==8.0.2

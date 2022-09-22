@@ -12,7 +12,7 @@ def Food_category(request):
     food_group_list= cls.FødevareGruppe_list(df)
 
     name_list=df_category.FødevareNavn.to_list()
-    barplot_foodwate= cls.foodwaste_portion_barplot(df, category)
+    barplot_foodwate= cls.foodwaste_portion_barplot(df, 65, category)
     
     return render(request, 'dashboard/alldashboards.html', {"category":category, "df_category":df_category, "name_list":name_list, "food_group_list":food_group_list, "barplot_foodwate":barplot_foodwate})
 
