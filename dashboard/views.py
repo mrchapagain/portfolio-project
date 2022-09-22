@@ -12,9 +12,11 @@ def Food_category(request):
     food_group_list= cls.FødevareGruppe_list(df)
 
     name_list=df_category.FødevareNavn.to_list()
+
     barplot_foodwate= cls.foodwaste_portion_barplot(df, 65, category)
+    loop_range= [num for num in range(40,100,5)]
     
-    return render(request, 'dashboard/alldashboards.html', {"category":category, "df_category":df_category, "name_list":name_list, "food_group_list":food_group_list, "barplot_foodwate":barplot_foodwate})
+    return render(request, 'dashboard/alldashboards.html', {"category":category, "df_category":df_category, "name_list":name_list, "food_group_list":food_group_list, "barplot_foodwate":barplot_foodwate, "loop_range":loop_range})
 
 
 def foodname_todf(request):
@@ -52,6 +54,7 @@ def item_todisplay(request):
     food_name_list= cls.FødevareNavn_list(df)
     food_group_list= cls.FødevareGruppe_list(df)
     df_group_name_dict= cls.FødevareGruppe_FødevareNavn_dict(df)
+    loop_range= [num for num in range(40,100,5)]
 
-    return render(request, 'dashboard/alldashboards.html', {"food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict})
+    return render(request, 'dashboard/alldashboards.html', {"food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict,"loop_range":loop_range})
     
