@@ -124,21 +124,39 @@ class FridaDataAnalytics():
         return graph  
 
 
-
-  def comparision_barplot_climate(self, df_climate, df_fooditem_climate, foodname):
+  def comparision_barplot_climate(self, df_climate, foodname):
       self.df_climate=df_climate
-      self.df_fooditem_climate= df_fooditem_climate
-      self.foodname= foodname
+      #self.foodname= foodname
       plt.switch_backend('AGG')
 
-      plt.figure(figsize=(4,3))
+      plt.figure(figsize=(10,5))
       #plt.title(title, fontsize=8)
       #sns.bar(df_fooditem_climate.Analysis.unique(), df_fooditem_climate['Analysis'].value_counts(), color ='grey', width = 0.4)
+      df_foodname_climate= df_climate[df_climate.Product_dk== foodname]
+      sns.barplot(data= df_climate, x= "Category_dk", y= "Total_CO2_eq_perkg", palette= "hls") #df_foodname_climate.Product_dk.item()
+      # # palette={"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"}
+      plt.xticks(rotation=20)
+      plt.xlabel('Name of Food item')
+      plt.ylabel('Total CO2 emission contribution')
+      plt.tight_layout()
+      graph=get_graph()
+      return graph
 
-      sns.barplot(data= df_fooditem_climate, x= ["Vegetables_Average","Meat/Poultry_Average",{foodname}], y= [1,2,3], palette= {"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"})
+
+  def foodwaste_portion_barplot(self, df_frida, food_category):
+      self.df_frida=df_frida
+      self.food_category= food_category
+      
+      plt.switch_backend('AGG')
+
+      plt.figure(figsize=(10, 5))
+      #plt.title(title, fontsize=8)
+      #sns.bar(df_fooditem_climate.Analysis.unique(), df_fooditem_climate['Analysis'].value_counts(), color ='grey', width = 0.4)
+      df_frida_with_category= df_frida[df_frida.FødevareGruppe== food_category]
+      sns.barplot(data= df_frida_with_category, x= "FødevareNavn", y= "Svind_%", palette= "hls") #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"}
 
       #df_fooditem_climate['Analysis'].value_counts().plot(kind='bar', color= {"Neutral": "blue", "Negetive": "red", "Positive": "green"})
-      plt.xticks(rotation=20)
+      plt.xticks(rotation=45)
       plt.xlabel('Name of Food Category')
       plt.ylabel('CO2 emission contribution')
       plt.tight_layout()

@@ -61,100 +61,61 @@
 {% block info_display %}
     <div class="main1" style="background-color:#71a39b; width:100%">
         <div style="background-color:#e8f0ef">
-            <h4> Display visual of the choosen food item</h4>
+              <h4> Display visual of the choosen food item</h4>
+              
+                <!--First row-->
+                <div class="row"> <br> 
+                  <!--- To make first two figures display side by side-->
+                  <!--fig 1.1-->
+                    <div class="col">
+                      <h5> Nutrition composition</h5>  <hr>
+                        {% if pie_chart_energy %}
+                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="width:100%"/> </a>
+                        {% endif %}
+                    </div>
             
-            <!--First row-->
-            <div class="row"> <br> 
-              <!--- To make first two figures display side by side-->
-              <!--fig 1.1-->
-                <div class="col">
-                  <h5> Nutrition composition</h5>  <hr>
-                    {% if pie_chart_energy %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="width:100%"/> </a>
-                    {% endif %}
+                    <!--fig 1.2-->
+                    <div class="col">
+                      <h5> Carbon Foot-print comparision </h5>  <hr>
+                        {% if pie_chart_climate %}
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
+                        {% endif %}
+                    </div>
+                </div> 
+            
+                <!--Second row-->
+                <div class="row"> <br>
+                    <!--- To make second two figures display side by side-->
+                    <!--fig 2.1-->
+                      <div class="col">
+                        <h5> Science </h5>  <hr>
+                          {% if barplot_climate_comparision %}
+                            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_climate_comparision|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
+                          {% endif %}
+                      </div>
+              
+                      <!--fig 2.2-->
+                      <div class="col">
+                        <h5> Other interesting facts </h5>  <hr>
+                          {% if group_plot_climate %}
+                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
+                          {% endif %}
+                      </div>
                 </div>
-        
-                <!--fig 1.2-->
-                <div class="col">
-                  <h5> Carbon Foot-print comparision </h5>  <hr>
-                    {% if pie_chart_climate %}
-                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
-                    {% endif %}
+
+                <!--Third whole row without column-->
+                <div class="row"> <br>
+                  <!--fig 3-->
+                      <h5> Food waste portion of the food </h5>  <hr>
+                        {% if barplot_foodwate %}
+                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="width:100%"/> </a>
+                        {% endif %}
                 </div>
-            </div> 
-        
-            <!--Second row-->
-            <div class="row"> <br>
-                <!--- To make second two figures display side by side-->
-                <!--fig 2.1-->
-                  <div class="col">
-                    <h5> Science </h5>  <hr>
-                      {% if barplot_climate_comparision %}
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_climate_comparision|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
-                      {% endif %}
-                  </div>
+
+              <!--Button- third row-->  
+              <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div>
           
-                  <!--fig 2.2-->
-                  <div class="col">
-                    <h5> Other interesting facts </h5>  <hr>
-                      {% if group_plot_climate %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
-                      {% endif %}
-                  </div>
-            </div>
-            <!--Button- third row-->  
-            <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div>
-        
-        </div>
-
-        <!-- Bottm row-Data frame -->
-        <div style="background-color:#a2b9b7">
-
-          <!--Start of dataframe -->   
-          <div style="background-color:#e8f0ef">
-            <div class="row"><br><hr>
-              <h5> Data table</h5> <br>
-                <div class="col">
-                  <div class="card-body">
-                    
-                    <!--Start of category-dataframe --> 
-                    <table>
-                      <tr>
-                        {% for col in df_category.columns %}
-                          <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
-                        {% endfor %}
-                      </tr>
-                        {% for index, row in df_category.iterrows %}
-                      <tr>
-                            {% for cell in row %}
-                          <td>{{ cell }}</td>
-                            {% endfor %}
-                      </tr>
-                        {% endfor %}
-                        <!--End of category-dataframe --> 
-
-                        <!--Start of indivisual dataframe --> 
-                    <table>
-                      <tr>
-                        {% for col in df_food_name.columns %}
-                          <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                       
-                        {% endfor %}
-                      </tr>
-                        {% for index, row in df_food_name.iterrows %}
-                      <tr>
-                            {% for cell in row %}
-                          <td>{{ cell }}</td>
-                            {% endfor %}
-                      </tr>
-                        {% endfor %}
-                        <!--End of indiviausl dataframe --> 
-                    </table>
-                    
-                  </div><br>
-                </div>
-            </div>
-          </div><hr>
-          <!--End of dataframe -->   
+          </div>
 
         </div>
 
@@ -162,3 +123,51 @@
 
 {% endblock info_display %}
 <!--page to display of figure end here -->   
+<!-- Bottm row-Data frame -->
+<div style="background-color:#a2b9b7">
+
+  <!--Start of dataframe -->   
+  <div style="background-color:#e8f0ef">
+    <div class="row"><br><hr>
+      <h5> Data table</h5> <br>
+        <div class="col">
+          <div class="card-body">
+            
+            <!--Start of category-dataframe --> 
+            <table>
+              <tr>
+                {% for col in df_category.columns %}
+                  <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
+                {% endfor %}
+              </tr>
+                {% for index, row in df_category.iterrows %}
+              <tr>
+                    {% for cell in row %}
+                  <td>{{ cell }}</td>
+                    {% endfor %}
+              </tr>
+                {% endfor %}
+                <!--End of category-dataframe --> 
+
+                <!--Start of indivisual dataframe --> 
+            <table>
+              <tr>
+                {% for col in df_food_name.columns %}
+                  <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                       
+                {% endfor %}
+              </tr>
+                {% for index, row in df_food_name.iterrows %}
+              <tr>
+                    {% for cell in row %}
+                  <td>{{ cell }}</td>
+                    {% endfor %}
+              </tr>
+                {% endfor %}
+                <!--End of indiviausl dataframe --> 
+            </table>
+            
+          </div><br>
+        </div>
+    </div>
+  </div><hr>
+  <!--End of dataframe -->   
