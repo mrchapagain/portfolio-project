@@ -62,7 +62,7 @@
 {% block info_display %}
     <div class="main1" style="background-color:#71a39b">
         <div style="background-color:#e8f0ef">
-              <h4> Display visual of the choosen food item</h4>
+              <h4> Display visual of Food and Climate impact</h4>
               
                 <!--First row-->
                 <div class="row"> <br> 
@@ -77,7 +77,7 @@
             
                     <!--fig 1.2-->
                     <div class="col">
-                      <h5> Carbon Foot-print comparision </h5>  <hr>
+                      <h5> CO2 emission </h5>  <hr>
                         {% if pie_chart_climate %}
                         <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
                         {% endif %}
@@ -89,31 +89,35 @@
                     <!--- To make second two figures display side by side-->
                     <!--fig 2.1-->
                       <div class="col">
-                        <h5> Science </h5>  <hr>
-                          {% if barplot_climate_comparision %}
-                            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_climate_comparision|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
-                          {% endif %}
-                      </div>
-              
-                      <!--fig 2.2-->
-                      <div class="col">
-                        <h5> Other interesting facts </h5>  <hr>
-                          {% if group_plot_climate %}
-                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
+                        <h5> Science facts </h5>  <hr>
+                          {% if science_fact_textdisplay  %}
+                            <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
                           {% endif %}
                       </div>
                 </div>
 
-                <!--Third whole row without column-->
+                <!--Third row-->
                 <div class="row"> <br>
-                  <!--fig 3-->
+            
+                    <!--fig 3.1-->
+                    <div class="col">
+                      <h5> CO2 impact of food categories </h5>  <hr>
+                        {% if group_plot_climate %}
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
+                        {% endif %}
+                    </div>
+              </div>
+
+                <!--Fourth whole row without column-->
+                <div class="row"> <br>
+                  <!--fig 4.1-->
                       <h5> Food waste portion of the food </h5>  <hr>
                         {% if barplot_foodwate %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="width:100%"/> </a>
                         {% endif %}
                 </div>
 
-              <!--Button- third row-->  
+              <!--Button- Fifth row-->  
               <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div>
           
           </div>

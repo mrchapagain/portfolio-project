@@ -68,11 +68,17 @@ class FridaDataAnalytics():
         #sizes= [i*0 for i in sizes if i < 0 ]
         explode = (0, 0, 0.05)  # only "explode" the 3rd slice (i.e. 'Protein')
 
+        my_circle=plt.Circle((0,0),0.4, color="white")
+        
         fig, ax = plt.subplots()
         ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+        
+        p=plt.gcf()
+        p.gca().add_artist(my_circle)
+        ax.annotate(f'Total Energy: \n {df_food_name.Energy_kj.item()}kj / {df_food_name.Energy_kcal.item()} kcal', xy=(0,0), va="center", ha="center", color='red', fontsize=10)
+
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        #plt.title(f'"Total Energy in KJ: {df_food_name.Energy_KJ.values}"', fontsize=12)
-        ax.text(1.30, 0.005, f'"Total Energy: {df_food_name.Energy_kj.item()} kj / {df_food_name.Energy_kcal.item()} kcal"', fontsize=12, verticalalignment='bottom', horizontalalignment='right', transform=ax.transAxes, color='red')
+        plt.title(f'Total Energy content of food-item"{df_food_name.FødevareNavn.item()}"', fontsize=12)
 
         plt.tight_layout()
         graph=get_graph()
@@ -81,23 +87,29 @@ class FridaDataAnalytics():
 
   def piechart_fooditem_co2(self, df_fooditem_climate):
         self.df_fooditem_climate=df_fooditem_climate
-        
+      
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
         labels = ['Agriculture', 'iLUC', 'Processing', 'Packaging', 'Transport', 'Retail']
         sizes =  df_fooditem_climate[labels].values.tolist()[0] # 3rd to 8th column value from indivisual-item 
         sizes = [0 if i < 0 else i for i in sizes] # Negetive value replace with 0
-
         explode = (0, 0, 0, 0, 0.1, 0)  # only "explode" the 5th slice (i.e. 'Transport')
 
+        my_circle=plt.Circle((0,0),0.4, color="white")
+        
         fig, ax = plt.subplots()
         ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+        
+        p=plt.gcf()
+        p.gca().add_artist(my_circle)
+        ax.annotate(f'Total CO2 eq_perkg: \n {df_fooditem_climate.Total_CO2_eq_perkg.item()}', xy=(0,0), va="center", ha="center", color='red', fontsize=10)
+
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        #plt.title(f'"Total CO2 contribution equivalent per KG: {df_fooditem_climate.Total_CO2_eq_perkg.values}"', fontsize=12)
-        ax.text(1.30, 0.005, f'"Total CO2 contribution equivalent per KG in grams: {df_fooditem_climate.Total_CO2_eq_perkg.item()}"', fontsize=12, verticalalignment='bottom', horizontalalignment='right', transform=ax.transAxes, color='red')
+        plt.title(f'Carbon footprint contribution from "{df_fooditem_climate.Product_dk.item()}"', fontsize=12)
         plt.tight_layout()
         graph=get_graph()
         #ax.legend()
         return graph
+
 
 
   def co2_data_plot(self, selected_dropped_data):
@@ -146,10 +158,9 @@ class FridaDataAnalytics():
       return graph
 
 
-  def foodwaste_portion_barplot(self, df_frida, svind_percentage, food_category):
+  def foodwaste_portion_barplot(self, df_frida, svind_percentage):
       self.df_frida= df_frida
       self.svind_percentage= svind_percentage
-      self.food_category= food_category
       
       ## first acess right data from the given dataset
       # Drop the rows with non numeric and change rest of the rows to float type
@@ -157,7 +168,7 @@ class FridaDataAnalytics():
       # Just select the desired row with waste % value
       svind_condition=df_numeric_fridasvind[df_numeric_fridasvind > svind_percentage]
       # Get whole datasetwith the condition above
-      df_frida_foodwaste= df_frida[["FødevareNavn", "Svind_%"]].iloc[svind_condition.index]
+      df_frida_foodwaste= df_frida[["FødevareNavn", "FødevareGruppe", "Svind_%"]].iloc[svind_condition.index]
       
       # add column for eaten part
       df_frida_foodwaste["Spiseligt_%"] = df_frida_foodwaste["Svind_%"].apply(lambda x: 100-x)
@@ -166,16 +177,16 @@ class FridaDataAnalytics():
       
       plt.switch_backend('AGG')
       plt.subplots(figsize=(15, 10))
-      plt.title(f'List of food-items from "{food_category}" category with over {svind_percentage} percent waste', fontsize=8)
-
+      
       #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Svind_%"], color="red") #Horizontal bar plot
       #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Spiseligt_%"], color="green")
-      #sns.barplot(data= df_frida_foodwaste, x= 'FødevareNavn', y='Svind_%', palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
-      df_frida_foodwaste[["FødevareNavn", "Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
+      #sns.barplot(data= df_frida_foodwaste, x= 'FødevareNavn', y='Svind_%', hue= "FødevareGruppe", palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
+      df_frida_foodwaste[["FødevareNavn", "FødevareGruppe", "Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
 
+      plt.title(f'List of food-items with over {svind_percentage} percent waste', fontsize=8)
       plt.legend()
       plt.xticks(rotation=75)
-      plt.xlabel(f'FødevareNavn lister indenfor "{food_category}" gruppe')
+      plt.xlabel(f'FødevareNavn lister')
       plt.ylabel('Spiseligtand and Svind %')
       plt.tight_layout()
       graph=get_graph()
@@ -185,11 +196,8 @@ class FridaDataAnalytics():
   def text_display_frida(self, frida_data):
       self.frida_data= frida_data
       plt.switch_backend('AGG')
-      plt.figure(figsize=(15,10))
+      plt.figure(figsize=(10,5))
       
-
-
-
       FødevareNavn= frida_data["FødevareNavn"].values[0]
       Svind_percent= frida_data["Svind_%"].values[0]
       Total_energy_kj= frida_data["Energy_kj"].values[0]
@@ -200,8 +208,12 @@ class FridaDataAnalytics():
       Kostfibre_g= frida_data["Kostfibre_g"].values[0]
       Fedt_total_g= frida_data["Fedt_total_g"].values[0]
       TaxonomicName= frida_data["TaxonomicName"].values[0]
-
-      print(f' **************************************** \n Food Name: \t\t {FødevareNavn},\n ------------------------------------------ \n Shrinkage percentage: \t {Svind_percent}%, \n ------------------------------------------ \n Total Energy: \t\t{Total_energy_kj}kj /{Total_energy_kacl}kacl,\n ------------------------------------------ \n Protein: \t\t{Protein_deklaration_g}g,\n ------------------------------------------ \n Carbohydrate: \t\t{Kulhydrat_deklaration_g}g,\n ------------------------------------------ \n Fat: \t\t\t{Fedt_total_g}g,\n ------------------------------------------ \n fibre: \t\t{Kostfibre_g}g,\n ------------------------------------------ \n Scientific Name: \t{TaxonomicName} \n**************************************** ')
-
+      text_kwargs = dict(ha='left', va='center', fontsize=12, color='C1')
+      txt= f' ************************ \n Food Name:  {FødevareNavn},\n -------------------------- \n Shrinkage %:  {Svind_percent}%, \n -------------------------- \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl,\n -------------------------- \n Protein:  {Protein_deklaration_g}g,\n -------------------------- \n Carbohydrate: {Kulhydrat_deklaration_g}g,\n -------------------------- \n Fat:  {Fedt_total_g}g,\n -------------------------- \n fiber: {Kostfibre_g}g,\n -------------------------- \n Scientific Name:  {TaxonomicName} \n ************************ '
+      plt.text(0.1, 0.5, txt, **text_kwargs)
+           
+      plt.tight_layout()
+      graph=get_graph()
+      return graph
 
 
