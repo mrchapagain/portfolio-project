@@ -41,7 +41,7 @@ def foodname_todf(request):
     pie_chart_climate= cls.piechart_fooditem_co2(df_foodname_climate)
 
     group_plot_climate= cls.co2_data_plot(df_climate)
-    barplot_climate_comparision=cls.comparision_barplot_climate(df_climate, foodname)
+    barplot_climate_comparision=cls.text_display_frida(df)
 
     return render(request, 'dashboard/alldashboards.html', {"foodname":foodname, "df_food_name":df_food_name, "food_group_list":food_group_list, "name_list":name_list, "pie_chart_energy":pie_chart_energy, "pie_chart_climate":pie_chart_climate, "group_plot_climate":group_plot_climate, "barplot_climate_comparision":barplot_climate_comparision})
 

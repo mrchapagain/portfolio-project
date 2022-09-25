@@ -180,3 +180,28 @@ class FridaDataAnalytics():
       plt.tight_layout()
       graph=get_graph()
       return graph
+
+  # Function for text display
+  def text_display_frida(self, frida_data):
+      self.frida_data= frida_data
+      plt.switch_backend('AGG')
+      plt.figure(figsize=(15,10))
+      
+
+
+
+      FødevareNavn= frida_data["FødevareNavn"].values[0]
+      Svind_percent= frida_data["Svind_%"].values[0]
+      Total_energy_kj= frida_data["Energy_kj"].values[0]
+      Total_energy_kacl= frida_data["Energy_kcal"].values[0]
+      Protein_deklaration_g= frida_data["Protein_deklaration_g"].values[0]
+      Kulhydrat_deklaration_g= frida_data["Kulhydrat_deklaration_g"].values[0]
+      Fedt_total_g= frida_data["Fedt_total_g"].values[0]
+      Kostfibre_g= frida_data["Kostfibre_g"].values[0]
+      Fedt_total_g= frida_data["Fedt_total_g"].values[0]
+      TaxonomicName= frida_data["TaxonomicName"].values[0]
+
+      print(f' **************************************** \n Food Name: \t\t {FødevareNavn},\n ------------------------------------------ \n Shrinkage percentage: \t {Svind_percent}%, \n ------------------------------------------ \n Total Energy: \t\t{Total_energy_kj}kj /{Total_energy_kacl}kacl,\n ------------------------------------------ \n Protein: \t\t{Protein_deklaration_g}g,\n ------------------------------------------ \n Carbohydrate: \t\t{Kulhydrat_deklaration_g}g,\n ------------------------------------------ \n Fat: \t\t\t{Fedt_total_g}g,\n ------------------------------------------ \n fibre: \t\t{Kostfibre_g}g,\n ------------------------------------------ \n Scientific Name: \t{TaxonomicName} \n**************************************** ')
+
+
+
