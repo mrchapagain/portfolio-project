@@ -2,15 +2,25 @@
 # import function from Analytics clasification where visualization function is created
 from analytics.classifier import get_graph
 
-# Importing the required libaries for EDA
+# import necessary libaries
 import pandas as pd
 import numpy as np
-import seaborn as sns
+
+from pytrends.request import TrendReq
+
+import warnings
+warnings.filterwarnings("ignore")
+
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
+import seaborn as sns
+
 import warnings
 warnings.filterwarnings("ignore")
+
+
+
 
 class FoodCo2Analytics():
     # Import data
