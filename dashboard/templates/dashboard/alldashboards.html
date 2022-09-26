@@ -62,14 +62,14 @@
 {% block info_display %}
     <div class="main1" style="background-color:#71a39b">
         <div style="background-color:#e8f0ef">
-              <h4> Display visual of Food and Climate impact</h4>
+              <h4> Visualization of Food-Nutrition and Climate impact</h4>
               
                 <!--First row-->
                 <div class="row"> <br> 
                   <!--- To make first two figures display side by side-->
                   <!--fig 1.1-->
                     <div class="col">
-                      <h5> Nutrition composition</h5>  <hr>
+                      <h5>   </h5>  <hr> <!-- Nutrition composition -->
                         {% if pie_chart_energy %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="width:100%"/> </a>
                         {% endif %}
@@ -77,7 +77,7 @@
             
                     <!--fig 1.2-->
                     <div class="col">
-                      <h5> CO2 emission </h5>  <hr>
+                      <h5>  </h5>  <hr> <!-- CO2 emission -->
                         {% if pie_chart_climate %}
                         <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
                         {% endif %}
@@ -89,7 +89,7 @@
                     <!--- To make second two figures display side by side-->
                     <!--fig 2.1-->
                       <div class="col">
-                        <h5> Science facts </h5>  <hr>
+                        <h5>  </h5>  <hr> <!-- Science facts -->
                           {% if science_fact_textdisplay  %}
                             <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
                           {% endif %}
@@ -101,7 +101,7 @@
             
                     <!--fig 3.1-->
                     <div class="col">
-                      <h5> CO2 impact of food categories </h5>  <hr>
+                      <h5>  </h5>  <hr> <!-- CO2 impact of food categories -->
                         {% if group_plot_climate %}
                         <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
                         {% endif %}
@@ -111,7 +111,7 @@
                 <!--Fourth whole row without column-->
                 <div class="row"> <br>
                   <!--fig 4.1-->
-                      <h5> Food waste portion of the food </h5>  <hr>
+                      <h5>  </h5>  <hr> <!-- Food waste portion of the food -->
                         {% if barplot_foodwate %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="width:100%"/> </a>
                         {% endif %}

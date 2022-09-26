@@ -158,9 +158,10 @@ class FridaDataAnalytics():
       return graph
 
 
-  def foodwaste_portion_barplot(self, df_frida, svind_percentage):
+  def foodwaste_portion_barplot(self, df_frida, svind_percentage, title_cat):
       self.df_frida= df_frida
       self.svind_percentage= svind_percentage
+      self.title_cat= title_cat
       
       ## first acess right data from the given dataset
       # Drop the rows with non numeric and change rest of the rows to float type
@@ -168,22 +169,24 @@ class FridaDataAnalytics():
       # Just select the desired row with waste % value
       svind_condition=df_numeric_fridasvind[df_numeric_fridasvind > svind_percentage]
       # Get whole datasetwith the condition above
-      df_frida_foodwaste= df_frida[["FødevareNavn", "FødevareGruppe", "Svind_%"]].iloc[svind_condition.index]
+      df_frida_foodwaste= df_frida[["FødevareNavn","Svind_%"]].iloc[svind_condition.index]
       
       # add column for eaten part
       df_frida_foodwaste["Spiseligt_%"] = df_frida_foodwaste["Svind_%"].apply(lambda x: 100-x)
+
+      df_frida_foodwaste_sorted=df_frida_foodwaste.sort_values("Svind_%", ascending=False, ignore_index=True).head(10)
       
       ## code for plotting
       
       plt.switch_backend('AGG')
       plt.subplots(figsize=(15, 10))
       
-      #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Svind_%"], color="red") #Horizontal bar plot
-      #plt.bar(df_frida_foodwaste["FødevareNavn"], df_frida_foodwaste["Spiseligt_%"], color="green")
-      #sns.barplot(data= df_frida_foodwaste, x= 'FødevareNavn', y='Svind_%', hue= "FødevareGruppe", palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
-      df_frida_foodwaste[["FødevareNavn", "FødevareGruppe", "Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
+      #plt.bar(df_frida_foodwaste_sorted["FødevareNavn"], df_frida_foodwaste_sorted["Svind_%"], color="red") #Horizontal bar plot
+      #plt.bar(df_frida_foodwaste_sorted["FødevareNavn"], df_frida_foodwaste_sorted["Spiseligt_%"], color="green")
+      #sns.barplot(data= df_frida_foodwaste_sorted, x= 'FødevareNavn', y='Svind_%', hue= "FødevareGruppe", palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
+      df_frida_foodwaste_sorted[["FødevareNavn","Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
 
-      plt.title(f'List of food-items with over {svind_percentage} percent waste', fontsize=8)
+      plt.title(f'List of top 10 food-items with over {svind_percentage} percent waste from {title_cat}', fontsize=8)
       plt.legend()
       plt.xticks(rotation=75)
       plt.xlabel(f'FødevareNavn lister')
