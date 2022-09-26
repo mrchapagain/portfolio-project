@@ -162,6 +162,9 @@ class FridaDataAnalytics():
       self.df_frida= df_frida
       self.svind_percentage= svind_percentage
       self.title_cat= title_cat
+
+      #slider= widgets.IntSlider(value=0, min=0, max=99,description="Choose food-waste %", orientation= "horizontal", readout= True)
+      #interact(func, svind_percentage=slider)
       
       ## first acess right data from the given dataset
       # Drop the rows with non numeric and change rest of the rows to float type
@@ -191,6 +194,7 @@ class FridaDataAnalytics():
       plt.xticks(rotation=75)
       plt.xlabel(f'FødevareNavn lister')
       plt.ylabel('Spiseligtand and Svind %')
+      #plt.text(x=0, y=0, s= "gg", color= None)
       plt.tight_layout()
       graph=get_graph()
       return graph

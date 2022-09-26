@@ -1,9 +1,11 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+    {% load static %}
 
-    <head>
+<head>
+
+
+ <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -88,7 +90,7 @@
       th:nth-child(even),td:nth-child(even) {
         background-color: rgba(150, 212, 212, 0.4);
       }
-      
+
       .tab button {
         background-color: #b5f0e5;
         float: center;
@@ -110,91 +112,125 @@
     </style>
 
     </head>
-    
-    <body>
-    
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    
-                    <div class="navbar-nav ml-auto">
-                      <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
-                      <a class="nav-link active" href="{% url 'alljobs' %}">Project-Portfolio</a>
-                      <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
-                      <a class="nav-link active" href="{% url 'allanalytics' %}">SocialNetwork-Analytics</a>
-                      <a class="nav-link active" href="{% url 'allfooddatas' %}">Food-CO2-Impact</a>
-                      <a class="nav-link active" href="{% url 'item_todisplay' %}">Dashboard-Know Your Food!</a>
-                    </div>
-
-                </div>
-                </div>
-            </nav>
-        </header>
-
-        <main>
-
-          <!--page to display data from result start here -->
-          <section class="py-6 text-center container">
-              {% block section %}
-              {% endblock section %}
-          </section>
-          <!--page to display data from result end here -->
-
-          <!--page to display data from result start here -->
-          <div class="py-6 text-center container" style="background-color:#0c836f">
-              {% block info_select %}
-                
-              {% endblock info_select %}
-          </div>
-          <!--page to display data from result end here -->
-          
-          <!--page to insert index start here -->
-          <div class="album py-6 bg-light">
-              {% block info_display %}
-              {% endblock info_display %}
-          </div>
-          <!--page to insert index end here -->
-
-          <!--- START of social media connection -->
-          <div class="py-6 text-center container">
-              {% block social_connection %}
-
-              {% endblock social_connection %}
-          </div>
-            
-        </main>
 
 
-    <footer class="text-muted py-6" style="background-color:#b9beba"><hr>
-        <div class="container text-center">
-            <p>CopyRight Mukti R. Chapagain {% now "Y" %}</p>
-        </div>
-    </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-      <script>
-        function openUserinpt(evt, IdName) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-          }
-          tablinks = document.getElementsByClassName("tablinks");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace("active", "");
-          }
-          document.getElementById(IdName).style.display = "block";
-          evt.currentTarget.className += "active";
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header1{grid-area:header;}
+        .menu1{grid-area:menu;}
+        .main1{grid-area:main;}
+        .footer1{grid-area:footer;}
+
+        .grid-container{
+            display: grid;
+            grid-template-areas: 'header header header header header header'
+                                'menu main main main main main'
+                                'footer footer footer footer footer footer'
+                                ;
+            gap: 5px;
+            background-color: rgb(107, 107, 107);
+            padding: 7px;
         }
-        // Get the element with id="defaultOpen" and click on it
-          document.getElementById("defaultOpen").click();
-          // document.getElementById("uiOpen").click();
+
+        .grid-container > div{
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+        }
+           
+    </style>
+</head>
+
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Mukti R. Chapagain</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            
+            <div class="navbar-nav ml-auto">
+              <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
+              <a class="nav-link active" href="{% url 'alljobs' %}">Project-Portfolio</a>
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
+              <a class="nav-link active" href="{% url 'allanalytics' %}">SocialNetwork-Analytics</a>
+              <a class="nav-link active" href="{% url 'allfooddatas' %}">Food-CO2-Impact</a>
+              <a class="nav-link active" href="{% url 'item_todisplay' %}">Dashboard-Know Your Food!</a>
+            </div>
+
+        </div>
+        </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="grid-container">
+
+        <!--div section for header START here -->
+          <div class="header1" >
+                <marquee behavior=" " direction=" "> <h1> Tweeter data Analytics! </h1></marquee>
+          </div> 
+        <!--div section for header END here --> 
+            
           
-        </script>
+        <div class="menu1" style="background-color:#71a39b">
+        <!--div section for user input start here -->
+          {% block info_select %}
+          {% endblock info_select %}
+        <!--div section for user input end here  -->
+        </div>
+
+
+        <div class="main1" style="background-color:#71a39b">
+        <!--page to display figure start here -->
+            {% block info_display %}
+            {% endblock info_display %}
+        <!--page to display figure end here -->  
+        </div>   
+
+        
+
+        <!--div section for Footer START here -->
+        <div class="footer1">
+            <p>CopyRight Mukti R. Chapagain for SESAM 2030, {% now "Y" %}</p>
+        </div>
+        <!--div section for Footer END here -->
     
-  </body>
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script>
+    function openUserinpt(evt, IdName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace("active", "");
+      }
+      document.getElementById(IdName).style.display = "block";
+      evt.currentTarget.className += "active";
+    }
+    // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      // document.getElementById("uiOpen").click();
+      
+    </script>
+
+
+    
+</body>
+
 </html>
