@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 
 from django.http import HttpResponse
 from .apiauth import *
@@ -99,7 +99,3 @@ def  allanalytics(request):
     #ksentiments_top20=ksentiments.head(10)#loc[df_by_keywords.Likes.nlargest(10).index].reset_index(drop=True)[['Created_at', 'Tweets', 'Likes', 'User', 'Analysis']]
 
     return render(request, 'analytics/allanalytics.html', {"df_title_userid":df_title_userid, "tweeter_id":tweeter_id, "keywords":keywords, 'user_id_dict':user_id_dict, 'keyword_dict':keyword_dict, "sentiments":sentiments, "kwordclouds":kwordclouds})
-
-#def analyticsdetail(request, analytics_id):
-    #detailanalytics= get_object_or_404(Analytics, pk=analytics_id)
-    #return render(request, 'aboutme/analyticsdetail.html', {'analytics': detailanalytics})

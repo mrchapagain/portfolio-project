@@ -16,3 +16,9 @@ class Massage(models.Model):
 
     def __str__(self):
         return self.title
+
+class Trendskeyword(models.Model):
+    keyword= models.JSONField(encoder=None, decoder=None, null=True)
+
+    #def __str__(self):
+       # return self.name

@@ -6,12 +6,14 @@
     <!--- Keyword-search user-input box --> 
     <div>
       <h5> </h5>
-      <form action="itm_tosearch", method='post'>
+      <form action="keyword_tosearch", method='post'>
         {% csrf_token %}
-        <label for="itm_name"> <strong> Choose keywords here :> </strong> </label> <br>
-          <select id="itm_name", name="itm_name">
-            {% for i in food_pair %}
-            <option value="{{ i.Product_en }}"> {{ i.Product_en }} <strong>( {{ i.Category_en }} )</strong></option>
+        <label for="key_words"> <strong> Choose keywords here :> </strong> </label> <br>
+          <select id="key_words", name="key_words">
+            {% for kw_dict in keyword_dict %}
+              {% for k, v in kw_dict.keyword.items %}
+                <option value="{{ v }}"> {{ k }} </option>
+              {% endfor %}
             {% endfor %}
           </select>
           <button type="submit" value="Submit" > Click to Submit </button>
@@ -19,10 +21,10 @@
 
             <br><h5> OR </h5>
 
-      <form action="itm_tosearch", method='post'>
+      <form action="keyword_tosearch", method='post'>
           {% csrf_token %}
-          <label for='itm_name'> <strong>  Type keyword here </strong> </label>
-          <input type="text", name='itm_name'> 
+          <label for='key_words'> <strong>  Type keyword here </strong> </label>
+          <input type="text", name='key_words'> 
           <button type="submit" value="Submit">Click to Submit </button>
       </form> <br>
 
@@ -37,10 +39,10 @@
     <div>
       <h5> </h5>
 
-      <form action="cat_tosearch", method='post'>
+      <form action="timeframe_tosearch", method='post'>
         {% csrf_token %}
-        <label for="cat_name"> <strong> Choose Time-frame here :> </strong> </label> <br>
-          <select id="cat_name", name="cat_name">
+        <label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
+          <select id="time_frame", name="time_frame">
 
             {% for cat in food_cat_list %}
             <option value="{{ cat }}"> <strong> {{ cat }} </strong> </option>
@@ -59,7 +61,7 @@
 <!--- Start of info-display section for food item -->
   {% block info_display_baseextended_fooditem %}
   <div style="background-color:#e8f0ef">
-        <h4> Key-words choosen: {{ name_choosen }}</h4>
+        <h4> Key-words choosen: {{ kw_choosen }}</h4>
         <!--First row-->
         <div class="row"> <br>
             <!--- To make two chart display side by side-->        
@@ -133,7 +135,7 @@
   {% block info_display_baseextended_foodgroup %}
 
     <div style="background-color:#e8f0ef">
-        <h4> Time-Frame choosen: {{ name_choosen }}</h4>
+        <h4> Time-Frame choosen: {{ tf_choosen }}</h4>
         <!--First row-->
         <div class="row"> <br> <!--- To make two DataFrame display side by side-->  
             <!--DF-1-->    
