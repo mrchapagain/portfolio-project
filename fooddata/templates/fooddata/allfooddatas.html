@@ -3,12 +3,12 @@
 
 <!--- Start of User-input section for food item -->
   {% block info_select_baseextended_fooditem %}
-    <div class="py-6 text-center container">
+    <!--- Keyword-search user-input box --> 
+    <div>
       <h5> </h5>
-
       <form action="itm_tosearch", method='post'>
         {% csrf_token %}
-        <label for="itm_name"> <strong> Choose food Food-Item here :> </strong> </label>
+        <label for="itm_name"> <strong> Choose keywords here :> </strong> </label> <br>
           <select id="itm_name", name="itm_name">
             {% for i in food_pair %}
             <option value="{{ i.Product_en }}"> {{ i.Product_en }} <strong>( {{ i.Category_en }} )</strong></option>
@@ -17,71 +17,29 @@
           <button type="submit" value="Submit" > Click to Submit </button>
       </form>
 
-      <p><strong>Note:</strong> Choose the food-item from dropdown list to explore detail information.</p><hr> 
-    </div>
+            <br><h5> OR </h5>
+
+      <form action="itm_tosearch", method='post'>
+          {% csrf_token %}
+          <label for='itm_name'> <strong>  Type keyword here </strong> </label>
+          <input type="text", name='itm_name'> 
+          <button type="submit" value="Submit">Click to Submit </button>
+      </form> <br>
+
+      <p><strong>Note:</strong> <i> After Submit keywords trends will be display </i></p>
+    </div> <hr>
   {% endblock info_select_baseextended_fooditem %}
 
 
-<!--- Start of info-display section for food item -->
-  {% block info_display_baseextended_fooditem %}
-  <div class="container" style="background-color:#e8f0ef">
-      <h4> Name of food-item: {{ name_choosen }}</h4>
-      <div class="row"> <br>
-
-          <!--- To make two pie chart display side by side-->        
-          <!--Pie chart for item-->
-          <div class="col">
-            <h5> Share of CO2 contribution</h5> <hr>
-              {% if co2_foodplots_item %}
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food iem" style="width:100%"/> </a>
-              {% endif %}
-          </div>
-
-          <!--Pie chart for item-energy-->
-          <div class="col">
-            <h5> Share of Energy content </h5> <hr>
-              {% if energy_foodplots_item %}
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ energy_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food item" style="width:100%"/> </a>
-              {% endif %}
-          </div>
-      </div> 
-
-          <div class="btn-group"> <br>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
-          </div>
-
-    </div> <hr>
-
-    <!--- Single data-frame of the seleted item-->
-    <div class="text-center container" style="background-color:#e8f0ef"> <br>
-      <h4> CO2 contribution from seleted food_item</h4>
-      <table style="width:100%">
-      <tr>
-          {% for col in choosen_item_data.columns %}
-          <th style="white-space:nowrap"> {{col}} </th>              
-          {% endfor %}
-      </tr>
-      {% for index, row in choosen_item_data.iterrows %}
-      <tr>
-          {% for cell in row %}
-          <td> {{cell}} </td>
-          {% endfor %}
-      </tr>
-      {% endfor %}
-      </table> <br>        
-    </div> <hr>
-
-  {% endblock info_display_baseextended_fooditem %}
-
-
-<!--- Start of User-input section for food group -->
+  <!--- Start of User-input section for food group -->
   {% block info_select_baseextended_foodgroup %}
-    <div class="py-6 text-center container">
+    <!--- Time-frame user-input box --> 
+    <div>
       <h5> </h5>
 
       <form action="cat_tosearch", method='post'>
         {% csrf_token %}
-        <label for="cat_name"> <strong> Choose food category here :> </strong> </label>
+        <label for="cat_name"> <strong> Choose Time-frame here :> </strong> </label> <br>
           <select id="cat_name", name="cat_name">
 
             {% for cat in food_cat_list %}
@@ -90,93 +48,166 @@
 
           </select>
         <button type="submit" value="Submit" onclick="openUserinpt(event, 'food_group')"> Click to Submit </button>
-      </form>
+      </form> <br>
     
-      <p><strong>Note:</strong> Choose the food-category from dropdown list to explore detail information.</p><hr>
-    </div>
+      <p><strong>Note:</strong> <i> After Submit timeframe trends will be display </i></p>
+    </div> <hr>
   {% endblock info_select_baseextended_foodgroup %}
+
+
+
+<!--- Start of info-display section for food item -->
+  {% block info_display_baseextended_fooditem %}
+  <div style="background-color:#e8f0ef">
+        <h4> Key-words choosen: {{ name_choosen }}</h4>
+        <!--First row-->
+        <div class="row"> <br>
+            <!--- To make two chart display side by side-->        
+            <!--graph for interest over time-->
+            <div class="col">
+              <h5> Trends over time </h5> <hr>
+                {% if co2_foodplots_item %}
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food iem" style="width:100%"/> </a>
+                {% endif %}
+            </div>
+
+            <!--Bar plot for interest by region-->
+            <div class="col">
+              <h5> Trends by regions </h5> <hr>
+                {% if energy_foodplots_item %}
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ energy_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food item" style="width:100%"/> </a>
+                {% endif %}
+            </div>
+
+            <!--Second row-->
+            <!--DataFrame and WordCloud for releted quries-->
+            <div class="row"> <br>
+              <!--- To make second two figures display side by side-->
+                <div class="col">
+                  <h5> Releted quries </h5>  <hr> 
+                    {% if science_fact_textdisplay  %}
+                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div> 
+
+        <div class="btn-group"> <br>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
+        </div>
+
+    </div> <hr>
+
+    <!--- Data-frame of the seleted keyword -->
+    <div style="background-color:#e8f0ef">
+      <div class="row"><br>
+        <h5 style="background-color:#a9d1ca"> {{ df_title_keyword }} </h5> <br>
+          <div class="col">
+            <div class="card-body">
+
+              <table style="width:100%">
+                <tr>
+                    {% for col in choosen_item_data.columns %}
+                    <th style="white-space:nowrap"> {{col}} </th>              
+                    {% endfor %}
+                </tr>
+                {% for index, row in choosen_item_data.iterrows %}
+                <tr>
+                    {% for cell in row %}
+                    <td> {{cell}} </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </table> <br> 
+              
+            </div><br>
+          </div>
+      </div>
+  </div><hr>  
+
+  {% endblock info_display_baseextended_fooditem %}
+
 
 
   {% block info_display_baseextended_foodgroup %}
 
-  <div class="container" style="background-color:#e8f0ef">
-    <h4> Name of food-category: {{ category_choosen }}</h4>
-    <div class="row"> <br>
+    <div style="background-color:#e8f0ef">
+        <h4> Time-Frame choosen: {{ name_choosen }}</h4>
+        <!--First row-->
+        <div class="row"> <br> <!--- To make two DataFrame display side by side-->  
+            <!--DF-1-->    
+            <div class="col">
+              <h5> Latest searching trends by country </h5> <hr>
 
-        <!--- To make two pie chart display side by side-->        
-        <!--Pie chart for item-->
-        <div class="col">
-          <h5> Share of average CO2 contribution from {{ category_choosen }} </h5> <hr>
-            {% if co2_category_piechart %}
-              <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_category_piechart|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
-            {% endif %}
-        </div>
+              <table style="width:100%">
+                <tr>
+                    {% for col in choosen_item_data.columns %}
+                      <th style="white-space:nowrap"> {{col}} </th>              
+                    {% endfor %}
+                </tr>
 
-         <!--- Analytic massage of the piechart choosen,, data came from modddel-->
-         <div class="col">
-          <h4>   </h4> Interpretation of the chart <hr>
-            {% if massage %}
-            <p style="width:100%"> {{ massage|safe }}</p>
-            {% endif %}
-        </div>
+                {% for index, row in choosen_item_data.iterrows %}
+                <tr>
+                    {% for cell in row %}
+                      <td> {{cell}} </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+              </table> <br> 
+                
+            </div>
 
-    </div> 
+            <!--DF-2-->
+            <div class="col">
+              <h5> Real-time searching trends </h5> <hr>
 
-        <div class="btn-group"> <br>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
-        </div>
+              <table style="width:100%">
+                <tr>
+                    {% for col in choosen_item_data.columns %}
+                      <th style="white-space:nowrap"> {{col}} </th>              
+                    {% endfor %}
+                </tr>
 
-  </div> <hr>
+                {% for index, row in choosen_item_data.iterrows %}
+                <tr>
+                    {% for cell in row %}
+                      <td> {{cell}} </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+              </table> <br> 
+
+            </div>
+
+            <!--Second row-->
+            <!--DF-3-->
+            <div class="row"> <br>
+              <!--- To make second two figures display side by side-->
+                <div class="col">
+                  <h5> Trending topic per years </h5>  <hr> 
+                    
+                  <table style="width:100%">
+                    <tr>
+                        {% for col in choosen_item_data.columns %}
+                          <th style="white-space:nowrap"> {{col}} </th>              
+                        {% endfor %}
+                    </tr>
+    
+                    {% for index, row in choosen_item_data.iterrows %}
+                    <tr>
+                        {% for cell in row %}
+                          <td> {{cell}} </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                  </table> <br> 
+
+                </div>
+            </div>
+
+        </div> 
+
+    </div> <hr>
 
   {% endblock info_display_baseextended_foodgroup %}
-
-
-
-
-
-
-
-
-
-    <!--Chart on the top and dataframe after the chart-->
-  <!--Chart-->
-  <div class="container" style="background-color:#e8f0ef">
-    <h4>  </h4>
-    <div class="row"> <br>
-          <h4> Overall CO2 contribution</h4> <hr>
-            {% if co2_foodplots_category %}
-              <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_category|safe }}" alt="CO2 contribiution bar chart for food category" style="width:100%"/> </a>
-            {% endif %}
-    </div> 
-        <div class="btn-group"> <br>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
-        </div>
-  </div> <hr>
-
-  <!--dataframe-->
-  <div class="container" style="background-color:#e8f0ef"> <br>
-    <div class="row">
-      <h4 style="background-color:#a9d1ca"> Rows of the 5 higest and 5 least CO2 contributor</h4><hr>
-        <div class="col">
-          <a> <h5 class="card-text"> </h5> </a>
-          <div class="card-body">
-            
-            <table style="width:100%">
-              <tr>
-                {% for col in top10_fooddatas.columns %}
-                  <th style="white-space:nowrap">{{col}}</th>
-                {% endfor %}
-              </tr>
-                {% for index, row in top10_fooddatas.iterrows %}
-                  <tr>
-                    {% for cell in row %}
-                      <td>{{cell}}</td>
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-            </table>           
-            
-          </div>
-        </div>
-    </div>
-  </div>  <hr>

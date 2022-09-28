@@ -16,21 +16,21 @@
 {% block info_select %}
 
       <div class="tab" style="background-color:#0c836f">
-        <h5><strong>BUTTON</strong> to choose Google-Trends search options </h5>
-        <button class="tablinks" onclick="openUserinpt(event, 'food_item')" id="defaultOpen">Search by idivisual Food name</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'food_group')" >Search by Food group</button><br><br>
+        <h4><strong>BUTTON</strong> to choose Google-Trends search options </h4>
+        <button class="tablinks" onclick="openUserinpt(event, 'food_item')" id="defaultOpen"> Search with your key-words </button>
+        <button class="tablinks" onclick="openUserinpt(event, 'food_group')" > Search with time-frame </button><br><br>
       </div> <hr>
 
       <!---  info selection -->
       <div id="food_item" class="tabcontent" style="background-color:#a9d1ca">
-          <h4>Food item choose box</h4>
+          <h4>Key-words input box</h4>
           {% block info_select_baseextended_fooditem %}
           {% endblock info_select_baseextended_fooditem %}
       </div>
 
       <!---  info selection -->
       <div id='food_group' class="tabcontent" style="background-color:#a9d1ca">
-          <h4> Food category choose box</h3>
+          <h4> Time-frame input box </h3>
           {% block info_select_baseextended_foodgroup %}
           {% endblock info_select_baseextended_foodgroup %}
       </div>
