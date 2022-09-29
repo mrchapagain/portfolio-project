@@ -2,12 +2,14 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 # Create your models here.
-class Climatedf(models.Model):
+class Googledf(models.Model):
     df= models.FileField('uploads/%Y/%m/%d/')
 
 
-class Foodinput(models.Model):
-    cat_items_dict= models.JSONField(encoder=None, decoder=None)
+class Country_Name(models.Model):
+    pn= models.JSONField(encoder=None, decoder=None)
+    #def __str__(self):
+       # return self.name
 
 
 class Massage(models.Model):
@@ -22,3 +24,14 @@ class Trendskeyword(models.Model):
 
     #def __str__(self):
        # return self.name
+
+class Category(models.Model):
+    cat= models.JSONField(encoder=None, decoder=None, null=True)
+
+
+class TimeFrame(models.Model):
+    time= models.JSONField(encoder=None, decoder=None, null=True)
+
+class SearchType(models.Model):
+    type= models.JSONField(encoder=None, decoder=None, null=True)
+
