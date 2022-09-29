@@ -42,7 +42,7 @@ The build_payload method from Pytrends is used to build a list of keywords that 
 
 # Function for connecting google and build playload
 def pytrends_func(kw_list, timeframe):
-    # Configuring connection wich receives two important parameters; hl (hosting language) & tz (timezone).
+    # Configuring connection wich receives two important parameters; hl (hosting language) & tz (timezone).timeframe=from_date+' '+today_date
     trends = TrendReq(hl='en-US', tz= 360, timeout=(10,25))
     # Update playload
     trends.build_payload(kw_list=kw_list, cat=0, timeframe=timeframe, geo= '', gprop='') #timeframe='today 5-y', cat 0(all), 45(Health), Food & Drink: 71
@@ -136,15 +136,15 @@ for kw in kw_list:
 
 
 # function to extract interest over time
-def gt_trends_over_time(trends):
+def gt_trends_over_time(trends, kw_list):
     # Interest Over Time
     data_over_time= trends.interest_over_time().drop(columns='isPartial')
     data_over_time = data_over_time.reset_index(drop=False)
     return data_over_time
 
 """
-display(gt_trends_over_time(trends).tail())
-data_over_time= gt_trends_over_time(trends)
+display(gt_trends_over_time(trends, kw_list).tail())
+data_over_time= gt_trends_over_time(trends, kw_list)
 
 # Disply figure as lineplot
 display_lineplot(data_over_time, "date", kw_list, title= f'Keyword Web Search of {kw_list} Interest Over Time', x_label= "date", y_label="Trends over time")
@@ -152,14 +152,14 @@ display_lineplot(data_over_time, "date", kw_list, title= f'Keyword Web Search of
 
 
 # Function for Historical hourly interest
-def gt_hh_trends(trends):
+def gt_hh_trends(trends,kw_list):
     # Historical Hourly Interest (The hourly interest of the keyword)
     hourly_trends= trends.get_historical_interest(kw_list, year_start=2022, month_start=9, day_start=1, hour_start=0, year_end=2022, month_end=9, day_end=25, hour_end=0, cat=0, sleep=0)
     hourly_trends = hourly_trends.reset_index().drop(columns='isPartial')
     return hourly_trends[hourly_trends[kw_list[0]]> 0]
 
 """
-data_hourly_trends=gt_hh_trends(trends)
+data_hourly_trends=gt_hh_trends(trends, kw_list)
 display(data_hourly_trends.head())
 
 # Disply figure as lineplot
@@ -168,7 +168,7 @@ display_lineplot(data_hourly_trends, "date", kw_list, title= f'Hourly search tre
 
 
 # Function for interest by region
-def gt_trends_byregion(trends):
+def gt_trends_byregion(trends, kw_list):
     #trends= pytrends_func(["Healthy diet"], 'today 12-m', geo='', gprop='')
     # resolution can be either CITY, COUNTRY or REGION
     trends_by_region= trends.interest_by_region(resolution= 'COUNTRY', inc_low_vol=False, inc_geo_code=False)
@@ -177,7 +177,7 @@ def gt_trends_byregion(trends):
     return trends_by_region
 
 """
-df_byregion= gt_trends_byregion(trends)
+df_byregion= gt_trends_byregion(trends, kw_list)
 display(df_byregion.head())
 
 display_barplot(df_byregion.iloc[:10,:], "geoName", kw_list, f'Top 10 google-search trends of keywors: "{kw_list}" by regions')
@@ -185,30 +185,31 @@ display_barplot(df_byregion.iloc[:10,:], "geoName", kw_list, f'Top 10 google-sea
 
 
 #function for releted queries
-def gt_related_queries(trends):
+def gt_related_queries(trends, kw_list):
     # Related Queries (keywords that are closely tied to a primary keyword of the choice)
     related_queries= trends.related_queries()
     df= pd.DataFrame()# Empty dataframe
     for kw in kw_list:
         df1= related_queries[kw]['top']
         df= pd.concat([df, df1], axis = 1)
+    #df.style.set_caption("f'10 Releted Quries from google search trends with keyword { kw_list }'")
     return df
 
 """
-releted_queries=gt_related_queries(trends)
+releted_queries=gt_related_queries(trends, kw_list)
 releted_queries.head()
 
 """
 
 
-# Function for topics of the year
+# Function for trends of the year
 def gt_topics_ofthe_year(trends):
     df= pd.DataFrame()# Empty dataframe
     # loop over the year to extract data for each year and put in dataframe as columns
     for year in range(2004, 2022):
         trending = trends.top_charts(year, hl= "en-US", tz=300, geo= "GLOBAL")
         df[year]= trending.title     
-    return df.iloc[:, 9:19].head(10)
+    return df.head(10) #.iloc[:, 9:19]
 
 """
 gt_topics_ofthe_year(trends)
@@ -216,15 +217,15 @@ gt_topics_ofthe_year(trends)
 
 
 # Function to get latest trending searches in specific countries
-def latest_trending_searches(trends, country_dict):
+def latest_trending_searches(trends, country_dict_keys):
     df_trends= pd.DataFrame()# Empty dataframe
-    for country_key, country_val in country_dict.items():
-        df_trends[country_key] = trends.trending_searches(pn= country_val)
+    for country_key in country_dict_keys:
+        df_trends[country_key] = trends.trending_searches(pn= country_key)
     return df_trends.head(10)
 
 """
-country_dict= {"Denmark":"denmark", "United_State":"united_states", "Sweden":"sweden", "India":"india"}
-latest_trending_searches(trends, country_dict)
+country_dict= {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germeny": "DE"}
+latest_trending_searches(trends, country_dict_keys)
 """
 
 
@@ -238,7 +239,7 @@ def realtime_search_trends(trends, country_dict):
     return df_trends.head(10)
 
 """
-country_dict= {"United_State":"US", "Russia":"RU", "Sweden":"SE", "Germeny":"DE"}
+country_dict= {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germeny": "DE"}
 realtime_search_trends(trends, country_dict)
 """
 

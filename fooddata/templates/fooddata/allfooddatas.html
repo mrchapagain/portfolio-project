@@ -2,7 +2,7 @@
 {% load static %}
 
 <!--- Start of User-input section for food item -->
-  {% block info_select_baseextended_fooditem %}
+  {% block info_select_baseextended_keyword %}
     <!--- Keyword-search user-input box --> 
     <div>
       <h5> </h5>
@@ -11,7 +11,7 @@
         <label for="key_words"> <strong> Choose keywords here :> </strong> </label> <br>
           <select id="key_words", name="key_words">
             {% for kw_dict in keyword_dict %}
-              {% for k, v in kw_dict.keyword.items %}
+              {% for k, v in kw_dict.items %}
                 <option value="{{ v }}"> {{ k }} </option>
               {% endfor %}
             {% endfor %}
@@ -23,18 +23,18 @@
 
       <form action="keyword_tosearch", method='post'>
           {% csrf_token %}
-          <label for='key_words'> <strong>  Type keyword here </strong> </label>
+          <label for='key_words'> <strong>  Type keyword here </strong> </label> <br>
           <input type="text", name='key_words'> 
           <button type="submit" value="Submit">Click to Submit </button>
       </form> <br>
 
       <p><strong>Note:</strong> <i> After Submit keywords trends will be display </i></p>
     </div> <hr>
-  {% endblock info_select_baseextended_fooditem %}
+  {% endblock info_select_baseextended_keyword %}
 
 
   <!--- Start of User-input section for food group -->
-  {% block info_select_baseextended_foodgroup %}
+  {% block info_select_baseextended_timeframe %}
     <!--- Time-frame user-input box --> 
     <div>
       <h5> </h5>
@@ -44,8 +44,8 @@
         <label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
           <select id="time_frame", name="time_frame">
 
-            {% for cat in food_cat_list %}
-            <option value="{{ cat }}"> <strong> {{ cat }} </strong> </option>
+            {% for k, v in tf_dict.items %}
+            <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
             {% endfor %}
 
           </select>
@@ -54,156 +54,204 @@
     
       <p><strong>Note:</strong> <i> After Submit timeframe trends will be display </i></p>
     </div> <hr>
-  {% endblock info_select_baseextended_foodgroup %}
+  {% endblock info_select_baseextended_timeframe %}
 
 
 
 <!--- Start of info-display section for food item -->
-  {% block info_display_baseextended_fooditem %}
-  <div style="background-color:#e8f0ef">
-        <h4> Key-words choosen: {{ kw_choosen }}</h4>
-        <!--First row-->
-        <div class="row"> <br>
-            <!--- To make two chart display side by side-->        
-            <!--graph for interest over time-->
-            <div class="col">
-              <h5> Trends over time </h5> <hr>
-                {% if co2_foodplots_item %}
-                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ co2_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food iem" style="width:100%"/> </a>
-                {% endif %}
-            </div>
+  {% block info_display_baseextended_keyword %}
+    <div style="background-color:#e8f0ef">
+          <h4> Key-words choosen: {{ kw_choosen }}</h4>
+          <!--First row-->
+          <div class="row"> <br>
+              <!--- To make two chart display side by side-->        
+              <!--graph for interest over time-->
+              <div class="col">
+                <h5> Trends over time </h5> <hr>
+                  {% if vis_trends_overtime %}
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ vis_trends_overtime|safe }}" alt="Graph for google trends over time" style="width:100%"/> </a>
+                  {% endif %}
+              </div>
 
-            <!--Bar plot for interest by region-->
-            <div class="col">
-              <h5> Trends by regions </h5> <hr>
-                {% if energy_foodplots_item %}
-                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ energy_foodplots_item|safe }}" alt="CO2 contribiution bar chart for food item" style="width:100%"/> </a>
-                {% endif %}
-            </div>
+              <!--Bar plot for interest by region-->
+              <div class="col">
+                <h5> Trends by regions </h5> <hr>
+                  {% if vis_trends_byregion %}
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ vis_trends_byregion|safe }}" alt="Graph for google trends by region" style="width:100%"/> </a>
+                  {% endif %}
+              </div>
 
-            <!--Second row-->
-            <!--DataFrame and WordCloud for releted quries-->
-            <div class="row"> <br>
-              <!--- To make second two figures display side by side-->
+          </div> 
+          <!--End of First row-->
+          
+          <!--Second row-->
+          <!--DataFrame and WordCloud for releted quries-->
+          <div class="row"> <br>
+                <!--- To make second two figures display side by side-->
+                <!--First column for df-->
                 <div class="col">
-                  <h5> Releted quries </h5>  <hr> 
-                    {% if science_fact_textdisplay  %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
-                    {% endif %}
+                      <h4> Data-table of Releted quries </h4> <hr>
+
+                      <!--- Data-frame of the seleted keyword -->
+                      <div class="col" style="background-color:#e8f0ef">
+                        <div class="row"><br>
+                          <h5> {{ df_title_keyword }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                            <div class="col">
+                              <div class="card-body">
+
+                                <table style="width:100%">
+                                  <tr>
+                                      {% for col in df_trends_rq10.columns %}
+                                      <th style="white-space:nowrap"> {{col}} </th>              
+                                      {% endfor %}
+                                  </tr>
+                                  {% for index, row in df_trends_rq10.iterrows %}
+                                  <tr>
+                                      {% for cell in row %}
+                                      <td> {{cell}} </td>
+                                      {% endfor %}
+                                  </tr>
+                                  {% endfor %}
+                                  </table> <br> 
+                                
+                              </div><br>
+                            </div>
+                        </div>
+                      </div>
+                      <!--- END of Data-frame of the seleted keyword -->
+
                 </div>
-            </div>
+                <!--- END of col -->
 
-        </div> 
+                <!--Second column for wordcloud-->
+                <div class="col">
+                      <h5> Word-cloud of releted quries </h5>  <hr> 
+                      {% if vis_trends_reletedquries  %}
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ vis_trends_reletedquries|safe }}" alt="Graph for google trends for releted quries" style="width:100%"/> </a>
+                      {% endif %}
 
-        <div class="btn-group"> <br>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
-        </div>
+                      <div class="btn-group"> <br>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Click the image for bigger view </button>
+                      </div>
+                </div>
+
+          </div>
+          <!--- END of second row div -->
 
     </div> <hr>
 
-    <!--- Data-frame of the seleted keyword -->
-    <div style="background-color:#e8f0ef">
-      <div class="row"><br>
-        <h5 style="background-color:#a9d1ca"> {{ df_title_keyword }} </h5> <br>
-          <div class="col">
-            <div class="card-body">
-
-              <table style="width:100%">
-                <tr>
-                    {% for col in choosen_item_data.columns %}
-                    <th style="white-space:nowrap"> {{col}} </th>              
-                    {% endfor %}
-                </tr>
-                {% for index, row in choosen_item_data.iterrows %}
-                <tr>
-                    {% for cell in row %}
-                    <td> {{cell}} </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-                </table> <br> 
-              
-            </div><br>
-          </div>
-      </div>
-  </div><hr>  
-
-  {% endblock info_display_baseextended_fooditem %}
+  {% endblock info_display_baseextended_keyword %}
 
 
 
-  {% block info_display_baseextended_foodgroup %}
+  {% block info_display_baseextended_timeframe %}
 
     <div style="background-color:#e8f0ef">
         <h4> Time-Frame choosen: {{ tf_choosen }}</h4>
+        
         <!--First row-->
         <div class="row"> <br> <!--- To make two DataFrame display side by side-->  
             <!--DF-1-->    
             <div class="col">
-              <h5> Latest searching trends by country </h5> <hr>
+                <h5> Latest searching trends by country </h5> <hr>
 
-              <table style="width:100%">
-                <tr>
-                    {% for col in choosen_item_data.columns %}
-                      <th style="white-space:nowrap"> {{col}} </th>              
-                    {% endfor %}
-                </tr>
+                <!--- Data-frame of the seleted keyword -->
+                <div class="col" style="background-color:#e8f0ef">
+                  <div class="row"><br>
+                    <h5> {{ df_title_ls }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                      <div class="col">
+                        <div class="card-body">
 
-                {% for index, row in choosen_item_data.iterrows %}
-                <tr>
-                    {% for cell in row %}
-                      <td> {{cell}} </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-              </table> <br> 
+                          <table style="width:100%">
+                            <tr>
+                                {% for col in df_trends_latestsearch.columns %}
+                                <th style="white-space:nowrap"> {{col}} </th>              
+                                {% endfor %}
+                            </tr>
+                            {% for index, row in df_trends_latestsearch.iterrows %}
+                            <tr>
+                                {% for cell in row %}
+                                <td> {{cell}} </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                            </table> <br> 
+                          
+                        </div><br>
+                      </div>
+                  </div>
+                </div>
+                <!--- END of Data-frame of the seleted keyword -->
                 
             </div>
 
             <!--DF-2-->
             <div class="col">
-              <h5> Real-time searching trends </h5> <hr>
+                <h5> Real-time searching trends </h5> <hr>
 
-              <table style="width:100%">
-                <tr>
-                    {% for col in choosen_item_data.columns %}
-                      <th style="white-space:nowrap"> {{col}} </th>              
-                    {% endfor %}
-                </tr>
+                <!--- Data-frame of the seleted keyword -->
+                <div class="col" style="background-color:#e8f0ef">
+                  <div class="row"><br>
+                    <h5> {{ df_title_rt }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                      <div class="col">
+                        <div class="card-body">
 
-                {% for index, row in choosen_item_data.iterrows %}
-                <tr>
-                    {% for cell in row %}
-                      <td> {{cell}} </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-              </table> <br> 
+                          <table style="width:100%">
+                            <tr>
+                                {% for col in df_trends_realtime.columns %}
+                                <th style="white-space:nowrap"> {{col}} </th>              
+                                {% endfor %}
+                            </tr>
+                            {% for index, row in df_trends_realtime.iterrows %}
+                            <tr>
+                                {% for cell in row %}
+                                <td> {{cell}} </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                            </table> <br> 
+                          
+                        </div><br>
+                      </div>
+                  </div>
+                </div>
+                <!--- END of Data-frame of the seleted keyword -->              
 
             </div>
 
             <!--Second row-->
             <!--DF-3-->
             <div class="row"> <br>
-              <!--- To make second two figures display side by side-->
                 <div class="col">
-                  <h5> Trending topic per years </h5>  <hr> 
+                    <h5> Trending topic per years </h5>  <hr> 
                     
-                  <table style="width:100%">
-                    <tr>
-                        {% for col in choosen_item_data.columns %}
-                          <th style="white-space:nowrap"> {{col}} </th>              
-                        {% endfor %}
-                    </tr>
-    
-                    {% for index, row in choosen_item_data.iterrows %}
-                    <tr>
-                        {% for cell in row %}
-                          <td> {{cell}} </td>
-                        {% endfor %}
-                    </tr>
-                    {% endfor %}
-                  </table> <br> 
+                    <!--- Data-frame of the seleted keyword -->
+                    <div class="col" style="background-color:#e8f0ef">
+                      <div class="row"><br>
+                        <h5> {{ df_title_toy }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                          <div class="col">
+                            <div class="card-body">
+
+                              <table style="width:100%">
+                                <tr>
+                                    {% for col in df_trends_ofyears.columns %}
+                                    <th style="white-space:nowrap"> {{col}} </th>              
+                                    {% endfor %}
+                                </tr>
+                                {% for index, row in df_trends_ofyears.iterrows %}
+                                <tr>
+                                    {% for cell in row %}
+                                    <td> {{cell}} </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                                </table> <br> 
+                              
+                            </div><br>
+                          </div>
+                      </div>
+                    </div>
+                    <!--- END of Data-frame of the seleted keyword -->                 
 
                 </div>
             </div>
@@ -212,4 +260,4 @@
 
     </div> <hr>
 
-  {% endblock info_display_baseextended_foodgroup %}
+  {% endblock info_display_baseextended_timeframe %}
