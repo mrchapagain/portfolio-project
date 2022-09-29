@@ -209,7 +209,7 @@ def gt_topics_ofthe_year(trends):
     for year in range(2004, 2022):
         trending = trends.top_charts(year, hl= "en-US", tz=300, geo= "GLOBAL")
         df[year]= trending.title     
-    return df.head(10) #.iloc[:, 9:19]
+    return df.head(5) #.iloc[:, 9:19]
 
 """
 gt_topics_ofthe_year(trends)
@@ -221,7 +221,7 @@ def latest_trending_searches(trends, country_dict_keys):
     df_trends= pd.DataFrame()# Empty dataframe
     for country_key in country_dict_keys:
         df_trends[country_key] = trends.trending_searches(pn= country_key)
-    return df_trends.head(10)
+    return df_trends.head(5)
 
 """
 country_dict= {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germeny": "DE"}
@@ -236,7 +236,7 @@ def realtime_search_trends(trends, country_dict):
     for country_key, country_val in country_dict.items():
         df_trends[country_key] = trends.realtime_trending_searches(pn=country_val)["title"]
         
-    return df_trends.head(10)
+    return df_trends.head(5)
 
 """
 country_dict= {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germeny": "DE"}

@@ -6,18 +6,18 @@ from .models import Country_Name, Trendskeyword,  TimeFrame
 def keyword_tosearch(request):
     kw_choosen= request.POST['key_words']
     kw_choosen= [kw_choosen]
+    tf_choosen= request.POST['time_frame']
     
     # Lets define variables for user input
     keyword_dict= [{"Healthy Diet":"Healthy Diet", "Protein Diet": "Protein Diet", "Healthy Food": "Healthy Food"}] #Trendskeyword.objects.all()
     tf_dict = {"today-12months":'today 12-m', "today-5years":'today 5-y'} #TimeFrame.objects.all()
-    timeframe= tf_dict["today-12months"]
     
     pn_dict = {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
     st_dict = {"Default":"", "Image": "image", "News": "news"}
     cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
     
     # Lets call the function to get trends object
-    trends= pytrends_func(kw_choosen, timeframe)
+    trends= pytrends_func(kw_choosen, tf_choosen)
 
     # calling function for interest over time then get the graph with relavent function
     df_trends_overtime = gt_trends_over_time(trends, kw_choosen)
@@ -42,8 +42,37 @@ def keyword_tosearch(request):
     
 
 def timeframe_tosearch(request):
-    tf_choosen= request.POST['time_frame']
+    #tf_choosen= request.POST['time_frame']
 
+    # Lets define variables for user input
+    keyword_dict= [{"Healthy Diet":"Healthy Diet", "Protein Diet": "Protein Diet", "Healthy Food": "Healthy Food"}] #Trendskeyword.objects.all()
+    tf_dict = {"today-12months":'today 12-m', "today-5years":'today 5-y'} #TimeFrame.objects.all()
+    timeframe= tf_dict["today-5years"]
+    kw_list= ["Healthy Diet", "Protein Diet"] # list(keyword_dict[0].values())
+    
+    pn_dict = {"united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
+    st_dict = {"Default":"", "Image": "image", "News": "news"}
+    cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
+
+    # Lets call the function to get trends object
+    trends= pytrends_func(kw_list, timeframe)
+
+    # calling function for trends of the year
+    df_trends_ofyears = gt_topics_ofthe_year(trends)
+    df_title_toy= f'Top 5 rows from the google trends of the years'
+
+    # calling function for latest trending searches 
+    df_trends_latestsearch = latest_trending_searches(trends, pn_dict.keys())
+    df_title_ls= f'Top 5 rows from the google latest trending searches within last 24 hours'
+
+    # calling function for Realtime search trends
+    #df_trends_realtime = realtime_search_trends(trends, pn_dict)
+    #df_title_rt= f'Top 5 rows from the google realtime searching trends within last 24 hours'
+ 
+    return render(request, 'fooddata/allfooddatas.html', {"df_title_toy":df_title_toy, "df_title_ls":df_title_ls, "keyword_dict":keyword_dict, 'pn_dict':pn_dict, "tf_dict":tf_dict, "df_trends_ofyears":df_trends_ofyears, "df_trends_latestsearch":df_trends_latestsearch})
+
+
+def allfooddatas(request):
     # Lets define variables for user input
     keyword_dict= [{"Healthy Diet":"Healthy Diet", "Protein Diet": "Protein Diet", "Healthy Food": "Healthy Food"}] #Trendskeyword.objects.all()
     tf_dict = {"today-12months":'today 12-m', "today-5years":'today 5-y'} #TimeFrame.objects.all()
@@ -54,33 +83,17 @@ def timeframe_tosearch(request):
     st_dict = {"Default":"", "Image": "image", "News": "news"}
     cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
 
+
     # Lets call the function to get trends object
     trends= pytrends_func(kw_list, timeframe)
-
+    
     # calling function for trends of the year
     df_trends_ofyears = gt_topics_ofthe_year(trends)
-    df_title_toy= f'Top 10 rows of the data from the google trends search for timeframe "{ tf_choosen }"'
+    df_title_toy= f'Top 5 rows from the google trends of the years'
 
     # calling function for latest trending searches 
     df_trends_latestsearch = latest_trending_searches(trends, pn_dict.keys())
-    df_title_ls= f'Top 10 rows of the data from the google trends search for timeframe "{ tf_choosen }"'
-
-    # calling function for Realtime search trends
-    df_trends_realtime = realtime_search_trends(trends, pn_dict)
-    df_title_rt= f'Top 10 rows of the data from the google trends search for timeframe "{ tf_choosen }"'
- 
-    return render(request, 'fooddata/allfooddatas.html', {"df_title_toy":df_title_toy, "df_title_ls":df_title_ls, "df_title_rt":df_title_rt, "keyword_dict":keyword_dict, 'tf_choosen':tf_choosen, 'pn_dict':pn_dict, "tf_dict":tf_dict, "df_trends_ofyears":df_trends_ofyears, "df_trends_latestsearch":df_trends_latestsearch, "df_trends_realtime":df_trends_realtime})
+    df_title_ls= f'Top 5 rows from the google latest trending searches within last 24 hours'
 
 
-def allfooddatas(request):
-    # Lets define variables for user input
-    keyword_dict= [{"Healthy Diet":"Healthy Diet", "Protein Diet": "Protein Diet", "Healthy Food": "Healthy Food"}] #Trendskeyword.objects.all()
-    tf_dict = {"today-12months":'today 12-m', "today-5years":'today 5-y'} #TimeFrame.objects.all()
-    timeframe= tf_dict["today-12months"]
-    
-    pn_dict = {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
-    st_dict = {"Default":"", "Image": "image", "News": "news"}
-    cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
-
-
-    return render(request, 'fooddata/allfooddatas.html', {"keyword_dict":keyword_dict, "pn_dict":pn_dict, "tf_dict":tf_dict, "st_dict":st_dict, "cat_dict":cat_dict}) 
+    return render(request, 'fooddata/allfooddatas.html', {"keyword_dict":keyword_dict, "pn_dict":pn_dict, "tf_dict":tf_dict, "st_dict":st_dict, "cat_dict":cat_dict, "df_trends_ofyears":df_trends_ofyears, "df_title_toy":df_title_toy, "df_trends_latestsearch":df_trends_latestsearch, "df_title_ls":df_title_ls}) 

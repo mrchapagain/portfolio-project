@@ -5,31 +5,50 @@
   {% block info_select_baseextended_keyword %}
     <!--- Keyword-search user-input box --> 
     <div>
-      <h5> </h5>
-      <form action="keyword_tosearch", method='post'>
-        {% csrf_token %}
-        <label for="key_words"> <strong> Choose keywords here :> </strong> </label> <br>
-          <select id="key_words", name="key_words">
-            {% for kw_dict in keyword_dict %}
-              {% for k, v in kw_dict.items %}
-                <option value="{{ v }}"> {{ k }} </option>
-              {% endfor %}
-            {% endfor %}
-          </select>
-          <button type="submit" value="Submit" > Click to Submit </button>
-      </form>
-
-            <br><h5> OR </h5>
-
-      <form action="keyword_tosearch", method='post'>
+        <h5> </h5>
+        <form action="keyword_tosearch", method='post'>
           {% csrf_token %}
-          <label for='key_words'> <strong>  Type keyword here </strong> </label> <br>
-          <input type="text", name='key_words'> 
-          <button type="submit" value="Submit">Click to Submit </button>
-      </form> <br>
+          <label for="key_words"> <strong> Choose keywords here :> </strong> </label> <br>
+            
+            <select id="key_words", name="key_words">
+              {% for kw_dict in keyword_dict %}
+                {% for k, v in kw_dict.items %}
+                  <option value="{{ v }}"> {{ k }} </option>
+                {% endfor %}
+              {% endfor %}
+            </select>
 
-      <p><strong>Note:</strong> <i> After Submit keywords trends will be display </i></p>
+                    <h5> and </h5>
+
+            <select id="time_frame", name="time_frame">
+              {% for k, v in tf_dict.items %}
+                <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
+              {% endfor %}
+            </select> <br> <br>
+
+            <button type="submit" value="Submit" > Click to Submit both keyword & Timeframe</button>
+        </form>
+                              <hr> <h5> OR </h5>
+
+        <form action="keyword_tosearch", method='post'>
+            {% csrf_token %}
+            <label for='key_words'> <strong>  Type keyword here </strong> </label> <br>
+            
+            <input type="text", name='key_words'> 
+
+                        <h5> and </h5>
+
+            <select id="time_frame", name="time_frame">
+              {% for k, v in tf_dict.items %}
+                <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
+              {% endfor %}
+            </select> <br> <br>
+
+            <button type="submit" value="Submit">Click to Submit both keyword & Timeframe </button>
+        </form>
+        
     </div> <hr>
+
   {% endblock info_select_baseextended_keyword %}
 
 
@@ -41,18 +60,18 @@
 
       <form action="timeframe_tosearch", method='post'>
         {% csrf_token %}
-        <label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
+        <!---<label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
           <select id="time_frame", name="time_frame">
 
             {% for k, v in tf_dict.items %}
             <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
             {% endfor %}
 
-          </select>
-        <button type="submit" value="Submit" onclick="openUserinpt(event, 'food_group')"> Click to Submit </button>
+          </select>--> 
+        <br> <button type="submit" value="Submit"> Click to display </button>
       </form> <br>
     
-      <p><strong>Note:</strong> <i> After Submit timeframe trends will be display </i></p>
+      <p><strong>Note:</strong> <i> After click trends will be display </i></p>
     </div> <hr>
   {% endblock info_select_baseextended_timeframe %}
 
@@ -147,98 +166,28 @@
   {% block info_display_baseextended_timeframe %}
 
     <div style="background-color:#e8f0ef">
-        <h4> Time-Frame choosen: {{ tf_choosen }}</h4>
+        <h4> </h4>
         
-        <!--First row-->
-        <div class="row"> <br> <!--- To make two DataFrame display side by side-->  
-            <!--DF-1-->    
-            <div class="col">
-                <h5> Latest searching trends by country </h5> <hr>
-
-                <!--- Data-frame of the seleted keyword -->
-                <div class="col" style="background-color:#e8f0ef">
-                  <div class="row"><br>
-                    <h5> {{ df_title_ls }} </h5> <br> <!--style="background-color:#a9d1ca"-->
-                      <div class="col">
-                        <div class="card-body">
-
-                          <table style="width:100%">
-                            <tr>
-                                {% for col in df_trends_latestsearch.columns %}
-                                <th style="white-space:nowrap"> {{col}} </th>              
-                                {% endfor %}
-                            </tr>
-                            {% for index, row in df_trends_latestsearch.iterrows %}
-                            <tr>
-                                {% for cell in row %}
-                                <td> {{cell}} </td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                            </table> <br> 
-                          
-                        </div><br>
-                      </div>
-                  </div>
-                </div>
-                <!--- END of Data-frame of the seleted keyword -->
-                
-            </div>
-
-            <!--DF-2-->
-            <div class="col">
-                <h5> Real-time searching trends </h5> <hr>
-
-                <!--- Data-frame of the seleted keyword -->
-                <div class="col" style="background-color:#e8f0ef">
-                  <div class="row"><br>
-                    <h5> {{ df_title_rt }} </h5> <br> <!--style="background-color:#a9d1ca"-->
-                      <div class="col">
-                        <div class="card-body">
-
-                          <table style="width:100%">
-                            <tr>
-                                {% for col in df_trends_realtime.columns %}
-                                <th style="white-space:nowrap"> {{col}} </th>              
-                                {% endfor %}
-                            </tr>
-                            {% for index, row in df_trends_realtime.iterrows %}
-                            <tr>
-                                {% for cell in row %}
-                                <td> {{cell}} </td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                            </table> <br> 
-                          
-                        </div><br>
-                      </div>
-                  </div>
-                </div>
-                <!--- END of Data-frame of the seleted keyword -->              
-
-            </div>
-
-            <!--Second row-->
-            <!--DF-3-->
-            <div class="row"> <br>
-                <div class="col">
-                    <h5> Trending topic per years </h5>  <hr> 
+          <!--First row-->
+          <div class="row"> <br> <!--- To make two DataFrame display side by side-->  
+              <!--DF-1-->    
+              <div class="col">
+                  <h5> Latest searching trends by country </h5> <hr>
                     
-                    <!--- Data-frame of the seleted keyword -->
+                  <!--- Data-frame of the seleted keyword -->
                     <div class="col" style="background-color:#e8f0ef">
                       <div class="row"><br>
-                        <h5> {{ df_title_toy }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                        <h5> {{ df_title_ls }} </h5> <br> <!--style="background-color:#a9d1ca"-->
                           <div class="col">
                             <div class="card-body">
 
                               <table style="width:100%">
                                 <tr>
-                                    {% for col in df_trends_ofyears.columns %}
+                                    {% for col in df_trends_latestsearch.columns %}
                                     <th style="white-space:nowrap"> {{col}} </th>              
                                     {% endfor %}
                                 </tr>
-                                {% for index, row in df_trends_ofyears.iterrows %}
+                                {% for index, row in df_trends_latestsearch.iterrows %}
                                 <tr>
                                     {% for cell in row %}
                                     <td> {{cell}} </td>
@@ -251,12 +200,48 @@
                           </div>
                       </div>
                     </div>
-                    <!--- END of Data-frame of the seleted keyword -->                 
+                    <!--- END of Data-frame of the seleted keyword -->
+              </div>
 
-                </div>
-            </div>
+          </div> 
 
-        </div> 
+            
+          <!--Second row-->
+          <!--DF-3-->
+          <div class="row"> <br>
+                  <div class="col">
+                      <h5> Trending topic per years </h5>  <hr> 
+                      
+                      <!--- Data-frame of the seleted keyword -->
+                      <div class="col" style="background-color:#e8f0ef">
+                        <div class="row"><br>
+                          <h5> {{ df_title_toy }} </h5> <br> <!--style="background-color:#a9d1ca"-->
+                            <div class="col">
+                              <div class="card-body">
+
+                                <table style="width:100%">
+                                  <tr>
+                                      {% for col in df_trends_ofyears.columns %}
+                                      <th style="white-space:nowrap"> {{col}} </th>              
+                                      {% endfor %}
+                                  </tr>
+                                  {% for index, row in df_trends_ofyears.iterrows %}
+                                  <tr>
+                                      {% for cell in row %}
+                                      <td> {{cell}} </td>
+                                      {% endfor %}
+                                  </tr>
+                                  {% endfor %}
+                                  </table> <br> 
+                                
+                              </div><br>
+                            </div>
+                        </div>
+                      </div>
+                      <!--- END of Data-frame of the seleted keyword -->                 
+
+                  </div>
+          </div>
 
     </div> <hr>
 
