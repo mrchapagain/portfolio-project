@@ -6,9 +6,9 @@
     <!--- Keyword-search user-input box --> 
     <div>
         <h5> </h5>
-        <form action="keyword_tosearch", method='post'>
+        <form action="keyword_tosearch", method='post' style="background-color:#0c836f">
           {% csrf_token %}
-          <label for="key_words"> <strong> Choose keywords here :> </strong> </label> <br>
+          <label for="key_words"> <strong> keywords </strong> </label> <br>
             
             <select id="key_words", name="key_words">
               {% for kw_dict in keyword_dict %}
@@ -18,7 +18,7 @@
               {% endfor %}
             </select>
 
-                    <h5> and </h5>
+                    <h5> Time-frame </h5>
 
             <select id="time_frame", name="time_frame">
               {% for k, v in tf_dict.items %}
@@ -26,17 +26,17 @@
               {% endfor %}
             </select> <br> <br>
 
-            <button type="submit" value="Submit" > Click to Submit both keyword & Timeframe</button>
+            <button type="submit" value="Submit" > Click to Submit both keyword & Timeframe</button> <br> <br>
         </form>
-                              <hr> <h5> OR </h5>
+                              <hr> <h5> OR </h5> <hr>
 
-        <form action="keyword_tosearch", method='post'>
+        <form action="keyword_tosearch", method='post' style="background-color:#0c836f">
             {% csrf_token %}
-            <label for='key_words'> <strong>  Type keyword here </strong> </label> <br>
+            <label for='key_words'> <strong> Type keyword here </strong> </label> <br>
             
             <input type="text", name='key_words'> 
 
-                        <h5> and </h5>
+                        <h5> Time-frame </h5>
 
             <select id="time_frame", name="time_frame">
               {% for k, v in tf_dict.items %}
@@ -44,10 +44,17 @@
               {% endfor %}
             </select> <br> <br>
 
-            <button type="submit" value="Submit">Click to Submit both keyword & Timeframe </button>
+            <button type="submit" value="Submit">Click to Submit both keyword & Timeframe </button> <br> <br>
         </form>
         
     </div> <hr>
+
+    <div class="tab" style="background-color:#0c836f"> 
+      <form action="timeframe_tosearch", method='post'>
+            {% csrf_token %}
+            <br> <button type="submit" value="Submit"> Home screen for latest google trends </button>
+      </form> <br>
+    </div>
 
   {% endblock info_select_baseextended_keyword %}
 
@@ -55,24 +62,24 @@
   <!--- Start of User-input section for food group -->
   {% block info_select_baseextended_timeframe %}
     <!--- Time-frame user-input box --> 
-    <div>
+    <!---<div>
       <h5> </h5>
-
       <form action="timeframe_tosearch", method='post'>
         {% csrf_token %}
-        <!---<label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
+        <label for="time_frame"> <strong> Choose Time-frame here :> </strong> </label> <br>
           <select id="time_frame", name="time_frame">
 
             {% for k, v in tf_dict.items %}
             <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
             {% endfor %}
 
-          </select>--> 
+          </select> 
         <br> <button type="submit" value="Submit"> Click to display </button>
       </form> <br>
     
       <p><strong>Note:</strong> <i> After click trends will be display </i></p>
-    </div> <hr>
+    </div> <hr>-->
+
   {% endblock info_select_baseextended_timeframe %}
 
 
