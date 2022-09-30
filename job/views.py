@@ -7,7 +7,13 @@ from blog.models import Blog
 def  home(request):
     jobs= Job.objects
     blogs= Blog.objects
-    return render(request, 'job/home.html', {'jobs': jobs, 'blogs': blogs})
+    googles= Google.objects
+    tweets=Tweet.objects
+    climates=Climate.objects
+    healths=Health.objects
+    ontologys=Ontology.objects
+
+    return render(request, 'job/home.html', {'jobs': jobs, 'blogs': blogs, 'googles':googles, 'tweets':tweets, 'climates':climates, 'healths':healths, 'ontologys':ontologys})
 
 def  alljobs(request):
     jobs= Job.objects

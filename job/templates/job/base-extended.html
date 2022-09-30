@@ -3,25 +3,26 @@
 
 <!--- Start of SECTION -->
 {% block section %}
-    <div class="row py-lg-5">
+    <div > <!--class="row py-lg-5"-->  
       <div class="col-lg-6 col-md-8 mx-auto">
         <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
         <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
-        <p><h1 class="fw-light">Some of my latest projects</h1> </p><hr> 
       </div>
+      <p><h1 class="fw-light"> <strong>BUTTON</strong> to views some of my latest project portfolios </h1> </p><hr> 
     </div>
 {% endblock section %}
 
 
 <!--- START of info selection -->
+{% block to_home_is %}
 {% block info_select %}
-    <h5><strong>BUTTON</strong> to views different project portfolios </h5>
+    <h5>   </h5>
       <div class="tab" >
-        <button class="tablinks" onclick="openUserinpt(event, 'tweet_streem')">Tweets streeming Analytics</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'food_co2')">Food CO2 footprint Analytics</button>
-        <button class="tablinks" onclick="openUserinpt(event, 'google_trend')">Google trends analytics</button>
+        <button class="tablinks" onclick="openUserinpt(event, 'tweet_streem')"> Twitters data Analytics</button>
+        <button class="tablinks" onclick="openUserinpt(event, 'food_co2')">CO2 footprint Analytics</button>
+        <button class="tablinks" onclick="openUserinpt(event, 'google_trend')">Google trends Analytics</button>
         <button class="tablinks" onclick="openUserinpt(event, 'health_promotion')">Healthy food promotion</button>
-        <button class="tablinks Disabled" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food ontology</button>
+        <button class="tablinks Disabled" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food & Flavour pairing </button>
       </div><hr>
 
       <div class="container" style="background-color:#a9d1ca"> 
@@ -57,7 +58,9 @@
           </div>
         </div>
       </div>
+  
 {% endblock info_select %}
+{% endblock to_home_is %}
 
 
 {% block info_display %}
