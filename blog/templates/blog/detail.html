@@ -1,32 +1,85 @@
-{% extends "blog/base.html" %}
+{% extends "blog/allblogs.html" %}
 {% load static %}
 
 <!--- Start of SECTION -->
 {% block section %}
- 
+    <div class="row py-lg-6">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <!--<h1 class="fw-light">text-center pt-3"> Welcome to Food & Data blog!</h1>-->      
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-blog.jpg''%}"/>
+        </div>
+    </div> <br> <br>
 {% endblock section %}
 
 
 <!--- START of info selection -->
 {% block info_select %}
-    <div class="container">
-        <h1 class= "text-center pt-3"> {{ blog.title }}  </h1>
-        <p class ="text_center">{{ blog.pub_date }}</p>
-        <h1 class= "text-center pt-3"> {{ blog.sumary }}  </h1>
-        <img class= "img-fluid" src="{{ blog.image.url }}"/> 
-        <br />
-        <p class="container text_justify"> {{ blog.body|safe }} </p>
 
-    </div>
+        <div class="container">
+            <h3> List Summary of Blog articles</h3><hr>
+            <h4> <strong> CLICK </strong>to display detail of the blog article </h4>
+        <div class="row">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3" >
+
+            {% for blog in blogs.all %}
+                <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: auto">
+                <div class="col" style="background-color:#e2eceb; padding:5px; margin:10px">
+                    <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
+                    {{ blog.pub_date_pretty }}
+                    <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: auto; padding:25px"/> </a>
+                    <div style="background-color:#bdcccb; padding:5px; margin:5px">
+                        <p class= "text-center pt-3"> <i> {{ blog.sum }} </i> </p>
+                    </div>
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                    </div> 
+                </div>
+                </div>
+            {% endfor %}
+                
+            </div>
+        </div>
+        </div><hr>
+
 {% endblock info_select %}
+
+
 
 
 <!--- start of info display -->
 {% block info_display %}
-   
+    <h3> Details of Blog articles</h3><hr>
+
+    <div style="background-color:#a9b4b2; margin: 30px">
+ 
+              <!--column-1-->
+            <div style="background-color:#c6eeeb; padding: 20px">
+                <div >
+                   <a href="{% url 'detail' blog.id %}"> <h4 class="card-text"> {{ blog.title }} </h4> </a> <br>
+                    <h6 class="card-text">{{ blog.pub_date_pretty }}</h6> 
+                </div><br>
+                <div>
+                    <h6 class="card-text"> <strong><i> {{ blog.sum|safe }} </i></strong></h6> 
+                </div>  <hr>
+                
+                <div>
+                    <div class="col" style="padding: 20px"> 
+                        <a href="{% url 'detail' blog.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}" width='100%' height="100%"/> </a>
+                    </div>
+                   
+                    <div class="card-text"> 
+                        <p style= "text-align: justify"> {{ blog.body|safe}} </p>
+                    </div> 
+                </div>
+            </div>  <br >
+    </div>
+
 {% endblock info_display %}
+
+
 
 <!--- START of social media connection -->
 {% block social_connection %}
 
 {% endblock social_connection %}
+

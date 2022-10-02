@@ -12,23 +12,27 @@
 {% endblock section %}
 
 
-        <!--- START of info selection -->
-        {% block info_select %}
+<!--- START of info selection -->
+{% block info_select %}
 
         <div class="container">
-            <h3> Summary of Blog articles</h3><hr>
+            <h3> List Summary of Blog articles</h3><hr>
+            <h4> <strong> CLICK </strong>to display detail of the blog article </h4>
         <div class="row">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3" >
 
             {% for blog in blogs.all %}
-                <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
-                <div class="col" style="background-color:#e2eceb">
+                <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: auto">
+                <div class="col" style="background-color:#e2eceb; padding:5px; margin:10px">
                     <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
                     {{ blog.pub_date_pretty }}
-                    <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: 250px"/> </a>
+                    <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: auto; padding:25px"/> </a>
+                    <div style="background-color:#bdcccb; padding:5px; margin:5px">
+                        <p class= "text-center pt-3"> <i> {{ blog.sum }} </i> </p>
+                    </div>
                     <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
-                    </div>
+                    </div> 
                 </div>
                 </div>
             {% endfor %}
@@ -37,8 +41,8 @@
         </div>
         </div><hr>
 
-
 {% endblock info_select %}
+
 
 
 
@@ -47,38 +51,40 @@
     <h3> Details of Blog articles</h3><hr>
 
     <div style="background-color:#a9b4b2; margin: 20px">
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-1 g-4" style="background-color:#ecf5f3;  padding: 5px"> <br><!-- or row --> 
-
-            {% for blog in blogs.all %}
-              <!--column-1-->
+       
+        {% for sample in sample_blog %}
+              <!--just acess and display the blog that has title block check-->
             <div style="background-color:#c6eeeb; padding: 20px">
                 <div >
-                   <a href="{% url 'detail' blog.id %}"> <h4 class="card-text"> {{ blog.title }} </h4> </a> <br>
-                    <h6 class="card-text">{{ blog.pub_date_pretty }}</h6> 
+                   <h4 class="card-text"> {{ sample.title }} </h4> <br>
+                    <h6 class="card-text">{{ sample.pub_date_pretty }}</h6> 
+                </div><br>
+                <div>
+                    <h6 class="card-text"> <strong><i> {{ sample.sum|safe }} </i></strong></h6> 
+                </div>  <hr>
+                
+                <div  style="padding: 20px">
+                    <div class="card-text"> 
+                        <p style= "text-align: justify">{{ sample.body|safe }}</p>  
+                    </div> 
+
+                    <div style="padding: 20px"> 
+                        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ sample.image.url }}" width='100%' height="100%"/>
+                    </div>
                 </div>
                 
-                <div>
-                    <div class="col"> 
-                        <a href="{% url 'detail' blog.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ blog.image.url }}" width='100%' height="100%"/> </a>
-                        
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-primary">Click image to display larger</button> 
-                        </div><br >
-                    </div>
-                    <div class="col"> 
-                        <p>{{ blog.summary }}</p>  
-                    </div> 
-                </div>
             </div> 
             <br >
+        {% endfor %}
 
-            {% endfor %} 
 
 {% endblock info_display %}
+
 
 
 <!--- START of social media connection -->
 {% block social_connection %}
 
 {% endblock social_connection %}
+
 
