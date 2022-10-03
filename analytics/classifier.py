@@ -100,10 +100,10 @@ def wordcloud_plot(df_col, title):
       # Create stopword list
       final_stopwords.update(['https', 'er', 'og', 't', 'co', 'A', 't','The'])
       plt.switch_backend('AGG')
-      plt.figure(figsize=(8,4))
+      plt.figure(figsize=(8,2))
       plt.title(title, fontsize=8)
       allWords= ' '.join( [twts for twts in df_col] )
-      wordcloud = WordCloud(stopwords=final_stopwords, max_words=100, width= 800, height=400, random_state=21, max_font_size= 75, background_color="skyblue").generate(allWords)
+      wordcloud = WordCloud(stopwords=final_stopwords, max_words=100, width= 800, height=200, random_state=21, max_font_size= 75, background_color="skyblue").generate(allWords)
       plt.imshow(wordcloud, interpolation = "bilinear")
       plt.axis('off')
       plt.tight_layout()

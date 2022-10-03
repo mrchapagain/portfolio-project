@@ -219,6 +219,7 @@ class FridaDataAnalytics():
       txt= f' ************************ \n Food Name:  {FødevareNavn},\n -------------------------- \n Shrinkage %:  {Svind_percent}%, \n -------------------------- \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl,\n -------------------------- \n Protein:  {Protein_deklaration_g}g,\n -------------------------- \n Carbohydrate: {Kulhydrat_deklaration_g}g,\n -------------------------- \n Fat:  {Fedt_total_g}g,\n -------------------------- \n fiber: {Kostfibre_g}g,\n -------------------------- \n Scientific Name:  {TaxonomicName} \n ************************ '
       plt.text(0.1, 0.5, txt, **text_kwargs)
            
+      plt.axis('off')
       plt.tight_layout()
       graph=get_graph()
       return graph

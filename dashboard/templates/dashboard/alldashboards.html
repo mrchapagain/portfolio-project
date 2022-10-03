@@ -87,10 +87,17 @@
                     <!--- To make second two figures display side by side-->
                     <!--fig 2.1-->
                       <div class="col">
-                        <h5>  </h5>  <hr> <!-- Science facts -->
+                        <h5>  nutrition </h5>  <hr> <!-- Science facts text -->
                           {% if science_fact_textdisplay  %}
                             <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
                           {% endif %}
+                      </div>
+
+                      <!--fig 2.2-->
+                      <div class="col">
+                        <h5>  </h5>  <hr> <!-- Science facts figure -->
+                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ flavour_compound.image.url }}" alt="Chemical compound of the food item" style="width:100%"/></a><br>
+                          <h6> <i> Flavour-Compound (this figure is just for example, relavent figure will be updated soon..) </i></h6>
                       </div>
                 </div>
 
