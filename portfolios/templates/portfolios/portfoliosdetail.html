@@ -1,4 +1,4 @@
-{% extends "job/base.html" %}
+{% extends "portfolios/base.html" %}
 {% load static %}
 
 <!--- Start of SECTION -->
@@ -16,10 +16,10 @@
 <!--- start of info display -->
 {% block info_display %}
     <div class="container text-center" style="width:100%; height:100%">
-        <h1 class= "text-center pt-3"> {{ job.title }}  </h1>
-        <p class ="text_center">{{ job.pub_date }}</p>
-        <h4 class= "text-center pt-3"> {{ job.summary }}  </h4>
-        <img class= "img-fluid" src="{{ job.image.url }}" /> 
+        <h1 class= "text-center pt-3"> {{ portfolios.title }}  </h1>
+        <p class ="text_center">{{ portfolios.pub_date }}</p>
+        <h4 class= "text-center pt-3"> {{ portfolios.summary }}  </h4>
+        <img class= "img-fluid" src="{{ portfolios.image.url }}" /> 
         <br />
         <p class="container text_justify"> {{ blog.body|safe }} </p>
     </div>    

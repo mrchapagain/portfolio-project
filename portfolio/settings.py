@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'fooddata.apps.FooddataConfig',
     'analytics.apps.AnalyticsConfig',
     'aboutme.apps.AboutmeConfig',
-    'job.apps.JobConfig',
+    'portfolios.apps.PortfoliosConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',

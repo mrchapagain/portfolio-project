@@ -123,7 +123,7 @@
                     
                     <div class="navbar-nav ml-auto">
                       <a class="nav-link active" href="{% url 'alldocs' %}">About-Me</a>
-                      <a class="nav-link active" href="{% url 'alljobs' %}">Project-Portfolio</a>
+                      <a class="nav-link active" href="{% url 'allportfolioss' %}">Project-Portfolio</a>
                       <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
                       <a class="nav-link active" href="{% url 'allanalytics' %}">SocialNetwork-Analytics</a>
                       <a class="nav-link active" href="{% url 'allfooddatas' %}">Google-Analytics</a>
@@ -147,6 +147,11 @@
           <!--page to display data from result start here -->
           <div class="py-6 text-center container" style="background-color:rgb(12, 131, 111)">
               {% block info_select %}
+                  {% block info_select_homeextend %}  
+                  {% endblock info_select_homeextend %}  
+                  
+                  {% block info_select_ppextend %}  
+                  {% endblock info_select_ppextend %}  
               {% endblock info_select %}
           </div>
           <!--page to display data from result end here -->
@@ -154,6 +159,11 @@
           <!--page to insert index start here -->
           <div class="album py-6 bg-light" style="background-color:rgb(169, 209, 202)">
               {% block info_display %}
+                  {% block info_display_homeextend %}  
+                  {% endblock info_display_homeextend %}  
+
+                  {% block info_display_ppextend %}  
+                  {% endblock info_display_ppextend %}  
               {% endblock info_display %}
           </div>
           <!--page to insert index end here -->

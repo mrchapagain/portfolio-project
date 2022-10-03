@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-import job.views
+import portfolios.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', job.views.home, name='home'),
+    path('', portfolios.views.home, name='home'),
     path('doc/', include('aboutme.urls')),
-    path('job/', include('job.urls')),
+    path('portfolios/', include('portfolios.urls')),
     path('blog/', include('blog.urls')),
     path('analytics/', include('analytics.urls')),
     path('fooddata/', include('fooddata.urls')),

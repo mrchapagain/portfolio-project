@@ -1,0 +1,44 @@
+{% extends "portfolios/base.html" %}
+
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+    <div > <!--class="row py-lg-5"-->  
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
+      </div>
+      <p><h1 class="fw-light"> List of latest project portfolios </h1> </p><hr> 
+    </div>
+{% endblock section %}
+
+{% block info_select_ppextend %}  
+{% endblock info_select_ppextend %}  
+
+{% block info_display_ppextend %}  
+
+    <!--- start of Project-portfolio gallery display -->   
+    <div class="container">
+        <h3> Image gallery of Project portfolios </h3><hr>
+        <div class="col">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
+  
+            {% for portfolios in portfolios.all %}
+              <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
+                <div class="col" style="background-color:#e2eceb">
+                  <a href="{% url 'portfoliosdetail' portfolios.id %}"> <h5 class="card-text">{{ portfolios.title }}</h5> </a>
+                    {{ portfolios.pub_date_pretty }}
+                  <a href="{% url 'portfoliosdetail' portfolios.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ portfolios.image.url }}" style="height: 250px"/> </a>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+              
+          </div>
+        </div>
+      </div><hr>
+
+{% endblock info_display_ppextend %}  

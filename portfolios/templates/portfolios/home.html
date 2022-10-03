@@ -1,61 +1,85 @@
-{% extends "job/base-extended.html" %}
-
+{% extends "portfolios/base-extended-forhome.html" %}
 {% load static %}
 
-
-<!--- START of Tweet streem info-display-->
-{% block info_display_baseextended_tweetstreem %}
-<div style="background-color:#e8f0ef">
-    <div class="row"> <!-- or row -->
-        <h3> Tweets streeming Analytics<br> </h3><hr>
-
-        {% for tweet in tweets.all %}
-            <!-- the box -->
-            <div class="col">
-                <a > <p class="card-text"> <h3>{{ tweet.title }}</h3></p> </a>
-                <p class ="text_center">{{ tweet.pub_date }}</p>
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ tweet.image.url }}" /> </a>
-                <p class="card-text">{{ tweet.body|safe }}</p>
-            </div>
-        {% endfor %}
-
-    </div><br>
-        <div class="btn-group"><br>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
-        </div>
-</div><br>
-
-{% endblock info_display_baseextended_tweetstreem %}
+<!--- Start of SECTION -->
+{% block section %}
+  <div class="row py-lg-6">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light"> </h1>
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-homepage.jpg'%}"/>
+        <!--<hr>
+        <h1> My personal page on Analytics! </h1> <br>
+        <p> 
+          <h3> Feel free to navigate yourself for </h3>
+            <h4><ul>
+              <a href="{% url 'allblogs' %}"> <i>- Blog on Food, Nutrition & Sustainability Analytics</i> </a> <br> <br> 
+              <a href="{% url 'allportfolioss' %}"> <i>- Project portfolios</i> </a> <br><br> 
+              <a href="{% url 'allanalytics' %}"> <i>- Tweeter data Analytics</i> </a> <br><br> 
+              <a href="{% url 'allfooddatas' %}"> <i>- Analytics on Google-search data</i> </a> <br><br>
+              <a href="{% url 'item_todisplay' %}"> <i>- Dashboard- To explore food nutrition & Climate data!</i> </a>
+            </ul></h4>
+        </p> <hr>--><hr>      
+      </div> 
+    <h2> List of pages with food analytics </h2> <hr> 
+  </div>
+{% endblock section %}
 
 
 
-<!--- START of Food CO2 footprint info-display -->
-{% block info_display_baseextended_foodco2 %}
-<div style="background-color:#e8f0ef">
-    <div class="row"> <!-- or row -->
-        <h3> Food CO2 footprint Analytics <br> </h3> <hr>
 
-        {% for climate in climates.all %}
-            <!-- the box -->
-            <div class="col">
-                <a > <p class="card-text"> <h3>{{ climate.title }}</h3></p> </a>
-                <p class ="text_center">{{ climate.pub_date }}</p>
-                <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ climate.image.url }}" /> </a>
-                <p class="card-text">{{ climate.body|safe }}</p>
-            </div>
-        {% endfor %}
-    
-    </div><br>
-        <div class="btn-group"><br>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+    <!--- START of Tweet streem info-display-->
+    {% block info_display_baseextended_tweetstreem %}
+    <div style="background-color:#e8f0ef">
+        <div class="row"> <!-- or row -->
+            <h3> Tweets streeming Analytics<br> </h3><hr>
+
+            {% for tweet in tweets.all %}
+                <!-- the box -->
+                <div class="col">
+                    <a > <p class="card-text"> <h3>{{ tweet.title }}</h3></p> </a>
+                    <p class ="text_center">{{ tweet.pub_date }}</p>
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ tweet.image.url }}" /> </a>
+                    <p class="card-text">{{ tweet.body|safe }}</p>
+                </div>
+            {% endfor %}
+
         </div><br>
-</div><br>
-{% endblock info_display_baseextended_foodco2 %}
+            <div class="btn-group"><br>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+            </div>
+    </div><br>
+
+    {% endblock info_display_baseextended_tweetstreem %}
+
+
+
+    <!--- START of Food CO2 footprint info-display -->
+    {% block info_display_baseextended_foodco2 %}
+    <div style="background-color:#e8f0ef">
+        <div class="row"> <!-- or row -->
+            <h3> Food CO2 footprint Analytics <br> </h3> <hr>
+
+            {% for climate in climates.all %}
+                <!-- the box -->
+                <div class="col">
+                    <a > <p class="card-text"> <h3>{{ climate.title }}</h3></p> </a>
+                    <p class ="text_center">{{ climate.pub_date }}</p>
+                    <a > <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ climate.image.url }}" /> </a>
+                    <p class="card-text">{{ climate.body|safe }}</p>
+                </div>
+            {% endfor %}
+        
+        </div><br>
+            <div class="btn-group"><br>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Click image for larger view</button>
+            </div><br>
+    </div><br>
+    {% endblock info_display_baseextended_foodco2 %}
 
 
 
 
-<!--- START of Google Trend info-display -->
+    <!--- START of Google Trend info-display -->
     {% block info_display_baseextended_googletrend %}
         <div class="album py-6 bg-light" style="background-color:#e8f0ef">
             <div class="row"> <!-- or row -->
@@ -81,9 +105,7 @@
     {% endblock info_display_baseextended_googletrend %}
 
 
-
-
-<!--- START of Health Promotion info-display -->
+    <!--- START of Health Promotion info-display -->
     {% block info_display_baseextended_healthpromotion %}
         <div class="album py-6 bg-light" style="background-color:#e8f0ef">
             <div class="row"> <!-- or row -->
@@ -109,7 +131,7 @@
 
 
 
-<!--- START of Food Ontology info-display -->
+    <!--- START of Food Ontology info-display -->
     {% block info_display_baseextended_foodontology %}
     <div class="album py-6 bg-light" style="background-color:#e8f0ef">
         <div class="row"> <!-- or row -->
@@ -132,3 +154,8 @@
             </div><br>
     </div><br>
     {% endblock info_display_baseextended_foodontology %}
+
+
+
+
+

@@ -2,7 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 # Create your models here.
-class Job(models.Model):
+class Portfolios(models.Model):
     title = models.CharField(max_length=255, default="Title")
     pub_date = models.DateTimeField()
     image = models.ImageField(upload_to='images/')

@@ -1,0 +1,116 @@
+{% extends "portfolios/base.html" %}
+{% load static %}
+
+<!--- Start of SECTION -->
+{% block section %}
+    <div > <!--class="row py-lg-5"-->  
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
+      </div>
+      <p><h1 class="fw-light"> List of latest project portfolios </h1> </p><hr> 
+    </div>
+{% endblock section %}
+
+
+{% block info_select_homeextend %}  
+    <!--- START of info selection -->
+            <h5>   </h5>
+              <div class="tab" >
+                <button class="tablinks" onclick="openUserinpt(event, 'tweet_streem')"> Twitters data Analytics</button>
+                <button class="tablinks" onclick="openUserinpt(event, 'food_co2')">CO2 footprint Analytics</button>
+                <button class="tablinks" onclick="openUserinpt(event, 'google_trend')">Google trends Analytics</button>
+                <button class="tablinks" onclick="openUserinpt(event, 'health_promotion')">Healthy food promotion</button>
+                <button class="tablinks Disabled" onclick="openUserinpt(event, 'food_ontology')" id="defaultOpen">Food & Flavour pairing </button>
+              </div><hr>
+
+              <div class="container" style="background-color:#a9d1ca"> 
+                <div class="col">
+                  <div id="tweet_streem" class="tabcontent" style="background-color:#a9d1ca">
+                    <h3></h3>
+                      {% block info_display_baseextended_tweetstreem %}
+                      {% endblock info_display_baseextended_tweetstreem %}
+                  </div>
+            
+                  <div id='food_co2' class="tabcontent">
+                    <h3> </h3>
+                      {% block info_display_baseextended_foodco2 %}
+                      {% endblock info_display_baseextended_foodco2 %}
+                  </div>
+            
+                  <div id='google_trend' class="tabcontent">
+                  <h3> </h3>
+                    {% block info_display_baseextended_googletrend %}
+                    {% endblock info_display_baseextended_googletrend %}
+                  </div>
+            
+                  <div id='health_promotion' class="tabcontent">
+                  <h3> </h3>
+                    {% block info_display_baseextended_healthpromotion %}
+                    {% endblock info_display_baseextended_healthpromotion %}
+                  </div>
+            
+                  <div id='food_ontology' class="tabcontent">
+                  <h3> </h3>
+                    {% block info_display_baseextended_foodontology %}
+                    {% endblock info_display_baseextended_foodontology %}
+                  </div>
+                </div>
+              </div>
+{% endblock info_select_homeextend %}  
+
+
+
+
+<!--- start of info display -->
+{% block info_display_homeextend %} 
+  <!--- start of blog gallery  display -->
+    <div class="container">
+          <h3> Image gallery of Blog articles</h3><hr>
+        <div class="col">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
+
+            {% for blog in blogs.all %}
+              <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
+                <div class="col" style="background-color:#e2eceb">
+                  <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
+                    {{ blog.pub_date_pretty }}
+                  <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: 250px"/> </a>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+              
+          </div>
+        </div>
+    </div><hr>
+
+
+
+    <!--- start of Project-portfolio gallery display -->   
+    <div class="container">
+      <h3> Image gallery of Project portfolios </h3><hr>
+      <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
+
+          {% for portfolios in portfolios.all %}
+            <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
+              <div class="col" style="background-color:#e2eceb">
+                <a href="{% url 'portfoliosdetail' portfolios.id %}"> <h5 class="card-text">{{ portfolios.title }}</h5> </a>
+                  {{ portfolios.pub_date_pretty }}
+                <a href="{% url 'portfoliosdetail' portfolios.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ portfolios.image.url }}" style="height: 250px"/> </a>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+            
+        </div>
+      </div>
+    </div><hr>
+
+{% endblock info_display_homeextend %}  
+
