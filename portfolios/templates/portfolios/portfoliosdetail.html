@@ -1,26 +1,77 @@
-{% extends "portfolios/base.html" %}
+{% extends "portfolios/allportfolioss.html" %}
 {% load static %}
 
 <!--- Start of SECTION -->
 {% block section %}
-
+    <div > <!--class="row py-lg-5"-->  
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
+        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
+      </div>
+      <p><h1 class="fw-light"> List of latest project-portfolio </h1></p><hr> 
+    </div>
 {% endblock section %}
 
 
 <!--- START of info selection -->
-{% block info_select %}
+<!--- Sidemenu bar -->
+{% block info_select_ppextend %} 
+      <div class="container">
+        <h3> List of Project-Portfolios </h3><hr>
+        <h4> <strong> CLICK </strong>to display detail of a Project-portfolio </h4>
 
-{% endblock info_select %}
+            <div class="row">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3" >
+
+              {% for portfolios in portfolioss.all %}
+                  <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: auto">
+                  <div class="col" style="background-color:#e2eceb; padding:5px; margin:10px">
+                      <a href="{% url 'portfoliosdetail' portfolios.id %}"> <h5 class="card-text">{{ portfolios.title }}</h5> </a>
+                      {{ portfolios.pub_date_pretty }}
+                      <a href="{% url 'portfoliosdetail' portfolios.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ portfolios.image.url }}" style="height: auto; padding:25px"/> </a>
+                      <div style="background-color:#bdcccb; padding:5px; margin:5px">
+                          <p class= "text-center pt-3"> <i> {{ portfolios.sum }} </i> </p>
+                      </div>
+                      <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                      </div> 
+                  </div>
+                  </div>
+              {% endfor %}
+                  
+              </div>
+          </div>
+      </div>
+{% endblock info_select_ppextend %}  
 
 
-<!--- start of info display -->
-{% block info_display %}
-    <div class="container text-center" style="width:100%; height:100%">
-        <h1 class= "text-center pt-3"> {{ portfolios.title }}  </h1>
-        <p class ="text_center">{{ portfolios.pub_date }}</p>
-        <h4 class= "text-center pt-3"> {{ portfolios.summary }}  </h4>
-        <img class= "img-fluid" src="{{ portfolios.image.url }}" /> 
-        <br />
-        <p class="container text_justify"> {{ blog.body|safe }} </p>
-    </div>    
-{% endblock info_display %}
+<!--- Main-menu bar -->
+{% block info_display_ppextend %}  
+    <h3> Details of a Project-Portfolio </h3><hr>
+
+    <!--- start of Project-portfolio gallery display -->   
+    <div style="background-color:#a9b4b2; margin: 30px">
+ 
+        <!--column-1-->
+        <div style="background-color:#c6eeeb; padding: 20px">
+            <div >
+                <a href="{% url 'portfoliosdetail' portfolios.id %}"> <h4 class="card-text"> {{ portfolios.title }} </h4> </a> <br>
+                <h6 class="card-text">{{ portfolios.pub_date_pretty }}</h6> 
+            </div><br>
+            <div>
+                <h6 class="card-text"> <strong><i> {{ portfolios.sum|safe }} </i></strong></h6> 
+            </div>  <hr>
+            
+            <div>
+                <div class="col" style="padding: 20px"> 
+                    <a href="{% url 'portfoliosdetail' portfolios.id %}"> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{{ portfolios.image.url }}" width='100%' height="100%"/> </a>
+                </div>
+                
+                <div class="card-text"> 
+                    <p style= "text-align: justify"> {{ portfolios.body|safe}} </p>
+                </div> 
+            </div>
+        </div>  <br >
+    </div>
+
+{% endblock info_display_ppextend %}  

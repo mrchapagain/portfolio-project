@@ -3,6 +3,10 @@
 <html lang="en">
   {% load static %}
 
+  <head> 
+
+    <!-- head 1 -->
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,6 +113,40 @@
     </style>
 
     </head>
+
+
+    <!-- Head 2 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header1{grid-area:header;}
+        .menu1{grid-area:menu;}
+        .main1{grid-area:main;}
+        .footer1{grid-area:footer;}
+
+        .grid-container{
+            display: grid;
+            grid-template-areas: 'header header header header header header'
+                                'menu main main main main main'
+                                'footer footer footer footer footer footer'
+                                ;
+            gap: 5px;
+            background-color: rgb(107, 107, 107);
+            padding: 7px;
+        }
+
+        .grid-container > div{
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+        }
+          
+    </style>
+</head>
+
     
     <body>
     
@@ -137,36 +175,52 @@
 
         <main>
 
-          <!--page to display data from result start here -->
-          <section class="py-6 text-center container">
-              {% block section %}
-              {% endblock section %}
-          </section>
-          <!--page to display data from result end here -->
+            <!--page to display data from result start here -->
+            <section class="py-6 text-center container">
+                {% block section %}
+                {% endblock section %}
+            </section>
+            <!--page to display data from result end here -->
 
-          <!--page to display data from result start here -->
-          <div class="py-6 text-center container" style="background-color:rgb(12, 131, 111)">
-              {% block info_select %}
-                  {% block info_select_homeextend %}  
-                  {% endblock info_select_homeextend %}  
-                  
-                  {% block info_select_ppextend %}  
-                  {% endblock info_select_ppextend %}  
-              {% endblock info_select %}
-          </div>
-          <!--page to display data from result end here -->
-          
-          <!--page to insert index start here -->
-          <div class="album py-6 bg-light" style="background-color:rgb(169, 209, 202)">
-              {% block info_display %}
+
+            <!--page to display data from result start here -->
+            <div class="py-6 text-center container" style="background-color:rgb(12, 131, 111)">
+                {% block info_select_homeextend %}  
+                {% endblock info_select_homeextend %}  
+            </div>
+            <!--page to display data from result end here -->
+
+            <div class="album py-6 bg-light" style="background-color:rgb(169, 209, 202)">
+              <!--page to display figure start here -->
                   {% block info_display_homeextend %}  
                   {% endblock info_display_homeextend %}  
+              <!--page to display figure end here -->  
+            </div>  
+            
 
-                  {% block info_display_ppextend %}  
-                  {% endblock info_display_ppextend %}  
-              {% endblock info_display %}
-          </div>
-          <!--page to insert index end here -->
+
+            <div class="grid-container">
+                  <!--div section for header START here 
+                    <div class="header1" style="background-color:#0a6959">
+                          <marquee behavior=" " direction=" "> <h1> Some of the trends, thoughts and concepts! </h1></marquee>
+                    </div> 
+                  div section for header END here --> 
+                    
+                  <div class="menu1" style="background-color:#71a39b">
+                    <!--div section for user input start here -->
+                    {% block info_select_ppextend %}  
+                    {% endblock info_select_ppextend %}  
+                    <!--div section for user input end here  -->
+                  </div>
+          
+                  <div class="main1" style="background-color:#71a39b">
+                    <!--page to display figure start here -->
+                      {% block info_display_ppextend %}  
+                      {% endblock info_display_ppextend %}  
+                    <!--page to display figure end here -->  
+                  </div>   
+            </div>
+
             
         </main>
 

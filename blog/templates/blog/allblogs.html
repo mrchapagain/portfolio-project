@@ -16,29 +16,29 @@
 {% block info_select %}
 
         <div class="container">
-            <h3> List Summary of Blog articles</h3><hr>
-            <h4> <strong> CLICK </strong>to display detail of the blog article </h4>
-        <div class="row">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3" >
+            <h3> List of Blog articles</h3><hr>
+            <h4> <strong> CLICK </strong>to display detail of a Blog article </h4>
+            <div class="row">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3" >
 
-            {% for blog in blogs.all %}
-                <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: auto">
-                <div class="col" style="background-color:#e2eceb; padding:5px; margin:10px">
-                    <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
-                    {{ blog.pub_date_pretty }}
-                    <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: auto; padding:25px"/> </a>
-                    <div style="background-color:#bdcccb; padding:5px; margin:5px">
-                        <p class= "text-center pt-3"> <i> {{ blog.sum }} </i> </p>
+                {% for blog in blogs.all %}
+                    <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: auto">
+                    <div class="col" style="background-color:#e2eceb; padding:5px; margin:10px">
+                        <a href="{% url 'detail' blog.id %}"> <h5 class="card-text">{{ blog.title }}</h5> </a>
+                        {{ blog.pub_date_pretty }}
+                        <a href="{% url 'detail' blog.id %}"> <img class="img-fluid bd-placeholder-img card-img-top" src= "{{ blog.image.url }}" style="height: auto; padding:25px"/> </a>
+                        <div style="background-color:#bdcccb; padding:5px; margin:5px">
+                            <p class= "text-center pt-3"> <i> {{ blog.sum }} </i> </p>
+                        </div>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
+                        </div> 
                     </div>
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Click image to display larger</button>
-                    </div> 
+                    </div>
+                {% endfor %}
+                    
                 </div>
-                </div>
-            {% endfor %}
-                
             </div>
-        </div>
         </div><hr>
 
 {% endblock info_select %}
@@ -48,7 +48,7 @@
 
 <!--- start of info display -->
 {% block info_display %}
-    <h3> Details of Blog articles</h3><hr>
+    <h3> Details of a Blog articles</h3><hr>
 
     <div style="background-color:#a9b4b2; margin: 20px">
        
@@ -56,7 +56,7 @@
               <!--just acess and display the blog that has title block check-->
             <div style="background-color:#c6eeeb; padding: 20px">
                 <div >
-                   <h4 class="card-text"> {{ sample.title }} </h4> <br>
+                   <h4 class="card-text"> {{ sample.title }} </h4> 
                     <h6 class="card-text">{{ sample.pub_date_pretty }}</h6> 
                 </div><br>
                 <div>

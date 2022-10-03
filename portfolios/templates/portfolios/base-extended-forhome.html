@@ -95,7 +95,7 @@
       <div class="col">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
 
-          {% for portfolios in portfolios.all %}
+          {% for portfolios in portfolioss.all %}
             <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
               <div class="col" style="background-color:#e2eceb">
                 <a href="{% url 'portfoliosdetail' portfolios.id %}"> <h5 class="card-text">{{ portfolios.title }}</h5> </a>
