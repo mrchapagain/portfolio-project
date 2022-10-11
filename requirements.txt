@@ -99,3 +99,4 @@ pytrends==4.8.0
 pycountry ==16.11.27.1
 geopy == 2.2.0
 folium == 0.12.1
+networkx== 2.8.7

@@ -45,9 +45,10 @@ def foodname_todf(request):
     df_foodname_climate= df_climate[df_climate.Product_dk== foodname]
     pie_chart_climate= cls.piechart_fooditem_co2(df_foodname_climate)
 
-    science_fact_textdisplay=cls.text_display_frida(df_frida)
+    science_fact_textdisplay=cls.text_display_frida(df_food_name)
+    flavour_img= cls.flavour_compound(foodname)
 
-    return render(request, 'dashboard/alldashboards.html', {"foodname":foodname, "df_food_name":df_food_name, "food_group_list":food_group_list, "name_list":name_list, "pie_chart_energy":pie_chart_energy, "pie_chart_climate":pie_chart_climate, "science_fact_textdisplay": science_fact_textdisplay})
+    return render(request, 'dashboard/alldashboards.html', {"foodname":foodname, "df_food_name":df_food_name, "food_group_list":food_group_list, "name_list":name_list, "pie_chart_energy":pie_chart_energy, "pie_chart_climate":pie_chart_climate, "science_fact_textdisplay": science_fact_textdisplay, "flavour_img":flavour_img})
 
 
 def item_todisplay(request):

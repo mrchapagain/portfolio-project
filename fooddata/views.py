@@ -12,7 +12,7 @@ def keyword_tosearch(request):
     keyword_dict= [{"Healthy Diet":"Healthy Diet", "Protein Diet": "Protein Diet", "Healthy Food": "Healthy Food"}] #Trendskeyword.objects.all()
     tf_dict = {"today-12months":'today 12-m', "today-5years":'today 5-y'} #TimeFrame.objects.all()
     
-    pn_dict = {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
+    pn_dict = {"denmark": "DK", "united_states": "US", "sweden": "SE", "india": "IN", "germany": "DE", "russia": "RU"} #Country_Name.objects.all()
     st_dict = {"Default":"", "Image": "image", "News": "news"}
     cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
     
@@ -50,7 +50,7 @@ def timeframe_tosearch(request):
     timeframe= tf_dict["today-5years"]
     kw_list= ["Healthy Diet", "Protein Diet"] # list(keyword_dict[0].values())
     
-    pn_dict = {"united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
+    pn_dict = {"denmark": "DK", "united_states": "US", "sweden": "SE", "india": "IN", "germany": "DE", "russia": "RU"} #Country_Name.objects.all()
     st_dict = {"Default":"", "Image": "image", "News": "news"}
     cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
 
@@ -79,7 +79,7 @@ def allfooddatas(request):
     timeframe= tf_dict["today-5years"]
     kw_list= ["Healthy Diet", "Protein Diet"] # list(keyword_dict[0].values())
     
-    pn_dict = {"denmark": "DK", "united_states": "US", "russia": "RU", "sweden": "SE", "india": "IN", "germany": "DE"} #Country_Name.objects.all()
+    pn_dict = {"denmark": "DK", "united_states": "US",  "sweden": "SE", "india": "IN", "germany": "DE", "russia": "RU"} #Country_Name.objects.all()
     st_dict = {"Default":"", "Image": "image", "News": "news"}
     cat_dict = { "All":0, "Health": 45, "Food_Drink": 71}
 

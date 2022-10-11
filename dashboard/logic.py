@@ -17,6 +17,8 @@ warnings.filterwarnings("ignore")
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual
 
+import networkx as nx
+
 
 class FridaDataAnalytics():
 
@@ -78,7 +80,7 @@ class FridaDataAnalytics():
         ax.annotate(f'Total Energy: \n {df_food_name.Energy_kj.item()}kj / {df_food_name.Energy_kcal.item()} kcal', xy=(0,0), va="center", ha="center", color='red', fontsize=10)
 
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.title(f'Total Energy content of food-item"{df_food_name.FødevareNavn.item()}"', fontsize=12)
+        plt.title(f'Energy content of food-item"{df_food_name.FødevareNavn.item()}"', fontsize=10)
 
         plt.tight_layout()
         graph=get_graph()
@@ -104,7 +106,7 @@ class FridaDataAnalytics():
         ax.annotate(f'Total CO2 eq_perkg: \n {df_fooditem_climate.Total_CO2_eq_perkg.item()}', xy=(0,0), va="center", ha="center", color='red', fontsize=10)
 
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.title(f'Carbon footprint contribution from "{df_fooditem_climate.Product_dk.item()}"', fontsize=12)
+        plt.title(f'Carbon footprint contribution from "{df_fooditem_climate.Product_dk.item()}"', fontsize=10)
         plt.tight_layout()
         graph=get_graph()
         #ax.legend()
@@ -189,7 +191,7 @@ class FridaDataAnalytics():
       #sns.barplot(data= df_frida_foodwaste_sorted, x= 'FødevareNavn', y='Svind_%', hue= "FødevareGruppe", palette= 'hls') #{"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"} 
       df_frida_foodwaste_sorted[["FødevareNavn","Spiseligt_%", "Svind_%"]].set_index('FødevareNavn').plot(kind='bar', stacked=True, color=['green', 'red'])
 
-      plt.title(f'List of top 10 food-items with over {svind_percentage} percent waste from {title_cat}', fontsize=8)
+      plt.title(f'List of top 10 food-items with over {svind_percentage} percent waste from {title_cat}', fontsize=10)
       plt.legend()
       plt.xticks(rotation=75)
       plt.xlabel(f'FødevareNavn lister')
@@ -219,9 +221,53 @@ class FridaDataAnalytics():
       txt= f' ************************ \n Food Name:  {FødevareNavn},\n -------------------------- \n Shrinkage %:  {Svind_percent}%, \n -------------------------- \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl,\n -------------------------- \n Protein:  {Protein_deklaration_g}g,\n -------------------------- \n Carbohydrate: {Kulhydrat_deklaration_g}g,\n -------------------------- \n Fat:  {Fedt_total_g}g,\n -------------------------- \n fiber: {Kostfibre_g}g,\n -------------------------- \n Scientific Name:  {TaxonomicName} \n ************************ '
       plt.text(0.1, 0.5, txt, **text_kwargs)
            
+      plt.title(f'Detail information of the food item: {FødevareNavn}', fontsize=10)
       plt.axis('off')
       plt.tight_layout()
       graph=get_graph()
       return graph
 
 
+  def flavour_compound(self, FødevareNavn):
+      self.FødevareNavn= FødevareNavn
+
+      plt.switch_backend('AGG')
+
+      #plt.figure(figsize=(10,5))
+      fig, ax = plt.subplots(figsize=(10,5))
+
+      G = nx.Graph()
+      G.add_edge(FødevareNavn, 'Flavour_B')
+      G.add_edge(FødevareNavn, 'Flavour_C')
+      G.add_edge(FødevareNavn, 'Flavour_D')
+      G.add_edge(FødevareNavn, 'Flavour_E')
+      G.add_edge('Flavour_C', "Food-item_1")
+      G.add_edge('Flavour_C', "Food-item_2")
+      G.add_edge('Flavour_C', "Food-item_3")
+
+      # explicitly set positions
+      pos = {'Flavour_B': (-1, -1), 'Flavour_C': (1, -1), FødevareNavn: (0, 0), 'Flavour_D': (-1, 1), 'Flavour_E': (1, 1), "Food-item_1": (1, 0), "Food-item_2": (1.45, -0.25), "Food-item_3": (1.5, -1)}
+
+      options = {
+        "font_size": 10,
+        "node_size": 5000,
+        "node_color": "grey",
+        "edgecolors": "grey",
+        "linewidths": 3,
+        "width": 3,
+        "alpha":1,
+      }
+
+      nx.draw_networkx(G, pos, **options)
+
+      # Set margins for the axes so that nodes aren't clipped
+      ax = plt.gca()
+      ax.margins(0.10)
+
+      txt= "(This is a sample figure and relavent figure will be updated soon.........)"
+      plt.text(-1, -1.5, txt, color= "r", fontsize = 9, alpha=0.8)
+      plt.title(f'Flavour compound from the food item: {FødevareNavn}', fontsize=10)
+      plt.axis('off')
+      plt.tight_layout()
+      graph=get_graph()
+      return graph
