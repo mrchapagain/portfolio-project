@@ -205,21 +205,53 @@ class FridaDataAnalytics():
   def text_display_frida(self, frida_data):
       self.frida_data= frida_data
       plt.switch_backend('AGG')
-      plt.figure(figsize=(10,5))
+      fig, ax= plt.subplots(figsize=(10,5))
       
       FødevareNavn= frida_data["FødevareNavn"].values[0]
-      Svind_percent= frida_data["Svind_%"].values[0]
+      
       Total_energy_kj= frida_data["Energy_kj"].values[0]
       Total_energy_kacl= frida_data["Energy_kcal"].values[0]
+
       Protein_deklaration_g= frida_data["Protein_deklaration_g"].values[0]
       Kulhydrat_deklaration_g= frida_data["Kulhydrat_deklaration_g"].values[0]
       Fedt_total_g= frida_data["Fedt_total_g"].values[0]
       Kostfibre_g= frida_data["Kostfibre_g"].values[0]
-      Fedt_total_g= frida_data["Fedt_total_g"].values[0]
+      Organiske_syrer= frida_data["Organiske syrer_total"].values[0]
+      Alkohol= frida_data["Alkohol_g"].values[0]
+      Sukkeralkoholer= frida_data["Sukkeralkoholer_total"].values[0]
+
       TaxonomicName= frida_data["TaxonomicName"].values[0]
-      text_kwargs = dict(ha='left', va='center', fontsize=12, color='C1')
-      txt= f' ************************ \n Food Name:  {FødevareNavn},\n -------------------------- \n Shrinkage %:  {Svind_percent}%, \n -------------------------- \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl,\n -------------------------- \n Protein:  {Protein_deklaration_g}g,\n -------------------------- \n Carbohydrate: {Kulhydrat_deklaration_g}g,\n -------------------------- \n Fat:  {Fedt_total_g}g,\n -------------------------- \n fiber: {Kostfibre_g}g,\n -------------------------- \n Scientific Name:  {TaxonomicName} \n ************************ '
-      plt.text(0.1, 0.5, txt, **text_kwargs)
+      Water_Drymatter= frida_data["Vand_g"].values[0]
+      Svind_percent= frida_data["Svind_%"].values[0]
+
+      #A= frida_data["A_vitamin_RE"].values[0]
+      #B1= frida_data["B1_vitamin"].values[0]
+      #B2= frida_data["B2-vitamin_riboflavin"].values[0]
+      #B6= frida_data["B6_vitamin"].values[0]
+      #B12= frida_data["B12_vitamin"].values[0]
+      #C= frida_data["C_vitamin"].values[0]
+      #D= frida_data["D_vitamin_µg"].values[0]
+      #D3= frida_data["D3_vitamin_µg"].values[0]
+      #E= frida_data["E_vitamin"].values[0]
+      #\n Vitamins: A-{A}_µg, E-{E}_µg, B1-{B1}_µg, B2-{B2}_µg, B6-{B6}_µg, B12-{B12}_µg, C-{C}_µg, D-{D}_µg, D3-{D3}_µg
+
+      text_kwargs = dict(ha='left', va='top', fontsize=12, color='C1')
+      txt= f' ************************ \
+            \n Food Name:  {FødevareNavn},\
+            \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl, \
+            \n - Organiske_syrer:  {Organiske_syrer}g, \
+            \n - Protein:  {Protein_deklaration_g}g,\
+            \n - Carbohydrate: {Kulhydrat_deklaration_g}g,\
+            \n - Fat:  {Fedt_total_g}g, \
+            \n - Fiber: {Kostfibre_g}g, \
+            \n - Alkohol: {Alkohol}g, \
+            \n - Sukkeralkoholer: {Sukkeralkoholer}g, \
+            \n\
+            \n Scientific Name:  {TaxonomicName}, \
+            \n Water & Dry_matter ratio: {(Water_Drymatter , 100-Water_Drymatter)}, \
+            \n Can not be eaten %:  {Svind_percent}%, \
+            \n ************************ '
+      plt.text(0.05, 1.0, txt, **text_kwargs)
            
       plt.title(f'Detail information of the food item: {FødevareNavn}', fontsize=10)
       plt.axis('off')
