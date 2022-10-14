@@ -1,7 +1,8 @@
 {% extends "analytics/base-extend.html" %}
 {% load static %}
 
-  
+
+ 
 <!--- Start of User-input section --> 
   <!--- Tweets with User-id user-imput box -->
   {% block info_select_baseextended_userid %}  
@@ -65,17 +66,17 @@
         <div style="background-color:#e8f0ef">
           <div class="row"> <br>
               <!--- To make word-cloud and Bar-chart display side by side-->
-              <!--Top mentioned words chart-->
+              <!-- word-cloud fig -->
               <div class="col">
-                  {% if mostmentionword %}
-                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ mostmentionword|safe }}" alt="Most mentioned words bar plot" style="width:100%"/> </a>
-                  {% endif %}
-              </div>
+                {% if wordclouds %}
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ wordclouds|safe }}" alt="Word-Cloud image from tweets " style="width:90%"/> </a>
+                {% endif %}
+              </div> <br>
 
               <!--Sentiment chart-->
               <div class="col">
                   {% if sentimentsplot %}
-                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ sentimentsplot|safe }}" alt="Sentiment analysis of tweets" style="width:100%"/></a><br>
+                  <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ sentimentsplot|safe }}" alt="Sentiment analysis of tweets" style="width:90%"/></a><br>
                   {% endif %}
               </div>
 
@@ -85,12 +86,12 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button>
           </div>-->
 
-          <!-- word-cloud fig -->
-          <div class="col"><hr>
-              {% if wordclouds %}
-                <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ wordclouds|safe }}" alt="Word-Cloud image from tweets " style="width:100%"/> </a>
-              {% endif %}
-          </div> <br>
+          <!--Top mentioned words chart-->
+          <div class="col">
+            {% if mostmentionword %}
+              <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ mostmentionword|safe }}" alt="Most mentioned words bar plot" style="width:100%"/> </a>
+            {% endif %}
+          </div>
 
         </div> <hr>
 
@@ -128,20 +129,20 @@
   {% block info_display_baseextended_keyword %}
 
           <div style="background-color:#e8f0ef">
-              <div class="row"> <br><!-- or row --> 
+              <div class="row"><br>
               
                 <!--- To make word-cloud and Bar-chart display side by side-->
-                <!--Top mentioned words chart-->
-                <div class="col">
-                    {% if kmostmentionword %}
-                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Plot formostmentioned words" style="height:100%; width:100%"/> </a>
+                  <!-- word-cloud fig -->
+                  <div class="col">
+                    {% if kwordclouds %}
+                      <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kwordclouds|safe }}" alt="Word-Cloud image" style="width:90%; height: 100%"/> </a>
                     {% endif %}
-                </div>
+                  </div> <br>
 
                   <!--Sentiment chart-->
                   <div class="col">
                       {% if ksentimentsplot %}
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ ksentimentsplot|safe }}" alt="Sentiment plot" style="height: 100%; width:100%"/> </a>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ ksentimentsplot|safe }}" alt="Sentiment plot" style="height: 100%; width:90%"/> </a>
                       {% endif %}
                   </div>
 
@@ -151,12 +152,13 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button>
                   </div>-->
                   
-              <!-- word-cloud fig -->
-              <div class="col"><hr>
-                  {% if kwordclouds %}
-                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kwordclouds|safe }}" alt="Word-Cloud image" style="width:100%; height: 25%"/> </a>
+                <!--Top mentioned words chart-->
+                <div class="col">
+                  {% if kmostmentionword %}
+                    <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ kmostmentionword|safe }}" alt="Plot formostmentioned words" style="height:100%; width:100%"/> </a>
                   {% endif %}
-              </div> <br>
+                </div>
+
           </div> <hr>
 
         <!-- Data frame -->

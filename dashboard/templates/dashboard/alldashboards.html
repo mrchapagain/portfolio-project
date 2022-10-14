@@ -38,6 +38,10 @@
                  <!-- <input type="text", name='userid'> -->
                   <select id="food_name", name="food_name">
 
+                    {% for name in food_name_list %}
+                      <option value="{{ name }}"> {{ name }} </option> 
+                    {% endfor %}
+
                     {% for name in name_list %}
                       <option value="{{ name }}"> {{ name }} </option> 
                     {% endfor %}
@@ -96,7 +100,9 @@
                       <!--fig 2.2-->
                       <div class="col">
                         <h5>  </h5>  <hr> <!-- Science facts figure -->
+                        {% if flavour_img  %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="width:100%"/></a><br>
+                        {% endif %}
                       </div>
                 </div>
 

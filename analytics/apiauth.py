@@ -56,3 +56,29 @@ def tweets_by_keywords(keywords):
       #now lets make only tweets thats has not Re-Tweeted!
       #df_by_keywords= df_by_keywords[~df_by_keywords.Tweets.str.contains("RT")] # better to use that has retweeted
       return df_by_keywords
+
+def tweets_trends(woeid_dict):
+      df=pd.DataFrame()
+
+      for country, woeid in woeid_dict.items():
+        # fetching the trends
+        trends= api.get_place_trends(id= woeid, exclude = "hashtags") #tweepy.Cursor(api.trends_available, id= woeid)
+        df_list= []
+        df1=pd.DataFrame()
+        for value in trends:
+          for trend in value['trends']:
+            df_list.append(trend['name'])
+        df1[country]= df_list
+        df= pd.concat([df, df1[country]], axis = 1)
+      return df
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
