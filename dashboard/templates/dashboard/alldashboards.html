@@ -53,25 +53,34 @@
         </div><hr>
         <!--div section for second dropdown END here -->
 
+
+        <!--Start of list hyperlink -->
         <div style="background-color:#71a39b">
+            <label for='cat_list'> <strong> List of food-items with different healthy option  </strong> </label><br>
 
-          <h4>List of food-items with different Categories </h4>
+            <form action="category_list", method='post'>
+              {% csrf_token %}
+              
+                <dl>
+                  <dt> <a href="#p-rich"> Protein rich food-items </a> </dt>
+                    {% if catlist_selected %}
+                      <dd id="p-rich">-  "List will updated soon {{ catlist_selected }}" </dd>
+                    {% endif %}
 
-          <dl>
-            <dt> <a href="#"> Protein rich food-items </a> </dt>
-            <dd>-  </dd>
+                  <dt> <a href="#f-rich"> Fiber (Dietry) rich food-items </a></dt>
+                      <dd id="f-rich">-  "List will updated soon {{ catlist_selected }}" </dd>
 
-            <dt> <a href="#"> Fiber (Dietry) rich food-items </a></dt>
-            <dd>-  </dd>
+                  <dt> <a href="#ms-rich"> Fatty-acids rich food-items </a></dt>
+                      <dd id="ms-rich">- " List will updated soon {{ catlist_selected }}" </dd>
 
-            <dt> <a href="#"> Mono-satureted fat rich food-items </a></dt>
-            <dd>-  </dd>
+                  <dt> <a href="{% url 'category_list' %}"> Carbohydrate rich food-items </a></dt>
+                      <dd id="fa-rich">-  "List will updated soon" </dd>
 
-            <dt> <a href="{% url 'item_todisplay' %}"> Fatty-acid rich food-items </a></dt>
-            <dd>-  </dd>
-          </dl>
-
+                </dl>
+              
+            </form> 
         </div>
+        <!--Start of list hyperlink END here-->
     </div>
 
 {% endblock info_select %}

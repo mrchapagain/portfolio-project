@@ -70,3 +70,27 @@ def item_todisplay(request):
 
     return render(request, 'dashboard/alldashboards.html', {"food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict,"loop_range":loop_range, "barplot_foodwate":barplot_foodwate, "group_plot_climate":group_plot_climate})
     
+
+
+def category_list(request):
+
+    data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
+    data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
+
+    cls= FridaDataAnalytics()
+    df_frida= cls.frida_datareader(data_frida_final)
+    df_climate= cls.frida_datareader(data_climate_selected)
+
+    food_name_list= cls.FødevareNavn_list(df_frida)
+    food_group_list= cls.FødevareGruppe_list(df_frida)
+    df_group_name_dict= cls.FødevareGruppe_FødevareNavn_dict(df_frida)
+    loop_range= [num for num in range(40,100,5)]
+
+    barplot_foodwate= cls.foodwaste_portion_barplot(df_frida, 55, "whole dataset")
+    group_plot_climate= cls.co2_data_plot(df_climate)
+
+    x_rich=["Protein_deklaration_g", "Kostfibre_g", "Fedtsyrer-total", "Kulhydrat_deklaration_g"]
+    catlist_selected= cls.list_x_rich(df_frida, "Protein_deklaration_g")
+
+    return render(request, 'dashboard/alldashboards.html', {"catlist_selected":catlist_selected, "food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict,"loop_range":loop_range, "barplot_foodwate":barplot_foodwate, "group_plot_climate":group_plot_climate})
+    
