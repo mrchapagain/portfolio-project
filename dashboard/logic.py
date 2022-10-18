@@ -80,7 +80,7 @@ class FridaDataAnalytics():
         ax.annotate(f'Total Energy: \n {df_food_name.Energy_kj.item()}kj / {df_food_name.Energy_kcal.item()} kcal', xy=(0,0), va="center", ha="center", color='red', fontsize=10)
 
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.title(f'Energy content of food-item"{df_food_name.FødevareNavn.item()}"', fontsize=10)
+        plt.title(f'Energy (micro-nutrient) content of food-item"{df_food_name.FødevareNavn.item()}"', fontsize=10)
 
         plt.tight_layout()
         graph=get_graph()
@@ -205,9 +205,10 @@ class FridaDataAnalytics():
   def text_display_frida(self, frida_data):
       self.frida_data= frida_data
       plt.switch_backend('AGG')
-      fig, ax= plt.subplots(figsize=(10,5))
+      fig, ax= plt.subplots(figsize=(10,10))
       
       FødevareNavn= frida_data["FødevareNavn"].values[0]
+      Food_Name= frida_data["FoodName"].values[0]
       
       Total_energy_kj= frida_data["Energy_kj"].values[0]
       Total_energy_kacl= frida_data["Energy_kcal"].values[0]
@@ -223,37 +224,75 @@ class FridaDataAnalytics():
       TaxonomicName= frida_data["TaxonomicName"].values[0]
       Water_Drymatter= frida_data["Vand_g"].values[0]
       Svind_percent= frida_data["Svind_%"].values[0]
+      FoodEx2Code= frida_data["FoodEx2Code"].values[0]
+      FødevareGruppe= frida_data["FødevareGruppe"].values[0]
+      Food_Group= frida_data["FoodGroup"].values[0]
 
-      #A= frida_data["A_vitamin_RE"].values[0]
-      #B1= frida_data["B1_vitamin"].values[0]
-      #B2= frida_data["B2-vitamin_riboflavin"].values[0]
-      #B6= frida_data["B6_vitamin"].values[0]
-      #B12= frida_data["B12_vitamin"].values[0]
-      #C= frida_data["C_vitamin"].values[0]
-      #D= frida_data["D_vitamin_µg"].values[0]
-      #D3= frida_data["D3_vitamin_µg"].values[0]
-      #E= frida_data["E_vitamin"].values[0]
-      #\n Vitamins: A-{A}_µg, E-{E}_µg, B1-{B1}_µg, B2-{B2}_µg, B6-{B6}_µg, B12-{B12}_µg, C-{C}_µg, D-{D}_µg, D3-{D3}_µg
+      A= frida_data["A_vitamin_RE"].values[0]
+      B1= frida_data["B1-vitamin"].values[0]
+      B2= frida_data["B2-vitamin_riboflavin"].values[0]
+      B6= frida_data["B6-vitamin"].values[0]
+      B12= frida_data["B12-vitamin"].values[0]
+      C= frida_data["C-vitamin"].values[0]
+      D= frida_data["D_vitamin_µg"].values[0]
+      D3= frida_data["D3_vitamin_µg"].values[0]
+      E= frida_data["E-vitamin"].values[0]
+
+      Calcium= frida_data["Calcium, Ca"].values[0]
+      Iron= frida_data["Jern, Fe"].values[0]
+      Potassium= frida_data["Kalium, K"].values[0]
+      Phosphorus= frida_data["Fosfor, P"].values[0]
+      Magnesium= frida_data["Magnesium, Mg"].values[0]
+      Sodium= frida_data["Natrium, Na"].values[0]
+      Selenium= frida_data["Selen, Se"].values[0]
+      Silicon= frida_data["Silicium, Si"].values[0]
+      Zinc= frida_data["Zink, Zn"].values[0]
+
 
       text_kwargs = dict(ha='left', va='top', fontsize=12, color='C1')
       txt= f' ************************ \
-            \n Food Name:  {FødevareNavn},\
-            \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl, \
-            \n - Organiske_syrer:  {Organiske_syrer}g, \
-            \n - Protein:  {Protein_deklaration_g}g,\
-            \n - Carbohydrate: {Kulhydrat_deklaration_g}g,\
-            \n - Fat:  {Fedt_total_g}g, \
-            \n - Fiber: {Kostfibre_g}g, \
-            \n - Alkohol: {Alkohol}g, \
-            \n - Sukkeralkoholer: {Sukkeralkoholer}g, \
+            \n Food Name:   {FødevareNavn} / ({Food_Name}),\
+            \n Food Group:  {FødevareGruppe} / ({Food_Group}),\
             \n\
-            \n Scientific Name:  {TaxonomicName}, \
+            \n Total Energy:  {Total_energy_kj}kj /{Total_energy_kacl}kacl, \
+                \n - Organiske_syrer:  {Organiske_syrer}g, \
+                \n - Protein:          {Protein_deklaration_g}g,\
+                \n - Carbohydrate:     {Kulhydrat_deklaration_g}g,\
+                \n - Fat:              {Fedt_total_g}g, \
+                \n - Fiber:            {Kostfibre_g}g, \
+                \n - Alkohol:          {Alkohol}g, \
+                \n - Sukkeralkoholer:  {Sukkeralkoholer}g, \
+            \n\
+            \n Vitamines:  per 100g, \
+                \n - A:   {A}_µg, \
+                \n - B1:  {B1}_µg, \
+                \n - B2:  {B2}_µg, \
+                \n - B6:  {B6}_µg, \
+                \n - B12: {B12}_µg, \
+                \n - C:   {C}_µg, \
+                \n - D:   {D}_µg, \
+                \n - D3:  {D3}_µg, \
+                \n - E:   {E}_µg, \
+            \n\
+                \n Minerals:  per 100g, \
+                \n - Calcium (Ca):   {Calcium}_µg, \
+                \n - Iron (Fe):      {Iron}_µg, \
+                \n - Potassium (K):  {Potassium}_µg, \
+                \n - Phosphorus (P): {Phosphorus}_µg, \
+                \n - Magnesium (Mg): {Magnesium}_µg, \
+                \n - Sodium (Na):    {Sodium}_µg, \
+                \n - Silicon (Si):   {Silicon}_µg, \
+                \n - Zinc (Zn):      {Zinc}_µg, \
+                \n - Selenium (Se):  {Selenium}_µg, \
+            \n\
+            \n Scientific Name:          {TaxonomicName}, \
             \n Water & Dry_matter ratio: {(Water_Drymatter , 100-Water_Drymatter)}, \
-            \n Can not be eaten %:  {Svind_percent}%, \
+            \n Can not be eaten %:       {Svind_percent}%, \
+            \n FoodEx2Code:              {FoodEx2Code}, \
             \n ************************ '
       plt.text(0.05, 1.0, txt, **text_kwargs)
            
-      plt.title(f'Detail information of the food item: {FødevareNavn}', fontsize=10)
+      plt.title(f'Detail information of the food item: {FødevareNavn}', fontsize=12)
       plt.axis('off')
       plt.tight_layout()
       graph=get_graph()
@@ -266,7 +305,7 @@ class FridaDataAnalytics():
       plt.switch_backend('AGG')
 
       #plt.figure(figsize=(10,5))
-      fig, ax = plt.subplots(figsize=(10,5))
+      fig, ax = plt.subplots(figsize=(10,10))
 
       G = nx.Graph()
       G.add_edge(FødevareNavn, 'Flavour_B')
