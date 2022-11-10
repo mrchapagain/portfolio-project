@@ -64,11 +64,12 @@ class FridaDataAnalytics():
     self.df_frida= df_frida
     self.x_rich= x_rich
 
-    list_xrich= df_frida[["FødevareNavn", x_rich]].nlargest(10, [x_rich]).to_list()
+    index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(10).index
+    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", "Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "Energy_kj"]].iloc[index_xrich].set_index('FødevareNavn')
     #selected_data[['Product_en', "Total_CO2_eq/kg"]].groupby(by= ['Product_en'], sort=True).mean().nlargest(5, ["Total_CO2_eq/kg"])
     #FødevareGruppe_FødevareNavn_dict= df_frida[["FødevareGruppe",	"FødevareNavn"]].head(100).to_dict(orient='list')
     #FødevareNavn_list= df_frida.FødevareNavn.to_list()
-    return list_xrich
+    return df_xrich
 
 
   def piechart_fooditem_energy(self, df_food_name):

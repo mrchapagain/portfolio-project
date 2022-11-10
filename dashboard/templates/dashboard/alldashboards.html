@@ -8,7 +8,7 @@
         <h5><strong>Select & Submit!</strong> </h5>
         
         <!--div section first dropdown START here -->
-        <div>
+        <div style="background-color:#71a39b">
             <form action="Food_category", method='post'>
                     {% csrf_token %}
                 <fieldset>
@@ -18,19 +18,20 @@
                   <select id="food_cat", name="food_cat">
                     {% for group_name in food_group_list %}
                       <option value="{{ group_name }}"> {{ group_name }} </option> 
+                      
                     {% endfor %}
                   </select>
-                  <button type="submit" value="Submit"> Click to Submit </button>
+                  <button type="submit" value="Submit"> Click to Submit </button> 
         
                 </fieldset>
-              </form> 
+              </form> <br>
         </div><hr>
         <!--div section for first dropdown END here -->
         
 
         
         <!--div section Second dropdown START here -->
-        <div>
+        <div style="background-color:#71a39b">
             <form action="foodname_todf", method='post'>
                     {% csrf_token %}
                 <fieldset>
@@ -49,7 +50,7 @@
                   <button type="submit" value="Submit"> Click to Submit </button>
         
                 </fieldset>
-              </form> 
+              </form> <br>
         </div><hr>
         <!--div section for second dropdown END here -->
 
@@ -62,19 +63,13 @@
               {% csrf_token %}
               
                 <dl>
-                  <dt> <a href="#p-rich"> Protein rich food-items </a> </dt>
-                    {% if catlist_selected %}
-                      <dd id="p-rich">-  "<i> List will updated soon </i> {{ catlist_selected }}" </dd>
-                    {% endif %}
-
-                  <dt> <a href="#f-rich"> Fiber (Dietry) rich food-items </a></dt>
-                      <dd id="f-rich">-  "<i> List will updated soon </i> {{ catlist_selected }}" </dd>
-
-                  <dt> <a href="#ms-rich"> Fatty-acids rich food-items </a></dt>
-                      <dd id="ms-rich">- " <i> List will updated soon </i> {{ catlist_selected }}" </dd>
-
-                  <dt> <a href="{% url 'category_list' %}"> Carbohydrate rich food-items </a></dt>
-                      <dd id="fa-rich">-  <i> "List will updated soon" </i></dd>
+                    {% for k, v in choices_dict.items %}
+                      <dt> <a href="#p-rich" id="x_riches", name="x_riches"> {{ k }} </a> </dt>
+                          {% for dat in v %}
+                            <a value="{{ dat }}"> <dd id="p-rich">-  <i> {{ dat }} </i>  </dd>  </a>
+                          {% endfor %}
+      
+                    {% endfor %}
 
                 </dl>
               
@@ -185,11 +180,11 @@
             <!--Start of category-dataframe --> 
             <table>
               <tr>
-                {% for col in df_category.columns %}
+                {% for col in xrich_choice_df.columns %}
                   <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
                 {% endfor %}
               </tr>
-                {% for index, row in df_category.iterrows %}
+                {% for index, row in xrich_choice_df.iterrows %}
               <tr>
                     {% for cell in row %}
                   <td>{{ cell }}</td>
