@@ -150,5 +150,25 @@ def xrich_todisplay(request):
 
     df_title_xrich= f'Data table with Top 20 "{choices_kv[xrich_option]}"'
 
-    return render(request, 'dashboard/alldashboards.html', {'xrich_option':xrich_option, 'food_group_list':food_group_list, 'food_name_list':food_name_list, 'choices_kv':choices_kv, 'xrich_choice_df':xrich_choice_df, 'choices_dict':choices_dict, 'df_title_xrich':df_title_xrich})
+    xrich_info_dic={"Protein_deklaration_g": "Proteinindhold kan beregnes ud fra analyserede værdier for totalt nitrogen (kvælstof).",
+                    "Kostfibre_g": "Fibre is an important part of a healthy balanced diet and is only found in foods that come from plants. Meat, fish and dairy products don't contain any fibre.Foods that contain fibre make you feel fuller for longer and can help digestion.",
+                    "Fedt_total_g": "Det totale fedtindhold er summen af triglycerider, fosforlipider, steroler og en mindre andel af andre fedtopløselige stoffer der ekstraheres i fedt fraktionen. Der analyseres for enkelte fedtsyrer som opdeles i kategorierne mættede, enkeltumættede og flerumættede. Der beregnes summer for fedtsyrekategorierne samt for omega 3 og omega 6 fedtsyrer. ",
+                    "Kulhydrat_deklaration_g": "Kulhydrat er forbindelser der består af sukkermolekyler hvilket inkluderer sukkerstoffer, stivelse og kostfibre.",
+                    'A_vitamin_RE':"1 RE = 1 µg retinol. Vitamin A (also known as retinol) has several important functions, including: helping your immune system to fight infections, helping your vision in dim light, keeping your skin healthy",
+                    "B1-vitamin":"Thiamin is also known as vitamin B1. It helps the other B vitamins to break down and release.",
+                    "B2-vitamin_riboflavin": "Riboflavin is also known as vitamin B2. It helps to keep your skin, eyes and nervous system healthy and release energy from the food you eat.",
+                    "B6-vitamin":"Pyridoxine is also known as vitamin B6. It helps the body to: use and store energy from protein and carbohydrates in food form the substance that carries oxygen around the body (haemoglobin) in your blood",
+                    "B12-vitamin":"Vitamin B12 helps our body: make red blood cells and keep the nervous system healthy, release energy from the food we eat, process folic acid. Folic acid (also known as folate) works with vitamin B12 to form healthy red blood cells.",
+                    "C-vitamin":"Vitamin C (also known as ascorbic acid) helps to: protect and keep cells healthy, maintain healthy connective tissue, heal wounds",
+                    "D_vitamin_µg":"Vitamin D helps to regulate the amount of calcium and phosphate in the body, important for bone, teeth and muscle health. Vitamin D is made by our skin from sunlight and is also found in small amounts in some foods.",
+                    "E-vitamin":"Vitamin E is a powerful antioxidant that helps to: repair damaged cells and protect them from free-radicals, keep your skin and eyes healthy, strengthen your immune system",
+                    "Calcium, Ca":"Calcium helps to build strong bones and teeth and regulate your heartbeat. It also ensures your blood clots normally, important for healing.",
+                    "Jern, Fe":"Iron helps our body make red blood cells to carry oxygen around your body. If we don't have enough iron in your diet, you're at risk of developing iron deficiency anaemia.",
+                    'Kalium, K':"Potassium helps the body control the balance of fluids and keeps our heart healthy and functioning correctly.",
+                    'Natrium, Na': "The sodium is an essential nutrient used by our body to maintain blood pressure and regulate your nerves and muscles. Sodium attracts and holds on to water in your blood. If we consume too much salt, the volume of water in our blood increase leading to high blood pressure. If left untreated, we could be at risk of developing heart disease or a stroke."
+                    }
+
+    xrich_info_todisplay= xrich_info_dic[xrich_option]
+
+    return render(request, 'dashboard/alldashboards.html', {'xrich_option':xrich_option, 'food_group_list':food_group_list, 'food_name_list':food_name_list, 'choices_kv':choices_kv, 'xrich_choice_df':xrich_choice_df, 'choices_dict':choices_dict, 'df_title_xrich':df_title_xrich, 'xrich_info_todisplay':xrich_info_todisplay})
     

@@ -61,7 +61,8 @@
 
                     <select id="x_riches_cat", name="x_riches_cat">
                         {% for k, v in choices_kv.items %}
-                            <option value="{{ k }}"> {{ v }}  </option>  
+                            <option value="{{ k }}"> {{ v }} </option> 
+                                <!--<span class="hovertext" data-hover="Information about: "> {{ v }} </span>-->
                         {% endfor %}
                     </select>
 
@@ -184,6 +185,8 @@
                           </div>
                         </div><hr>
                       <!--End of dataframe -->   
+
+                      <div style="background-color:#974c5d"> <strong> {{ xrich_info_todisplay }} <br> - info source- British Nutrition Foundation 2022</strong></div>
 
                       </div><br>
                 </div>
