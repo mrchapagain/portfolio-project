@@ -64,8 +64,8 @@ class FridaDataAnalytics():
     self.df_frida= df_frida
     self.x_rich= x_rich
 
-    index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(10).index
-    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", "Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "Energy_kj"]].iloc[index_xrich].set_index('FødevareNavn')
+    index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(20).index
+    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", "Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "Energy_kj"]].iloc[index_xrich]#.set_index('FødevareNavn')
     #selected_data[['Product_en', "Total_CO2_eq/kg"]].groupby(by= ['Product_en'], sort=True).mean().nlargest(5, ["Total_CO2_eq/kg"])
     #FødevareGruppe_FødevareNavn_dict= df_frida[["FødevareGruppe",	"FødevareNavn"]].head(100).to_dict(orient='list')
     #FødevareNavn_list= df_frida.FødevareNavn.to_list()
@@ -319,21 +319,24 @@ class FridaDataAnalytics():
       fig, ax = plt.subplots(figsize=(10,10))
 
       G = nx.Graph()
-      G.add_edge(FødevareNavn, 'Flavour_B')
-      G.add_edge(FødevareNavn, 'Flavour_C')
-      G.add_edge(FødevareNavn, 'Flavour_D')
-      G.add_edge(FødevareNavn, 'Flavour_E')
-      G.add_edge('Flavour_C', "Food-item_1")
-      G.add_edge('Flavour_C', "Food-item_2")
-      G.add_edge('Flavour_C', "Food-item_3")
+      G.add_edge("Orange(245)", 'Alpha-Terpineol')
+      G.add_edge("Orange(245)", 'Delta-Cadinene')
+      G.add_edge("Orange(245)", 'Gamma-Cadinene')
+      G.add_edge("Orange(245)", 'Neomenthol')
+
+      G.add_edge('Delta-Cadinene', "Tea(170 Molecules)")
+      G.add_edge('Delta-Cadinene', "Lemon (163 Molecules)")
+      G.add_edge('Delta-Cadinene', "Apple (153 Molecules)")
+      G.add_edge('Delta-Cadinene', "Ginger (151 Molecules)")
+
 
       # explicitly set positions
-      pos = {'Flavour_B': (-1, -1), 'Flavour_C': (1, -1), FødevareNavn: (0, 0), 'Flavour_D': (-1, 1), 'Flavour_E': (1, 1), "Food-item_1": (1, 0), "Food-item_2": (1.45, -0.25), "Food-item_3": (1.5, -1)}
+      pos = {'Alpha-Terpineol': (-0.5, -0.5), 'Delta-Cadinene': (0.5, -0.5), 'Orange(245)': (0, 0), 'Gamma-Cadinene': (-0.5, 0.5), 'Neomenthol': (0.5,0.5), "Tea(170 Molecules)": (1, 0), "Lemon (163 Molecules)": (1.45, -0.35), "Apple (153 Molecules)": (1.5, -0.75), "Ginger (151 Molecules)": (1.0, -1.0)}
 
       options = {
         "font_size": 10,
-        "node_size": 5000,
-        "node_color": "grey",
+        "node_size": 10000,
+        "node_color": "lightblue",
         "edgecolors": "grey",
         "linewidths": 3,
         "width": 3,
@@ -346,9 +349,9 @@ class FridaDataAnalytics():
       ax = plt.gca()
       ax.margins(0.10)
 
-      txt= "(This is a sample figure and relavent figure will be updated soon.........)"
-      plt.text(-1, -1.5, txt, color= "r", fontsize = 9, alpha=0.8)
-      plt.title(f'Flavour compound from the food item: {FødevareNavn}', fontsize=10)
+      txt= "(This flavour network/pairing diagram is only for Orange as an example)"
+      plt.text(-1, -1.5, txt, color= "r", fontsize = 9, alpha=0.5)
+      plt.title(f'Flavour compound from the food item: "{FødevareNavn}"', fontsize=10)
       plt.axis('off')
       plt.tight_layout()
       graph=get_graph()

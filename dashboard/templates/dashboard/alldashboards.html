@@ -38,14 +38,13 @@
                   <label for='food_name'> <strong> Choose Food-Item here </strong> </label><br>
                  <!-- <input type="text", name='userid'> -->
                   <select id="food_name", name="food_name">
+                      {% for name in food_name_list %}
+                        <option value="{{ name }}"> {{ name }} </option> 
+                      {% endfor %}
 
-                    {% for name in food_name_list %}
-                      <option value="{{ name }}"> {{ name }} </option> 
-                    {% endfor %}
-
-                    {% for name in name_list %}
-                      <option value="{{ name }}"> {{ name }} </option> 
-                    {% endfor %}
+                      {% for name in name_list %}
+                        <option value="{{ name }}"> {{ name }} </option> 
+                      {% endfor %}
                   </select>
                   <button type="submit" value="Submit"> Click to Submit </button>
         
@@ -54,27 +53,22 @@
         </div><hr>
         <!--div section for second dropdown END here -->
 
-
         <!--Start of list hyperlink -->
         <div style="background-color:#71a39b">
-            <label for='cat_list'> <strong> List of food-items with different healthy option  </strong> </label><br>
-
-            <form action="category_list", method='post'>
+            <form action="xrich_todisplay", method='post'>
               {% csrf_token %}
-              
-                <dl>
-                    {% for k, v in choices_dict.items %}
-                      <dt> <a href="#p-rich" id="x_riches", name="x_riches"> {{ k }} </a> </dt>
-                          {% for dat in v %}
-                            <a value="{{ dat }}"> <dd id="p-rich">-  <i> {{ dat }} </i>  </dd>  </a>
-                          {% endfor %}
-      
-                    {% endfor %}
+              <label for='x_riches_cat'> <strong> List of food-items with different healthy option  </strong> </label><br>
 
-                </dl>
-              
-            </form> 
-        </div>
+                    <select id="x_riches_cat", name="x_riches_cat">
+                        {% for k, v in choices_kv.items %}
+                            <option value="{{ k }}"> {{ v }}  </option>  
+                        {% endfor %}
+                    </select>
+
+              <button type="submit" value="Submit"> Click to Submit </button>
+
+            </form> <br>
+        </div><hr>
         <!--Start of list hyperlink END here-->
     </div>
 
@@ -140,7 +134,7 @@
                         <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
                         {% endif %}
                     </div>
-              </div>
+                </div>
 
                 <!--Fourth whole row without column-->
                 <div class="row"> <br>
@@ -148,20 +142,60 @@
                       <h5>  </h5>  <hr> <!-- Food waste portion of the food -->
                         {% if barplot_foodwate %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="width:100%"/> </a>
+                          <!--Button- Fifth row-->  
+                          <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div> <hr>
                         {% endif %}
                 </div>
 
-              <!--Button- Fifth row-->  
-              <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div>
-              
+              <!--Button- Fifth row 
+              <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div> <hr>--> 
+
+
+                <!--DataFrame- sixth row--> 
+                <div class="row"> <br>
+                  <!--fig 5.1-->
+                      <div style="background-color:#a2b9b7">
+                        <!--Start of dataframe -->   
+                        <div style="background-color:#e8f0ef">
+                          <div class="row"><br>
+                            <h5 style="background-color:#a9d1ca"> {{ df_title_xrich }} </h5> <br>
+                              <div class="col">
+                                <div class="card-body">
+                                  
+                                  <!--Start of category-dataframe --> 
+                                  <table style="width:100%">
+                                    <tr>
+                                      {% for col in xrich_choice_df.columns %}
+                                        <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
+                                      {% endfor %}
+                                    </tr>
+                                      {% for index, row in xrich_choice_df.iterrows %}
+                                    <tr>
+                                          {% for cell in row %}
+                                        <td>{{ cell }}</td>
+                                          {% endfor %}
+                                    </tr>
+                                      {% endfor %}
+                                      <!--End of category-dataframe --> 
+                                  </table>
+                                  
+                                </div><br>
+                              </div>
+                          </div>
+                        </div><hr>
+                      <!--End of dataframe -->   
+
+                      </div><br>
+                </div>
+
               <div style="background-color:#a4aaa9"> 
                 <p> <strong>NOTE:</strong><i> For this page the dataset used are; <br> - "The Big Climate Database" from "CONCITO Denamrk"- The danish green think tank <br> - Danish Food Composition Database- Frida version 4(© Fødevaredata (http://frida.fooddata.dk ),version 4, 2022).</i> </p>
               </div>
-          </div>
-
+          
         </div>
 
     </div>
+
 
 {% endblock info_display %}
 
