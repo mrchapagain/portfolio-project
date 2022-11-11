@@ -27,7 +27,7 @@ def Food_category(request):
                 "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
                 "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
 
-    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items"}
+    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
     
     return render(request, 'dashboard/alldashboards.html', {'choices_kv':choices_kv, 'choices_dict':choices_dict, "category":category, "df_category":df_frida_category, "name_list":name_list, "food_group_list":food_group_list, "barplot_foodwate":barplot_foodwate, "loop_range":loop_range})
 
@@ -62,7 +62,7 @@ def foodname_todf(request):
                 "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
                 "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
 
-    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items"}
+    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
 
     return render(request, 'dashboard/alldashboards.html', {'choices_kv':choices_kv, 'choices_dict':choices_dict, "foodname":foodname, "df_food_name":df_food_name, "food_group_list":food_group_list, "name_list":name_list, "pie_chart_energy":pie_chart_energy, "pie_chart_climate":pie_chart_climate, "science_fact_textdisplay": science_fact_textdisplay, "flavour_img":flavour_img})
 
@@ -91,7 +91,7 @@ def item_todisplay(request):
                 "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
                 "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
 
-    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items"}
+    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
 
     return render(request, 'dashboard/alldashboards.html', {'choices_kv':choices_kv, 'choices_dict':choices_dict, "food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict,"loop_range":loop_range, "barplot_foodwate":barplot_foodwate, "group_plot_climate":group_plot_climate})
     
@@ -120,8 +120,8 @@ def category_list(request):
                 "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
                 "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
    
-    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items"}
-
+    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
+   
     return render(request, 'dashboard/alldashboards.html', {'choices_kv':choices_kv, 'choices_dict':choices_dict, "food_name_list":food_name_list, "food_group_list":food_group_list, "df_group_name_dict":df_group_name_dict,"loop_range":loop_range, "barplot_foodwate":barplot_foodwate, "group_plot_climate":group_plot_climate})
     
 
@@ -144,7 +144,7 @@ def xrich_todisplay(request):
                 "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
                 "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
     
-    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items"}
+    choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
 
     xrich_choice_df= cls.list_x_rich(df_frida, xrich_option)
 

@@ -65,7 +65,8 @@ class FridaDataAnalytics():
     self.x_rich= x_rich
 
     index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(20).index
-    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", "Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "Energy_kj"]].iloc[index_xrich]#.set_index('FødevareNavn')
+    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", f'{x_rich}', "Energy_kj"]].iloc[index_xrich]#.set_index('FødevareNavn')
+    #"Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "A_vitamin_RE", "B1-vitamin", "C-vitamin", "D_vitamin_µg", "E-vitamin", "Calcium, Ca", "Jern, Fe", 
     #selected_data[['Product_en', "Total_CO2_eq/kg"]].groupby(by= ['Product_en'], sort=True).mean().nlargest(5, ["Total_CO2_eq/kg"])
     #FødevareGruppe_FødevareNavn_dict= df_frida[["FødevareGruppe",	"FødevareNavn"]].head(100).to_dict(orient='list')
     #FødevareNavn_list= df_frida.FødevareNavn.to_list()
@@ -331,7 +332,7 @@ class FridaDataAnalytics():
 
 
       # explicitly set positions
-      pos = {'Alpha-Terpineol': (-0.5, -0.5), 'Delta-Cadinene': (0.5, -0.5), 'Orange(245)': (0, 0), 'Gamma-Cadinene': (-0.5, 0.5), 'Neomenthol': (0.5,0.5), "Tea(170 Molecules)": (1, 0), "Lemon (163 Molecules)": (1.45, -0.35), "Apple (153 Molecules)": (1.5, -0.75), "Ginger (151 Molecules)": (1.0, -1.0)}
+      pos = {'Alpha-Terpineol': (-0.4, -0.4), 'Delta-Cadinene': (0.4, -0.4), 'Orange(245)': (0, 0), 'Gamma-Cadinene': (-0.4, 0.4), 'Neomenthol': (0.4,0.4), "Tea(170 Molecules)": (1, 0), "Lemon (163 Molecules)": (1.25, -0.35), "Apple (153 Molecules)": (1.5, -0.75), "Ginger (151 Molecules)": (1.0, -1.0)}
 
       options = {
         "font_size": 10,

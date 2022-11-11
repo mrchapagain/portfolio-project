@@ -107,17 +107,17 @@
                 <!--Second row-->
                 <div class="row"> <br>
                     <!--- To make second two figures display side by side-->
-                    <!--fig 2.1-->
+                    <!--fig 2.1: Science facts text 
                       <div class="col">
-                        <h5>  </h5>  <hr> <!-- Science facts text -->
+                        <h5>  </h5>  <hr> 
                           {% if science_fact_textdisplay  %}
                             <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ science_fact_textdisplay|safe }}" alt="Bar Plot with Climate comparision with meat category" style="width:100%"/> </a>
                           {% endif %}
-                      </div>
+                      </div>-->
 
-                      <!--fig 2.2-->
+                      <!--fig 2.2: Flavour network fig -->
                       <div class="col">
-                        <h5>  </h5>  <hr> <!-- Science facts figure -->
+                        <h5>  </h5>  <hr>
                         {% if flavour_img  %}
                           <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="width:100%"/></a><br>
                         {% endif %}
@@ -156,9 +156,9 @@
                   <!--fig 5.1-->
                       <div style="background-color:#a2b9b7">
                         <!--Start of dataframe -->   
-                        <div style="background-color:#e8f0ef">
+                        <div style="background-color:#e8f0ef"><br>
                           <div class="row"><br>
-                            <h5 style="background-color:#a9d1ca"> {{ df_title_xrich }} </h5> <br>
+                            <h4 style="background-color:#a9d1ca"> {{ df_title_xrich }} </h4> <br><br>
                               <div class="col">
                                 <div class="card-body">
                                   
@@ -199,53 +199,3 @@
 
 {% endblock info_display %}
 
-
-<!--page to display of figure end here -->   
-<!-- Bottm row-Data frame -->
-<div style="background-color:#a2b9b7">
-
-  <!--Start of dataframe -->   
-  <div style="background-color:#e8f0ef">
-    <div class="row"><br><hr>
-      <h5>  </h5> <br>
-        <div class="col">
-          <div class="card-body">
-            
-            <!--Start of category-dataframe --> 
-            <table>
-              <tr>
-                {% for col in xrich_choice_df.columns %}
-                  <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
-                {% endfor %}
-              </tr>
-                {% for index, row in xrich_choice_df.iterrows %}
-              <tr>
-                    {% for cell in row %}
-                  <td>{{ cell }}</td>
-                    {% endfor %}
-              </tr>
-                {% endfor %}
-                <!--End of category-dataframe --> 
-
-                <!--Start of indivisual dataframe --> 
-            <table>
-              <tr>
-                {% for col in df_food_name.columns %}
-                  <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                       
-                {% endfor %}
-              </tr>
-                {% for index, row in df_food_name.iterrows %}
-              <tr>
-                    {% for cell in row %}
-                  <td>{{ cell }}</td>
-                    {% endfor %}
-              </tr>
-                {% endfor %}
-                <!--End of indiviausl dataframe --> 
-            </table>
-            
-          </div><br>
-        </div>
-    </div>
-  </div><hr>
-  <!--End of dataframe -->   
