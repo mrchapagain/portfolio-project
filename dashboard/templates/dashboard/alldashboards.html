@@ -101,7 +101,7 @@
                     <div class="col">
                       <h5>   </h5>  <hr> <!-- Nutrition composition -->
                         {% if pie_chart_energy %}
-                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="width:100%"/> </a>
+                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_energy|safe }}" alt="Energy content pie chart" style="padding:5px; margin:5px"/> </a>
                         {% endif %}
                     </div>
             
@@ -109,13 +109,13 @@
                     <div class="col">
                       <h5>  </h5>  <hr> <!-- CO2 emission -->
                         {% if pie_chart_climate %}
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="width:100%"/></a><br>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ pie_chart_climate|safe }}" alt="Climate foot print pie chart" style="padding:5px; margin:5px"/></a><br>
                         {% endif %}
                     </div>
                 </div> 
             
                 <!--Second row-->
-                <div class="row"> <br>
+                <div class="row" style="background-color:#71a39b"> <br>
                     <!--- To make second two figures display side by side-->
                     <!--fig 2.1: Science facts text 
                       <div class="col">
@@ -126,10 +126,10 @@
                       </div>-->
 
                       <!--fig 2.2: Flavour network fig -->
-                      <div class="col">
+                      <div class="row">
                         <h5>  </h5>  <hr>
                         {% if flavour_img  %}
-                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="width:100%"/></a><br>
+                          <a> <img class="bd-placeholder-img card-img-center" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="width:80%"/></a><br>
                         {% endif %}
                       </div>
                 </div>

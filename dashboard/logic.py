@@ -316,7 +316,7 @@ class FridaDataAnalytics():
       plt.switch_backend('AGG')
 
       #plt.figure(figsize=(10,5))
-      fig, ax = plt.subplots(figsize=(10,10))
+      fig, ax = plt.subplots(figsize=(10,8))
 
       G = nx.Graph()
       G.add_edge("Orange(245)", 'Alpha-Terpineol')
@@ -350,7 +350,7 @@ class FridaDataAnalytics():
       ax.margins(0.10)
 
       txt= "(This flavour network/pairing diagram is only for Orange as an example)"
-      plt.text(-1, -1.5, txt, color= "r", fontsize = 9, alpha=0.5)
+      plt.text(-1, -1.2, txt, color= "r", fontsize = 9, alpha=0.8)
       plt.title(f'Flavour compound from the food item: "{FødevareNavn}"', fontsize=10)
       plt.axis('off')
       plt.tight_layout()
