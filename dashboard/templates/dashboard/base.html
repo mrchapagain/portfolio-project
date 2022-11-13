@@ -120,14 +120,16 @@
     <title>Document</title>
     <style>
         .header1{grid-area:header;}
-        .menu1{grid-area:menu;}
+        .menu_left1{grid-area:menu_left;}
+        .menu_right1{grid-area:menu_right;}
         .main1{grid-area:main;}
         .footer1{grid-area:footer;}
 
         .grid-container{
             display: grid;
             grid-template-areas: 'header header header header header header'
-                                'menu main main main main main'
+                                'menu_left menu_right menu_right menu_right menu_right menu_right'
+                                'main main main main main main'
                                 'footer footer footer footer footer footer'
                                 ;
             gap: 5px;
@@ -231,10 +233,15 @@
           </div> 
         <!--div section for header END here --> 
             
-            
+       
+          <!--div section for user input start here -->
+          {% block info_select_left %}
+          {% endblock info_select_left %}
+        <!--div section for user input end here  -->
+             
         <!--div section for user input start here -->
-          {% block info_select %}
-          {% endblock info_select %}
+          {% block info_select_right %}
+          {% endblock info_select_right %}
         <!--div section for user input end here  -->
 
 

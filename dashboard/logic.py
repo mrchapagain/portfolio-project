@@ -60,16 +60,15 @@ class FridaDataAnalytics():
 
     return df_food_name
 
-  def list_x_rich(self, df_frida, x_rich):
+  def list_x_rich(self, df_frida, x_rich, fødevareGruppe):
     self.df_frida= df_frida
     self.x_rich= x_rich
+    self.fødevareGruppe= fødevareGruppe
 
     index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(20).index
     df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", f'{x_rich}', "Energy_kj"]].iloc[index_xrich]#.set_index('FødevareNavn')
     #"Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "A_vitamin_RE", "B1-vitamin", "C-vitamin", "D_vitamin_µg", "E-vitamin", "Calcium, Ca", "Jern, Fe", 
-    #selected_data[['Product_en', "Total_CO2_eq/kg"]].groupby(by= ['Product_en'], sort=True).mean().nlargest(5, ["Total_CO2_eq/kg"])
-    #FødevareGruppe_FødevareNavn_dict= df_frida[["FødevareGruppe",	"FødevareNavn"]].head(100).to_dict(orient='list')
-    #FødevareNavn_list= df_frida.FødevareNavn.to_list()
+
     return df_xrich
 
 

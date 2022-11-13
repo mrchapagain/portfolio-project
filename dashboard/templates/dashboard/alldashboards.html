@@ -3,77 +3,86 @@
 
 
 <!--div section for user input start here -->
-{% block info_select %}
-    <div class="menu1" style="background-color:#0c836f">
-        <h5><strong>Select & Submit!</strong> </h5>
-        
-        <!--div section first dropdown START here -->
+{% block info_select_left %}
+<!--Start of list hyperlink -->
+    <div class="menu_left1" style="background-color:#0c836f">
+        <h5><strong> Explore Food with health category </strong> </h5>
         <div style="background-color:#71a39b">
-            <form action="Food_category", method='post'>
-                    {% csrf_token %}
-                <fieldset>
-                  <label for='food_cat'> <strong> Choose Food-Category here </strong> </label><br>
-                 
-                  <!-- <input type="text", name='userid'> -->
-                  <select id="food_cat", name="food_cat">
-                    {% for group_name in food_group_list %}
-                      <option value="{{ group_name }}"> {{ group_name }} </option> 
-                      
-                    {% endfor %}
-                  </select>
-                  <button type="submit" value="Submit"> Click to Submit </button> 
-        
-                </fieldset>
+              <form action="xrich_todisplay", method='post'>
+                {% csrf_token %}
+                <label for='x_riches_cat'> <strong> Choose health category  </strong> </label><br>
+
+                      <select id="x_riches_cat", name="x_riches_cat">
+                          {% for k, v in choices_kv.items %}
+                              <option value="{{ k }}"> {{ v }} </option> 
+                                  <!--<span class="hovertext" data-hover="Information about: "> {{ v }} </span>-->
+                          {% endfor %}
+                      </select>
+
+                <button type="submit" value="Submit"> Click to Submit </button>
               </form> <br>
-        </div><hr>
-        <!--div section for first dropdown END here -->
-        
+          </div><hr>
+    </div>
+  <!--Start of list hyperlink END here-->
 
-        
-        <!--div section Second dropdown START here -->
-        <div style="background-color:#71a39b">
-            <form action="foodname_todf", method='post'>
-                    {% csrf_token %}
-                <fieldset>
-                  <label for='food_name'> <strong> Choose Food-Item here </strong> </label><br>
-                 <!-- <input type="text", name='userid'> -->
-                  <select id="food_name", name="food_name">
-                      {% for name in food_name_list %}
-                        <option value="{{ name }}"> {{ name }} </option> 
-                      {% endfor %}
+{% endblock info_select_left %}
+<!--div section for user input end here  -->
 
-                      {% for name in name_list %}
-                        <option value="{{ name }}"> {{ name }} </option> 
-                      {% endfor %}
-                  </select>
-                  <button type="submit" value="Submit"> Click to Submit </button>
-        
-                </fieldset>
-              </form> <br>
-        </div><hr>
-        <!--div section for second dropdown END here -->
 
-        <!--Start of list hyperlink -->
-        <div style="background-color:#71a39b">
-            <form action="xrich_todisplay", method='post'>
-              {% csrf_token %}
-              <label for='x_riches_cat'> <strong> List of food-items with different healthy option  </strong> </label><br>
 
-                    <select id="x_riches_cat", name="x_riches_cat">
-                        {% for k, v in choices_kv.items %}
-                            <option value="{{ k }}"> {{ v }} </option> 
-                                <!--<span class="hovertext" data-hover="Information about: "> {{ v }} </span>-->
+
+<!--div section for user input start here -->
+{% block info_select_right %}
+
+    <div class="menu_right1" style="background-color:#0c836f">
+            <h5><strong> Explore Food items </strong> </h5>
+            <!--div section first dropdown START here -->
+            <div class="col" style="background-color:#71a39b">
+                <form action="Food_category", method='post'>
+                        {% csrf_token %}
+                    <fieldset>
+                      <label for='food_cat'> <strong> Choose Food-Category </strong> </label><br>
+                    
+                      <!-- <input type="text", name='userid'> -->
+                      <select id="food_cat", name="food_cat">
+                        {% for group_name in food_group_list %}
+                          <option value="{{ group_name }}"> {{ group_name }} </option> 
+                          
                         {% endfor %}
-                    </select>
+                      </select>
+                      <button type="submit" value="Submit"> Click to Submit </button> 
 
-              <button type="submit" value="Submit"> Click to Submit </button>
+                    </fieldset>
+                  </form> 
+            </div><hr>
+            <!--div section for first dropdown END here -->
 
-            </form> <br>
-        </div><hr>
-        <!--Start of list hyperlink END here-->
+
+            <!--div section Second dropdown START here -->
+            <div class="col" style="background-color:#71a39b">
+                <form action="foodname_todf", method='post'>
+                        {% csrf_token %}
+                    <fieldset>
+                      <label for='food_name'> <strong> Choose Food-Item within above fod category </strong> </label><br>
+                    <!-- <input type="text", name='userid'> -->
+                      <select id="food_name", name="food_name">
+                          {% for name in food_name_list %}
+                            <option value="{{ name }}"> {{ name }} </option> 
+                          {% endfor %}
+
+                          {% for name in name_list %}
+                            <option value="{{ name }}"> {{ name }} </option> 
+                          {% endfor %}
+                      </select>
+                      <button type="submit" value="Submit"> Click to Submit </button>
+
+                    </fieldset>
+                  </form> 
+            </div><hr>
+            <!--div section for second dropdown END here -->
     </div>
 
-{% endblock info_select %}
+{% endblock info_select_right %}
 <!--div section for user input end here  -->
 
     

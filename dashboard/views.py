@@ -138,15 +138,10 @@ def xrich_todisplay(request):
     food_group_list= cls.FødevareGruppe_list(df_frida)
     food_name_list= cls.FødevareNavn_list(df_frida)
 
-    #func= cls.list_x_rich(df_frida, "Protein_deklaration_g")
-    choices_dict={"Protein rich food-items": ['Gelatine', 'Æg, høne, æggehvide, tørret', 'Flæskesvær, snacks', 'Æg, høne, tørret', 'Skummetmælksost, max. 5+', 'Sojamel','Parmesan, revet', 'Græskarkerner, tørret', 'Sojabønner, tørrede, rå', 'Gær, tørret'],
-                "Fiber (Dietry) rich food-items": ['Te, blade', 'Kanel, stang', 'Hyben pulver, tørret', 'Koriander, frø', 'Chiafrø', 'Hvedeklid', 'Fennikel, frø', 'Kommen, rå', 'Karry, pulver', 'Peber, sort'],
-                "Fatty-acids rich food-items": ['Tidselolie', 'Hvedekimolie', 'Bomuldsfrøolie', 'Palmeolie', 'Kakaosmør', 'Palmekerneolie', 'Solsikkeolie', 'Valnøddeolie', 'Torsk, levertran', 'Sesamolie'],
-                "Carbohydrate rich food-items": ['Sukker, stødt melis (saccharose)', 'Sukker, brunt rørsukker', 'Lactose, pulver', 'Fruktose','Sukker, brun farin', 'Pastiller, sukkerfri, uspec.','Majsmel','Tyggegummi, med sukker, uspec.', 'Sagogryn (kartoffelstivelse)','Majsstivelse']}
-    
     choices_kv= {"Protein_deklaration_g":"Protein rich food-items", "Kostfibre_g":"Fiber (Dietry) rich food-items", "Fedt_total_g":"Fatty-acids rich food-items", "Kulhydrat_deklaration_g":"Carbohydrate rich food-items", 'A_vitamin_RE':'A-vitamin rich food-items', "B1-vitamin":'B1-vitamin rich food-items', "B2-vitamin_riboflavin":'B2-vitamin rich food-items', "B6-vitamin":'B6-vitamin rich food-items', "B12-vitamin":'B12-vitamin rich food-items', "C-vitamin":'C-vitamin rich food-items', "D_vitamin_µg":'D-vitamin rich food-items', "E-vitamin":'E-vitamin rich food-items', "Calcium, Ca":'Calcium rich food-items', "Jern, Fe":'Iron rich food-items', 'Kalium, K':'Potassium rich food-items', 'Natrium, Na': 'Sodium rich food-items'}
 
-    xrich_choice_df= cls.list_x_rich(df_frida, xrich_option)
+    #xrich_choice_df= cls.list_x_rich(df_frida, xrich_option, "fødevareGruppe")
+    xrich_choice_df= cls.list_x_rich(df_frida, xrich_option, "fødevareGruppe")
 
     df_title_xrich= f'Data table with Top 20 "{choices_kv[xrich_option]}"'
 
@@ -170,5 +165,5 @@ def xrich_todisplay(request):
 
     xrich_info_todisplay= xrich_info_dic[xrich_option]
 
-    return render(request, 'dashboard/alldashboards.html', {'xrich_option':xrich_option, 'food_group_list':food_group_list, 'food_name_list':food_name_list, 'choices_kv':choices_kv, 'xrich_choice_df':xrich_choice_df, 'choices_dict':choices_dict, 'df_title_xrich':df_title_xrich, 'xrich_info_todisplay':xrich_info_todisplay})
+    return render(request, 'dashboard/alldashboards.html', {'xrich_option':xrich_option, 'food_group_list':food_group_list, 'food_name_list':food_name_list, 'choices_kv':choices_kv, 'xrich_choice_df':xrich_choice_df, 'df_title_xrich':df_title_xrich, 'xrich_info_todisplay':xrich_info_todisplay})
     
