@@ -66,7 +66,7 @@ class FridaDataAnalytics():
     self.fødevareGruppe= fødevareGruppe
 
     index_xrich= df_frida[x_rich].drop(df_frida[df_frida[x_rich]=="iv"].index).astype(float).nlargest(20).index
-    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", f'{x_rich}', "Energy_kj"]].iloc[index_xrich]#.set_index('FødevareNavn')
+    df_xrich= df_frida[["FødevareNavn", "FødevareGruppe", f'{x_rich}', "Energy_kj", "Energy_kcal"]].iloc[index_xrich]#.set_index('FødevareNavn')
     #"Protein_deklaration_g",  "Fedt_total_g", "Kulhydrat_deklaration_g", "Kostfibre_g", "A_vitamin_RE", "B1-vitamin", "C-vitamin", "D_vitamin_µg", "E-vitamin", "Calcium, Ca", "Jern, Fe", 
 
     return df_xrich
@@ -133,7 +133,7 @@ class FridaDataAnalytics():
         # Stacked bar plot
         rows= selected_dropped_data.shape[0]
         plt.switch_backend('AGG')
-        fig, ax= plt.subplots(figsize=(10, 5))
+        fig, ax= plt.subplots(figsize=(15, 10))
         ax.barh(df_with_category.index, df_with_category['Agriculture'], label= "Agriculture")
         ax.barh(df_with_category.index, df_with_category['iLUC'], label='iLUC')
         ax.barh(df_with_category.index, df_with_category['Packaging'], label='Processing')
@@ -142,7 +142,8 @@ class FridaDataAnalytics():
         ax.barh(df_with_category.index, df_with_category['Retail'], label='Retail')
 
         #sns.barplot(df2.values, df2.index, alpha=1)
-        plt.xticks(rotation=20)
+        #plt.xticks(rotation=20)
+        plt.yticks(rotation=35)
         plt.title(f'"Share of the Total CO2 contribution based on food category"')
         plt.ylabel("Product Category")
         plt.xlabel("Total average CO2 equivalent/Kg")
@@ -163,7 +164,7 @@ class FridaDataAnalytics():
       df_foodname_climate= df_climate[df_climate.Product_dk== foodname]
       sns.barplot(data= df_climate, x= "Category_dk", y= "Total_CO2_eq_perkg", palette= "hls") #df_foodname_climate.Product_dk.item()
       # # palette={"Vegetables_Average": "blue", "Meat/Poultry_Average": "red", {foodname}: "green"}
-      plt.xticks(rotation=20)
+      plt.xticks(rotation=35)
       plt.xlabel('Name of Food item')
       plt.ylabel('Total CO2 emission contribution')
       plt.tight_layout()

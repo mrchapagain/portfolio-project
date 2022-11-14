@@ -66,9 +66,9 @@
 {% block info_display_homeextend %} 
   <!--- start of blog gallery  display -->
     <div class="container">
-          <h3> Image gallery of Blog articles</h3><hr>
+          <h3> Image gallery from Blog page </h3><hr>
         <div class="col">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             {% for blog in blogs.all %}
               <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">
@@ -91,9 +91,9 @@
 
     <!--- start of Project-portfolio gallery display -->   
     <div class="container">
-      <h3> Image gallery of Project portfolios </h3><hr>
+      <h3> Image gallery from Project portfolios page </h3><hr>
       <div class="col">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" >
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" style="overflow-x: scroll">
 
           {% for portfolios in portfolioss.all %}
             <div class="d-flex justify-content-between align-items-center" style="background-color:#c6eeeb; height: 350px">

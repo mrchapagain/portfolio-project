@@ -63,7 +63,7 @@
                 <form action="foodname_todf", method='post'>
                         {% csrf_token %}
                     <fieldset>
-                      <label for='food_name'> <strong> Choose Food-Item within above fod category </strong> </label><br>
+                      <label for='food_name'> <strong> Choose Food-Item within above food category </strong> </label><br>
                     <!-- <input type="text", name='userid'> -->
                       <select id="food_name", name="food_name">
                           {% for name in food_name_list %}
@@ -129,33 +129,32 @@
                       <div class="row">
                         <h5>  </h5>  <hr>
                         {% if flavour_img  %}
-                          <a> <img class="bd-placeholder-img card-img-center" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="width:80%"/></a><br>
+                          <a> <img class="bd-placeholder-img card-img-center" class= "img-fluid" src="data:image/png;base64, {{ flavour_img|safe }}" alt="Chemical compound of the food item" style="padding:5px; margin:5px"/></a><br>
                         {% endif %}
                       </div>
                 </div>
 
                 <!--Third row-->
-                <div class="row"> <br>
-            
-                    <!--fig 3.1-->
+                <div class="row"> <br> 
+                  <!--- fig 3.1-->
                     <div class="col">
-                      <h5>  </h5>  <hr> <!-- CO2 impact of food categories -->
+                      <h5>   </h5>  <hr> <!-- CO2 impact of food categories -->
                         {% if group_plot_climate %}
-                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="width:100%"/></a><br>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ group_plot_climate|safe }}" alt="Bar plot of foodclimate category" style="padding:5px; margin:5px"/></a><br>
                         {% endif %}
                     </div>
-                </div>
-
-                <!--Fourth whole row without column-->
-                <div class="row"> <br>
-                  <!--fig 4.1-->
+            
+                    <!--fig 3.2-->
+                    <div class="col">
                       <h5>  </h5>  <hr> <!-- Food waste portion of the food -->
                         {% if barplot_foodwate %}
-                          <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="width:100%"/> </a>
+                        <a> <img class="bd-placeholder-img card-img-top" class= "img-fluid" src="data:image/png;base64, {{ barplot_foodwate|safe }}" alt="Bar Plot with Eaten vs non-eatenportion of the food in different category" style="padding:5px; margin:5px"/> </a>
                           <!--Button- Fifth row-->  
                           <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div> <hr>
                         {% endif %}
-                </div>
+                    </div>
+                </div> 
+
 
               <!--Button- Fifth row 
               <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Click the figure for bigger view</button> </div> <hr>--> 
@@ -173,7 +172,7 @@
                                 <div class="card-body">
                                   
                                   <!--Start of category-dataframe --> 
-                                  <table style="width:100%">
+                                  <table  style="padding:5px; margin:auto">
                                     <tr>
                                       {% for col in xrich_choice_df.columns %}
                                         <th style="white-space:nowrap" class="rotate"> <div> {{ col }} </div> </th>                   
