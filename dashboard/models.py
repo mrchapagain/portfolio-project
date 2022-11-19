@@ -5,8 +5,8 @@ from ckeditor.fields import RichTextField
 class Dataset(models.Model):
     df= models.FileField('uploads/%Y/%m/%d/')
     
-    def __str__(self):
-        return self.title
+    #def __str__(self):
+        #return self.title
 
 
 # Class for food category for user input

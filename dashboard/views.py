@@ -2,8 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .logic import *
 from .models import Dataset, Category
 
+#for user intractivity
+import ipywidgets as widgets
+from ipywidgets import interact, interactive, fixed, interact_manual
+
 def Food_category(request):
     category= request.POST['food_cat']
+    #data_frida_final= Dataset.objects
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
     data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
@@ -34,6 +39,7 @@ def Food_category(request):
 
 def foodname_todf(request):
     foodname= request.POST['food_name']
+    #data_frida_final= Dataset.objects
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
     data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
@@ -68,6 +74,7 @@ def foodname_todf(request):
 
 
 def item_todisplay(request):
+    #data_frida_final= Dataset.objects.all()
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
     data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
@@ -98,6 +105,7 @@ def item_todisplay(request):
 
 
 def category_list(request):
+    #data_frida_final= Dataset.objects
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
     data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
@@ -129,6 +137,7 @@ def category_list(request):
 
 def xrich_todisplay(request):
     xrich_option= request.POST['x_riches_cat']
+    #data_frida_final= Dataset.objects
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
 

@@ -7,36 +7,21 @@
     <div>
         <h5> </h5>
         <form action="keyword_tosearch", method='post' style="background-color:#0c836f">
-          {% csrf_token %}
-          <label for="key_words"> <strong> keywords </strong> </label> <br>
-            
-            <select id="key_words", name="key_words">
+          {% csrf_token %}   
+          
+          <label for="key_words"> <strong> Type keyword here </strong> </label> <br>
+            <input id="key_words", type="text", name='key_words'> 
+                <h6> <strong>Hints:</strong> <i> "Healthy diet, protein diet, healthy food, food waste, protein" </i> </h6>
+
+            <!--- <select id="key_words", name="key_words">
               {% for kw_dict in keyword_dict %}
                 {% for k, v in kw_dict.items %}
                   <option value="{{ v }}"> {{ k }} </option>
                 {% endfor %}
               {% endfor %}
-            </select>
+            </select><br>-->
 
-                    <h5> Time-frame </h5>
-
-            <select id="time_frame", name="time_frame">
-              {% for k, v in tf_dict.items %}
-                <option value="{{ v }}"> <strong> {{ k }} </strong> </option>
-              {% endfor %}
-            </select> <br> <br>
-
-            <button type="submit" value="Submit" > Click to Submit both keyword & Timeframe</button> <br> <br>
-        </form>
-                              <hr> <h5> OR </h5> <hr>
-
-        <form action="keyword_tosearch", method='post' style="background-color:#0c836f">
-            {% csrf_token %}
-            <label for='key_words'> <strong> Type keyword here </strong> </label> <br>
-            
-            <input type="text", name='key_words'> 
-
-                        <h5> Time-frame </h5>
+                  <h5> Time-frame </h5>
 
             <select id="time_frame", name="time_frame">
               {% for k, v in tf_dict.items %}
@@ -44,15 +29,15 @@
               {% endfor %}
             </select> <br> <br>
 
-            <button type="submit" value="Submit">Click to Submit both keyword & Timeframe </button> <br> <br>
+            <button type="submit" value="Submit"> Click to Submit both keyword & Timeframe</button> <br> <br>
         </form>
         
-    </div> <hr>
+    </div><hr>
 
     <div class="tab" style="background-color:#0c836f"> 
       <form action="timeframe_tosearch", method='post'>
             {% csrf_token %}
-            <br> <button type="submit" value="Submit"> Home screen for latest google trends </button>
+            <br> <button type="submit" value="Submit"> Return home screen for latest google trends </button>
       </form> <br>
     </div>
 

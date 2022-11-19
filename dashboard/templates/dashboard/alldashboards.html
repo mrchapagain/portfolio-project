@@ -5,7 +5,7 @@
 <!--div section for user input start here -->
 {% block info_select_left %}
 <!--Start of list hyperlink -->
-    <div class="menu_left1" style="background-color:#0c836f">
+    <div class="menu_left1 center" style="background-color:#0c836f; width:97%">
         <h5><strong> Explore Food with health category </strong> </h5>
         <div style="background-color:#71a39b">
               <form action="xrich_todisplay", method='post'>
@@ -34,12 +34,14 @@
 <!--div section for user input start here -->
 {% block info_select_right %}
 
-    <div class="menu_right1" style="background-color:#0c836f">
-            <h5><strong> Explore Food items </strong> </h5>
+    <div class="menu_right1 center" style="background-color:#0c836f; width:97%">
+        <h5><strong> Explore Food items </strong> </h5>
+            
             <!--div section first dropdown START here -->
             <div class="col" style="background-color:#71a39b">
                 <form action="Food_category", method='post'>
                         {% csrf_token %}
+
                     <fieldset>
                       <label for='food_cat'> <strong> Choose Food-Category </strong> </label><br>
                     
@@ -51,8 +53,8 @@
                         {% endfor %}
                       </select>
                       <button type="submit" value="Submit"> Click to Submit </button> 
-
                     </fieldset>
+                    
                   </form> 
             </div><hr>
             <!--div section for first dropdown END here -->

@@ -72,6 +72,7 @@ class FridaDataAnalytics():
     return df_xrich
 
 
+
   def piechart_fooditem_energy(self, df_food_name):
         self.df_food_name=df_food_name
 
