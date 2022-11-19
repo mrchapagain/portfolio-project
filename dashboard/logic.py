@@ -312,28 +312,43 @@ class FridaDataAnalytics():
       return graph
 
 
-  def flavour_compound(self, FødevareNavn):
+  def flavour_compound(self, FødevareNavn, flavor_bitter, flavor_sweet, flavor_sour, flavor_salty, flavor_umamy, flavor_max_bititm, flavor_max_sweitm, flavor_max_souitm, flavor_max_salitm):
       self.FødevareNavn= FødevareNavn
+      self.flavor_bit= flavor_bitter
+      self.flavor_swe = flavor_sweet
+      self.flavor_sou = flavor_sour
+      self.flavor_sal = flavor_salty
+      self.flavor_uma = flavor_umamy
+      self.flavor_max_bititm = flavor_max_bititm
+      self.aflavor_max_sweitm = flavor_max_sweitm
+      self.flavor_max_souitm = flavor_max_souitm
+      self.flavor_max_salitm = flavor_max_salitm
 
       plt.switch_backend('AGG')
 
       #plt.figure(figsize=(10,5))
-      fig, ax = plt.subplots(figsize=(10,8))
+      fig, ax = plt.subplots(figsize=(12,8))
+
+      #FødevareNavn:"Orange(245)", flavor_bit:'Alpha-Terpineol', flavor_swe:'Gamma-Cadinene', flavor_sou:'Delta-Cadinene', flavor_sal:'Neomenthol', flavor_uma:'Umami', flavor_max_bititm:"Tea(170 Molecules)", flavor_max_sweitm:"Apple (153 Molecules)", flavor_max_souitm:"Ginger (151 Molecules)", flavor_max_salitm:"Lemon (163 Molecules)"
 
       G = nx.Graph()
-      G.add_edge("Orange(245)", 'Alpha-Terpineol')
-      G.add_edge("Orange(245)", 'Delta-Cadinene')
-      G.add_edge("Orange(245)", 'Gamma-Cadinene')
-      G.add_edge("Orange(245)", 'Neomenthol')
+      G.add_edge(FødevareNavn, flavor_bitter)
+      G.add_edge(FødevareNavn, flavor_sour)
+      G.add_edge(FødevareNavn, flavor_sweet)
+      G.add_edge(FødevareNavn, flavor_salty)
+      G.add_edge(FødevareNavn, flavor_umamy)
 
-      G.add_edge('Delta-Cadinene', "Tea(170 Molecules)")
-      G.add_edge('Delta-Cadinene', "Lemon (163 Molecules)")
-      G.add_edge('Delta-Cadinene', "Apple (153 Molecules)")
-      G.add_edge('Delta-Cadinene', "Ginger (151 Molecules)")
+      G.add_edge(flavor_sour, flavor_max_bititm)
+      G.add_edge(flavor_sour, flavor_max_salitm)
+      G.add_edge(flavor_sour, flavor_max_sweitm)
+      G.add_edge(flavor_sour, flavor_max_souitm)
 
 
       # explicitly set positions
-      pos = {'Alpha-Terpineol': (-0.4, -0.4), 'Delta-Cadinene': (0.4, -0.4), 'Orange(245)': (0, 0), 'Gamma-Cadinene': (-0.4, 0.4), 'Neomenthol': (0.4,0.4), "Tea(170 Molecules)": (1, 0), "Lemon (163 Molecules)": (1.25, -0.35), "Apple (153 Molecules)": (1.5, -0.75), "Ginger (151 Molecules)": (1.0, -1.0)}
+      pos = {FødevareNavn:(-0.5, 0.0),
+                        flavor_umamy:(-0.5, 0.5), flavor_salty:(-0.5, -0.5), flavor_sweet:(-1.1, 0.3), flavor_bitter:(-1.1, -0.3), 
+              flavor_sour:(0.5, 0.0), 
+                        flavor_max_bititm:(0.5, 0.5), flavor_max_souitm:(0.5, -0.5), flavor_max_salitm:(1.1, 0.3), flavor_max_sweitm:(1.1, -0.3)}
 
       options = {
         "font_size": 10,
@@ -349,12 +364,14 @@ class FridaDataAnalytics():
 
       # Set margins for the axes so that nodes aren't clipped
       ax = plt.gca()
-      ax.margins(0.10)
+      ax.margins(0.08)
 
       txt= "(This flavour network/pairing diagram is only for Orange as an example)"
-      plt.text(-1, -1.2, txt, color= "r", fontsize = 9, alpha=0.8)
-      plt.title(f'Flavour compound from the food item: "{FødevareNavn}"', fontsize=10)
+      plt.text(-1.1, -0.7, txt, color= "r", fontsize = 9, alpha=0.8)
+      plt.title(f'Flavour compound from the food item: "{FødevareNavn}"', fontsize=12)
       plt.axis('off')
       plt.tight_layout()
+      #plt.grid(b = True, color ='grey', linestyle ='-.', linewidth = 0.5, alpha = 0.2)# Add x, y gridlines.    #ax.grid(axis= "y")
+      ax.grid(axis= "y")
       graph=get_graph()
       return graph
