@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .logic import *
-from .models import Dataset, Category
+from .models import *
 
 #for user intractivity
 import ipywidgets as widgets
@@ -43,6 +43,8 @@ def foodname_todf(request):
 
     data_frida_final= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/finaldf_fridanutrient_aditionallink_groups.xlsx"
     data_climate_selected= "https://github.com/mrchapagain/ConsumerDataAnalytics/raw/main/df_climate_selected.xlsx"
+    flavour_foodname= "https://github.com/mrchapagain/portfolio-project/raw/master/flavour_foodname.xlsx"
+    flavour_data= pd.read_excel(flavour_foodname, sheet_name=0, index_col=0, header=0, skiprows=0)
     
     cls= FridaDataAnalytics()
     df_frida= cls.frida_datareader(data_frida_final)
@@ -60,8 +62,13 @@ def foodname_todf(request):
     pie_chart_climate= cls.piechart_fooditem_co2(df_foodname_climate)
 
     science_fact_textdisplay=cls.text_display_frida(df_food_name)
-    
-    flavour_img= cls.flavour_compound(foodname, 'flavor_bitter', 'flavor_sweet', 'flavor_sour', 'flavor_salty', 'flavor_umamy', 'food_name\n with \nflavor_umamy', 'food_name\n with \nflavor_sweet', 'food_name\n with \nflavor_bitter', 'food_name\n with \nflavor_salty')
+
+    # Argumentsoption for flavour network figure   
+    if foodname in flavour_data.index:
+        fdf= flavour_data[flavour_data.index == foodname]
+        flavour_img= cls.flavour_compound(fdf.food_flavour[0], fdf.flavour_1[0], fdf.flavour_2[0], fdf.flavour_3[0], fdf.flavour_4[0], fdf.flavour_5[0], fdf.item_pair1[0], fdf.item_pair2[0], fdf.item_pair3[0], fdf.item_pair4[0])
+    else:
+        flavour_img= cls.flavour_compound(foodname, 'flavor_bitter', 'flavor_sweet', 'flavor_sour', 'flavor_salty', 'flavor_umamy', 'food_name\n with \nflavor_umamy', 'food_name\n with \nflavor_sweet', 'food_name\n with \nflavor_bitter', 'food_name\n with \nflavor_salty')
 
     #func= cls.list_x_rich(df_frida, "Protein_deklaration_g")
     choices_dict={"Protein rich food-items": ['Gelatine', 'Æg, høne, æggehvide, tørret', 'Flæskesvær, snacks', 'Æg, høne, tørret', 'Skummetmælksost, max. 5+', 'Sojamel','Parmesan, revet', 'Græskarkerner, tørret', 'Sojabønner, tørrede, rå', 'Gær, tørret'],
@@ -177,3 +184,21 @@ def xrich_todisplay(request):
 
     return render(request, 'dashboard/alldashboards.html', {'xrich_option':xrich_option, 'food_group_list':food_group_list, 'food_name_list':food_name_list, 'choices_kv':choices_kv, 'xrich_choice_df':xrich_choice_df, 'df_title_xrich':df_title_xrich, 'xrich_info_todisplay':xrich_info_todisplay})
     
+
+
+Banana=['Banana \n206 Flavor Molecules', 'Delta-Cadinene \nHerbal & woody','Neomenthol \nMinty & Sweet','Epicatechin \nBitter','(Z)-Cinnamyl Alcohol \nCinnamic & Spicy','1-Dodecanol \nFatty & Earthy','Apple \n172','Grape \n149','Strawberry \n149','Tea \n140']
+#Banana=['Apple \n300 Flavor Molecules', '','','','','','','','','']
+#Banana=['Avocado \n134 Flavor Molecules', '','','','','','','','','']
+#Banana=['Coconut \n161 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Orange \n245 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Mango \n238 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Pear \n149 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Black_Currant \n213 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Red_Currant \n143 Flavor Molecules', '','','','','','','','','']
+
+#Banana=['Apricot \n207 Flavor Molecules', '','','','','','','','','']
