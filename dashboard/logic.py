@@ -327,9 +327,7 @@ class FridaDataAnalytics():
       plt.switch_backend('AGG')
 
       #plt.figure(figsize=(10,5))
-      fig, ax = plt.subplots(figsize=(12,8))
-
-      #FødevareNavn:"Orange(245)", flavor_bit:'Alpha-Terpineol', flavor_swe:'Gamma-Cadinene', flavor_sou:'Delta-Cadinene', flavor_sal:'Neomenthol', flavor_uma:'Umami', flavor_max_bititm:"Tea(170 Molecules)", flavor_max_sweitm:"Apple (153 Molecules)", flavor_max_souitm:"Ginger (151 Molecules)", flavor_max_salitm:"Lemon (163 Molecules)"
+      fig, ax = plt.subplots(figsize=(20, 10))
 
       G = nx.Graph()
       G.add_edge(FødevareNavn, flavor_bitter)
@@ -358,6 +356,7 @@ class FridaDataAnalytics():
         "linewidths": 3,
         "width": 3,
         "alpha":1,
+        #"node_shape":'o',
       }
 
       nx.draw_networkx(G, pos, **options)

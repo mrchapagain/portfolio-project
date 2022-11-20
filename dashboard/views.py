@@ -66,9 +66,10 @@ def foodname_todf(request):
     # Argumentsoption for flavour network figure   
     if foodname in flavour_data.index:
         fdf= flavour_data[flavour_data.index == foodname]
-        flavour_img= cls.flavour_compound(fdf.food_flavour[0], fdf.flavour_1[0], fdf.flavour_2[0], fdf.flavour_3[0], fdf.flavour_4[0], fdf.flavour_5[0], fdf.item_pair1[0], fdf.item_pair2[0], fdf.item_pair3[0], fdf.item_pair4[0])
+        flavour_img= cls.flavour_compound(fdf.food_flavour[0], fdf.flavour_1[0], fdf.flavour_2[0], 
+                    fdf.flavour_3[0], fdf.flavour_4[0], fdf.flavour_5[0], fdf.item_pair1[0], fdf.item_pair2[0], fdf.item_pair3[0], fdf.item_pair4[0])
     else:
-        flavour_img= cls.flavour_compound(foodname, 'flavor_bitter', 'flavor_sweet', 'flavor_sour', 'flavor_salty', 'flavor_umamy', 'food_name\n with \nflavor_umamy', 'food_name\n with \nflavor_sweet', 'food_name\n with \nflavor_bitter', 'food_name\n with \nflavor_salty')
+        flavour_img= cls.flavour_compound(foodname, 'flavor_bitter', 'flavor_sweet', 'flavor_sour', 'flavor_salty', 'flavor_umamy', 'food_name \r\nwith \nflavor_umamy', 'food_name\n with \nflavor_sweet', 'food_name\n with \nflavor_bitter', 'food_name\n with \nflavor_salty')
 
     #func= cls.list_x_rich(df_frida, "Protein_deklaration_g")
     choices_dict={"Protein rich food-items": ['Gelatine', 'Æg, høne, æggehvide, tørret', 'Flæskesvær, snacks', 'Æg, høne, tørret', 'Skummetmælksost, max. 5+', 'Sojamel','Parmesan, revet', 'Græskarkerner, tørret', 'Sojabønner, tørrede, rå', 'Gær, tørret'],

@@ -102,3 +102,4 @@ folium == 0.12.1
 networkx== 2.8.7
 django-separatedvaluesfield == 0.6.0
 django_utils_six == 2.0
+styleframe == 4.1
