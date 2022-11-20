@@ -312,17 +312,22 @@ class FridaDataAnalytics():
       return graph
 
 
-  def flavour_compound(self, FødevareNavn, flavor_bitter, flavor_sweet, flavor_sour, flavor_salty, flavor_umamy, flavor_max_bititm, flavor_max_sweitm, flavor_max_souitm, flavor_max_salitm):
+  def flavour_compound(self, FødevareNavn, flavor_1, flavor_2, flavor_3, flavor_4, flavor_5, item_pair1, item_pair2, item_pair3, item_pair4, item_pair5, item_pair6, item_pair7, item_pair8, item_pair9):
       self.FødevareNavn= FødevareNavn
-      self.flavor_bit= flavor_bitter
-      self.flavor_swe = flavor_sweet
-      self.flavor_sou = flavor_sour
-      self.flavor_sal = flavor_salty
-      self.flavor_uma = flavor_umamy
-      self.flavor_max_bititm = flavor_max_bititm
-      self.aflavor_max_sweitm = flavor_max_sweitm
-      self.flavor_max_souitm = flavor_max_souitm
-      self.flavor_max_salitm = flavor_max_salitm
+      self.flavor_1= flavor_1
+      self.flavor_2 = flavor_2
+      self.flavor_3 = flavor_3
+      self.flavor_4 = flavor_4
+      self.flavor_5 = flavor_5
+      self.item_pair1 = item_pair1
+      self.item_pair2 = item_pair2
+      self.item_pair3 = item_pair3
+      self.item_pair4 = item_pair4
+      self.item_pair5 = item_pair5
+      self.item_pair6 = item_pair6
+      self.item_pair7 = item_pair7
+      self.item_pair8 = item_pair8
+      self.item_pair9 = item_pair9
 
       plt.switch_backend('AGG')
 
@@ -330,23 +335,29 @@ class FridaDataAnalytics():
       fig, ax = plt.subplots(figsize=(20, 10))
 
       G = nx.Graph()
-      G.add_edge(FødevareNavn, flavor_bitter)
-      G.add_edge(FødevareNavn, flavor_sour)
-      G.add_edge(FødevareNavn, flavor_sweet)
-      G.add_edge(FødevareNavn, flavor_salty)
-      G.add_edge(FødevareNavn, flavor_umamy)
+      G.add_edge(FødevareNavn, flavor_1)
+      G.add_edge(FødevareNavn, flavor_3)
+      G.add_edge(FødevareNavn, flavor_2)
+      G.add_edge(FødevareNavn, flavor_4)
+      G.add_edge(FødevareNavn, flavor_5)
 
-      G.add_edge(flavor_sour, flavor_max_bititm)
-      G.add_edge(flavor_sour, flavor_max_salitm)
-      G.add_edge(flavor_sour, flavor_max_sweitm)
-      G.add_edge(flavor_sour, flavor_max_souitm)
+      G.add_edge(flavor_3, item_pair1)
+      G.add_edge(flavor_3, item_pair4)
+      G.add_edge(flavor_3, item_pair2)
+      G.add_edge(flavor_3, item_pair3)
+      G.add_edge(flavor_3, item_pair5)
+      G.add_edge(flavor_3, item_pair6)
+      G.add_edge(flavor_3, item_pair7)
+      G.add_edge(flavor_3, item_pair8)
+      G.add_edge(flavor_3, item_pair9)
 
 
       # explicitly set positions
       pos = {FødevareNavn:(-0.5, 0.0),
-                        flavor_umamy:(-0.5, 0.5), flavor_salty:(-0.5, -0.5), flavor_sweet:(-1.1, 0.3), flavor_bitter:(-1.1, -0.3), 
-              flavor_sour:(0.5, 0.0), 
-                        flavor_max_bititm:(0.5, 0.5), flavor_max_souitm:(0.5, -0.5), flavor_max_salitm:(1.1, 0.3), flavor_max_sweitm:(1.1, -0.3)}
+                        flavor_5:(-0.5, 0.5), flavor_4:(-0.5, -0.5), flavor_2:(-1.1, 0.3), flavor_1:(-1.1, -0.3), 
+              flavor_3:(0.5, 0.0), 
+                        item_pair1:(0.5, 0.5), item_pair3:(0.5, -0.5), item_pair4:(1.1, 0.3), item_pair2:(1.1, -0.3),
+                        item_pair5:(-0.25, 0.3), item_pair6:(2.6, 0.4), item_pair7:(1.3, 0.0), item_pair8:(2.6, -0.4), item_pair9:(-0.25, -0.3)}
 
       options = {
         "font_size": 10,
@@ -365,8 +376,7 @@ class FridaDataAnalytics():
       ax = plt.gca()
       ax.margins(0.08)
 
-      txt= "(This flavour network/pairing diagram is only for Orange as an example)"
-      plt.text(-1.1, -0.7, txt, color= "r", fontsize = 9, alpha=0.8)
+      txt= "(If this flavour network/pairing diagram is missing actual data, this mean we will update soon.....)"
       plt.title(f'Flavour compound from the food item: "{FødevareNavn}"', fontsize=12)
       plt.axis('off')
       plt.tight_layout()
