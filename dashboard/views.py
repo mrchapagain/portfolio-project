@@ -72,7 +72,7 @@ def foodname_todf(request):
     else:
         flavour_img= cls.flavour_compound(foodname, foodname, 'flavor_bitter', 'flavor_sweet', 'flavor_sour', 'flavor_salty', 'flavor_umamy', 'flavor_x6', 'flavor_x7', 'flavor_x8', 'flavor_x9', 
                                                     'food_name \r\nwith \nflavor_umamy', 'food_name\n with \nflavor_sweet', 'food_name\n with \nflavor_bitter', 'food_name\n with \nflavor_salty',
-                                                    'food_name\n with \nflavor_xyz', 'food_name\n with \nflavor_xyz', 'food_name\n with \nflavor_xyz', 'food_name\n with \nflavor_xyz', 'food_name\n with \nflavor_xyz')
+                                                    'food_name\n with \nflavor_5', 'food_name\n with \nflavor_6', 'food_name\n with \nflavor_7', 'food_name\n with \nflavor_8', 'food_name\n with \nflavor_9')
 
     #func= cls.list_x_rich(df_frida, "Protein_deklaration_g")
     choices_dict={"Protein rich food-items": ['Gelatine', 'Æg, høne, æggehvide, tørret', 'Flæskesvær, snacks', 'Æg, høne, tørret', 'Skummetmælksost, max. 5+', 'Sojamel','Parmesan, revet', 'Græskarkerner, tørret', 'Sojabønner, tørrede, rå', 'Gær, tørret'],

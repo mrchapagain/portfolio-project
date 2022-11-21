@@ -321,10 +321,10 @@ class FridaDataAnalytics():
       self.flavor_3 = flavor_3
       self.flavor_4 = flavor_4
       self.flavor_5 = flavor_5
-      self.flavor_5 = flavor_6
-      self.flavor_5 = flavor_7
-      self.flavor_5 = flavor_8
-      self.flavor_5 = flavor_9     
+      self.flavor_6 = flavor_6
+      self.flavor_7 = flavor_7
+      self.flavor_8 = flavor_8
+      self.flavor_9 = flavor_9     
       self.item_pair1 = item_pair1
       self.item_pair2 = item_pair2
       self.item_pair3 = item_pair3
@@ -342,8 +342,8 @@ class FridaDataAnalytics():
 
       G = nx.Graph()
       G.add_edge(foodname, flavor_1)
-      G.add_edge(foodname, flavor_3)
       G.add_edge(foodname, flavor_2)
+      G.add_edge(foodname, flavor_3)
       G.add_edge(foodname, flavor_4)
       G.add_edge(foodname, flavor_5)
       G.add_edge(foodname, flavor_6)
@@ -351,23 +351,23 @@ class FridaDataAnalytics():
       G.add_edge(foodname, flavor_8)
       G.add_edge(foodname, flavor_9)
 
-      G.add_edge(flavor_3, item_pair1)
-      G.add_edge(flavor_3, item_pair4)
-      G.add_edge(flavor_3, item_pair2)
-      G.add_edge(flavor_3, item_pair3)
-      G.add_edge(flavor_3, item_pair5)
-      G.add_edge(flavor_3, item_pair6)
-      G.add_edge(flavor_3, item_pair7)
-      G.add_edge(flavor_3, item_pair8)
-      G.add_edge(flavor_3, item_pair9)
+      G.add_edge(foodname, item_pair1)
+      G.add_edge(foodname, item_pair2)
+      G.add_edge(foodname, item_pair3)
+      G.add_edge(foodname, item_pair4)
+      G.add_edge(foodname, item_pair5)
+      G.add_edge(foodname, item_pair6)
+      G.add_edge(foodname, item_pair7)
+      G.add_edge(foodname, item_pair8)
+      G.add_edge(foodname, item_pair9)
 
 
       # explicitly set positions
-      pos = {foodname:(-0.5, 0.0),
+      pos = {foodname:(0.0, 0.0),
                         flavor_1:(-0.25, 0.45), flavor_2:(-0.5, 0.5), flavor_3:(-0.75, 0.45), 
                         flavor_4:(-1.0, 0.25), flavor_5:(-1.1, 0.0), flavor_6:(-1.0, -0.25), 
                         flavor_7:(-0.75,-0.45), flavor_8:(-0.5,-0.5), flavor_9:(-0.25, -0.45), 
-              foodname:(0.5, 0.0), 
+              foodname:(0.0, 0.0), 
                         item_pair1:(0.25, 0.45), item_pair2:(0.5, 0.5), item_pair3:(0.75, 0.45), 
                         item_pair4:(1.0, 0.25), item_pair5:(1.1, 0.0), item_pair6:(1.0, -0.25), 
                         item_pair7:(0.75,-0.45), item_pair8:(0.5,-0.5), item_pair9:(0.25, -0.45)}       
