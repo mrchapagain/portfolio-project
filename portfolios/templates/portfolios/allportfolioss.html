@@ -4,12 +4,14 @@
 
 <!--- Start of SECTION -->
 {% block section %}
-    <div > <!--class="row py-lg-5"-->  
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
-        <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
-      </div>
-      <p><h1 class="fw-light"> List of latest project-portfolio </h1></p><hr> 
+    <div style="background-color:#e8f0ef"> <!--class="row py-lg-5"-->  
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <!--<h1 class="fw-light">My Projects portfolio!</h1>-->      
+            <img class="bd-placeholder-img card-img-top" class= "img-fluid" src= "{% static 'my-portfolio.jpg' %}"/><hr> 
+        </div>
+
+        <h2> What kind of portfolios? </h2>
+        <p> <strong><i> Here i will post some of my completed and ongoing projects. <br></i></strong> </p>
     </div>
 {% endblock section %}
 
@@ -17,7 +19,7 @@
 <!--- Sidemenu bar -->
 {% block info_select_ppextend %} 
       <div class="container">
-        <h3> List of Project-Portfolios </h3><hr>
+        <h2> List of Project-Portfolios </h2><hr>
         <h4> <strong> CLICK </strong>to display detail of a Project-portfolio </h4>
 
             <div class="row">
