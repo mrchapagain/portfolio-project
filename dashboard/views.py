@@ -64,6 +64,8 @@ def foodname_todf(request):
     science_fact_textdisplay=cls.text_display_frida(df_food_name)
 
     # Argumentsoption for flavour network figure   
+    #def flavour_compound(self, FødevareNavn, foodname, flavor_1, flavor_2, flavor_3, flavor_4, flavor_5, flavor_6, flavor_7, flavor_8, flavor_9,
+                        #item_pair1, item_pair2, item_pair3, item_pair4, item_pair5, item_pair6, item_pair7, item_pair8, item_pair9):
     if foodname in flavour_data.index:
         fdf= flavour_data[flavour_data.index == foodname]
         flavour_img= cls.flavour_compound(foodname, fdf.food_flavour[0], fdf.flavour_1[0], fdf.flavour_2[0], fdf.flavour_3[0], fdf.flavour_4[0], fdf.flavour_5[0], 
