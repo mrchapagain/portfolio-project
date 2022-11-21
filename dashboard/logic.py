@@ -312,13 +312,19 @@ class FridaDataAnalytics():
       return graph
 
 
-  def flavour_compound(self, FødevareNavn, flavor_1, flavor_2, flavor_3, flavor_4, flavor_5, item_pair1, item_pair2, item_pair3, item_pair4, item_pair5, item_pair6, item_pair7, item_pair8, item_pair9):
+  def flavour_compound(self, FødevareNavn, foodname, flavor_1, flavor_2, flavor_3, flavor_4, flavor_5, flavor_6, flavor_7, flavor_8, flavor_9,
+                            item_pair1, item_pair2, item_pair3, item_pair4, item_pair5, item_pair6, item_pair7, item_pair8, item_pair9):
       self.FødevareNavn= FødevareNavn
+      self.foodname= foodname
       self.flavor_1= flavor_1
       self.flavor_2 = flavor_2
       self.flavor_3 = flavor_3
       self.flavor_4 = flavor_4
       self.flavor_5 = flavor_5
+      self.flavor_5 = flavor_6
+      self.flavor_5 = flavor_7
+      self.flavor_5 = flavor_8
+      self.flavor_5 = flavor_9     
       self.item_pair1 = item_pair1
       self.item_pair2 = item_pair2
       self.item_pair3 = item_pair3
@@ -335,11 +341,15 @@ class FridaDataAnalytics():
       fig, ax = plt.subplots(figsize=(20, 10))
 
       G = nx.Graph()
-      G.add_edge(FødevareNavn, flavor_1)
-      G.add_edge(FødevareNavn, flavor_3)
-      G.add_edge(FødevareNavn, flavor_2)
-      G.add_edge(FødevareNavn, flavor_4)
-      G.add_edge(FødevareNavn, flavor_5)
+      G.add_edge(foodname, flavor_1)
+      G.add_edge(foodname, flavor_3)
+      G.add_edge(foodname, flavor_2)
+      G.add_edge(foodname, flavor_4)
+      G.add_edge(foodname, flavor_5)
+      G.add_edge(foodname, flavor_6)
+      G.add_edge(foodname, flavor_7)
+      G.add_edge(foodname, flavor_8)
+      G.add_edge(foodname, flavor_9)
 
       G.add_edge(flavor_3, item_pair1)
       G.add_edge(flavor_3, item_pair4)
@@ -353,11 +363,14 @@ class FridaDataAnalytics():
 
 
       # explicitly set positions
-      pos = {FødevareNavn:(-0.5, 0.0),
-                        flavor_5:(-0.5, 0.5), flavor_4:(-0.5, -0.5), flavor_2:(-1.1, 0.3), flavor_1:(-1.1, -0.3), 
-              flavor_3:(0.5, 0.0), 
-                        item_pair1:(0.5, 0.5), item_pair3:(0.5, -0.5), item_pair4:(1.1, 0.3), item_pair2:(1.1, -0.3),
-                        item_pair5:(-0.25, 0.3), item_pair6:(2.6, 0.4), item_pair7:(1.3, 0.0), item_pair8:(2.6, -0.4), item_pair9:(-0.25, -0.3)}
+      pos = {foodname:(-0.5, 0.0),
+                        flavor_1:(-0.25, 0.45), flavor_2:(-0.5, 0.5), flavor_3:(-0.75, 0.45), 
+                        flavor_4:(-1.0, 0.25), flavor_5:(-1.1, 0.0), flavor_6:(-1.0, -0.25), 
+                        flavor_7:(-0.75,-0.45), flavor_8:(-0.5,-0.5), flavor_9:(-0.25, -0.45), 
+              foodname:(0.5, 0.0), 
+                        item_pair1:(0.25, 0.45), item_pair2:(0.5, 0.5), item_pair3:(0.75, 0.45), 
+                        item_pair4:(1.0, 0.25), item_pair5:(1.1, 0.0), item_pair6:(1.0, -0.25), 
+                        item_pair7:(0.75,-0.45), item_pair8:(0.5,-0.5), item_pair9:(0.25, -0.45)}       
 
       options = {
         "font_size": 10,
