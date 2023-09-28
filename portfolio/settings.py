@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t)gy(49mtnf4jw4n6h%7u#v0+=)b8344eyj-b9q^zuhdv80+q1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['159.65.89.151', 'localhost', '127.0.0.1', 'app-831048-0.cloud.sdu.dk´]
+ALLOWED_HOSTS = ['159.65.89.151', 'localhost', '127.0.0.1', "app-831048-0.cloud.sdu.dk"]
 
 
 # Application definition
